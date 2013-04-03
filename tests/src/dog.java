@@ -5,15 +5,15 @@ public class dog {
 	String name;
 	int wieght;
 	
-	private void setName(String s){
+	void setName(String s){
 		name = s;
 	}
 	
-	private void setWieght(int w){
+	void setWieght(int w){
 		wieght = w;
 	}
 	
-	private void setHieght(int h){
+	void setHieght(int h){
 		hieght = h;
 	}
 	
