@@ -23,3 +23,5 @@ tests/bin/
 *.jar
 *.war
 *.ear
+/storybuilder/nbproject/private/
+/tests/nbproject/private/

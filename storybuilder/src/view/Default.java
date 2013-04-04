@@ -44,7 +44,7 @@ public class Default extends JFrame {
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				LoginScreen login = new LoginScreen();
+				Login login = new Login();
 				login.setVisible(true);
 			}
 		});
