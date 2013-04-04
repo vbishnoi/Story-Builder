@@ -25,3 +25,4 @@ tests/bin/
 
 /.classpath
 /.project
+/storybuilder/build/
