@@ -1,14 +1,25 @@
+
 #ignore thumbnails created by windows
 Thumbs.db
 
 #ignore Desktop Service Store files created by mac
 *.DS_Store
+
 .DS_Store
 
 #ignore eclipse setting files
+
 .settings
 
 
 #Ignore all class compiled java class files
 *.class
 
+storybuilder/bin
+
+tests/bin
+
+# Package Files #
+*.jar
+*.war
+*.ear

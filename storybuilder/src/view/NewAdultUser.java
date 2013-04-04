@@ -132,5 +132,8 @@ public class NewAdultUser extends JFrame {
 		contentPane.add(panel_1, BorderLayout.EAST);
 		panel_1.setPreferredSize(new Dimension(100, 50));
 		panel_1.setBorder(BorderFactory.createLineBorder(Color.black));
+		
+		JButton btnUploadPicture = new JButton("Upload Picture");
+		panel_1.add(btnUploadPicture);
 	}
 }
