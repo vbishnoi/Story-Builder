@@ -11,6 +11,7 @@ Thumbs.db
 
 .settings
 
+/.settings
 
 #Ignore all class compiled java class files
 *.class
@@ -19,9 +20,8 @@ storybuilder/bin/
 
 tests/bin/
 
-# Package Files #
-*.jar
-*.war
-*.ear
 /storybuilder/nbproject/private/
 /tests/nbproject/private/
+
+/.classpath
+/.project
