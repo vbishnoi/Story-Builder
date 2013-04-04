@@ -15,9 +15,9 @@ Thumbs.db
 #Ignore all class compiled java class files
 *.class
 
-storybuilder/bin
+storybuilder/bin/
 
-tests/bin
+tests/bin/
 
 # Package Files #
 *.jar
