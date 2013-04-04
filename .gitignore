@@ -4,6 +4,22 @@ Thumbs.db
 #ignore Desktop Service Store files created by mac
 *.DS_Store
 .DS_Store
+<<<<<<< HEAD
 
 #ignore eclipse setting files
 .settings
+=======
+.DS_Store
+
+storybuilder/.DS_Store
+
+*.class
+
+*.class
+
+*.class
+
+storybuilder/.settings/org.eclipse.core.resources.prefs
+
+*.class
+>>>>>>> Add some GUI
