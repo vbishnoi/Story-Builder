@@ -20,28 +20,15 @@ public class LoginScreen extends JFrame {
 	private JTextField txtUserName;
 	private JPasswordField txtPassword;
 
-	/**p
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Default frame = new Default();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the frame
 	 */
 	public LoginScreen() {
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		// Close login form without exit the main application
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
 		setBounds(100, 100, 380, 261);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -79,4 +66,6 @@ public class LoginScreen extends JFrame {
 		txtPassword.setBounds(130, 118, 154, 28);
 		contentPane.add(txtPassword);
 	}
+	
+	
 }

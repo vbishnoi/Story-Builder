@@ -34,7 +34,7 @@ public class NewAdultUser extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Default frame = new Default();
+					NewAdultUser frame = new NewAdultUser();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
