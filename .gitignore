@@ -8,5 +8,7 @@ Thumbs.db
 #ignore eclipse setting files
 .settings
 
+
+#Ignore all class compiled java class files
 *.class
 
