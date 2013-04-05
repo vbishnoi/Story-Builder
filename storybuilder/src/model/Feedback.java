@@ -8,6 +8,9 @@ package model;
  *
  * @author Y0239881
  */
-public class Feedback {
-    
+public enum Feedback {
+    HAPPY, 
+    SAD, 
+    MAD, 
+    CONFUSED 
 }
