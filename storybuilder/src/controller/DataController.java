@@ -14,12 +14,10 @@ public class DataController {
      * List of all the adults in the system
      */
     public LinkedList<Adult> Adults;
-    
     /**
      * List of all the children in the system
      */
     public LinkedList<Child> Childrens;
-    
     /**
      * List of all the stories in the system
      */
@@ -31,6 +29,7 @@ public class DataController {
 
     /**
      * Load all data from XML database into appropriate list
+     *
      * @author Y0239881
      */
     private void init() {

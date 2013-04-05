@@ -7,7 +7,9 @@ and open the template in the editor.
 
 <storybuilder>
     <adults>
-        <adult></adult>
+        <adult id="1">
+            <name></name>
+        </adult>
         <adult></adult>
     </adults>
     
