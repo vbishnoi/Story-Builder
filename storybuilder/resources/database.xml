@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-
 
 <storybuilder>
+    <users>
+        <user name="tuanva">
+            <password>e10adc3949ba59abbe56e057f20f883e</password>
+        </user>
+        <user name="vijay">
+            <password>e10adc3949ba59abbe56e057f20f883e</password>
+        </user>
+    </users>
     <adults>
-        <adult id="1">
-            <name></name>
-        </adult>
+<!--        <adult id="1">
+            <name>tuanva</name>
+            <password>e10adc3949ba59abbe56e057f20f883e</password>
+        </adult>-->
         <adult></adult>
     </adults>
     

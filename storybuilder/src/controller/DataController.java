@@ -1,6 +1,6 @@
 package controller;
 
-import com.uoy.sb.Utils;
+import com.uoy.sb.Common;
 import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
@@ -10,18 +10,9 @@ import org.w3c.dom.Document;
 
 public class DataController {
 
-    /**
-     * List of all the adults in the system
-     */
-    public LinkedList<Adult> Adults;
-    /**
-     * List of all the children in the system
-     */
-    public LinkedList<Child> Childrens;
-    /**
-     * List of all the stories in the system
-     */
-    public LinkedList<Story> Stories;
+    private LinkedList<Adult> adultList;
+    private LinkedList<Child> childrenList;
+    private LinkedList<Story> storyList;
 
     public DataController() {
         this.init();
@@ -33,11 +24,11 @@ public class DataController {
      * @author Y0239881
      */
     private void init() {
-        Adults = new LinkedList<>();
-        Childrens = new LinkedList<>();
-        Stories = new LinkedList<>();
+        adultList = new LinkedList<>();
+        childrenList = new LinkedList<>();
+        storyList = new LinkedList<>();
 
-        Element root = new XMLReader().readXMLFile(Utils.CommonVariables.DATABASE_NAME);
+        Element root = new XMLReader().getRootElement(Common.Variables.DATABASE_NAME);
         Element node = null;
 
         List secondLvlNodes = root.getChildren();
@@ -49,60 +40,45 @@ public class DataController {
             Element tmpNode = null;
 
             switch (node.getName()) {
-                case Utils.CommonVariables.CHILDREN_NODE:
-                    tmpList = node.getChildren(Utils.CommonVariables.CHILD_SINGLE_NODE);
+                case Common.Variables.CHILDREN_NODE:
+                    tmpList = node.getChildren(Common.Variables.CHILD_SINGLE_NODE);
 
                     for (int j = 0; j < tmpList.size(); j++) {
                         tmpNode = (Element) tmpList.get(j);
 
-                        Childrens.add(new Child(tmpNode.getChildText(Utils.CommonVariables.USER_NAME), tmpNode.getChildText(Utils.CommonVariables.USER_PASSWORD),
-                                tmpNode.getChildText(Utils.CommonVariables.CHILD_IMAGE), Integer.parseInt(tmpNode.getChildText(Utils.CommonVariables.CHILD_AGE))));
+                        childrenList.add(new Child(tmpNode.getChildText(Common.Variables.USER_NAME), tmpNode.getChildText(Common.Variables.USER_PASSWORD),
+                                tmpNode.getChildText(Common.Variables.CHILD_IMAGE), Integer.parseInt(tmpNode.getChildText(Common.Variables.CHILD_AGE))));
                     }
 
                     break;
-                case Utils.CommonVariables.ADULTS_NODE:
-                    tmpList = node.getChildren(Utils.CommonVariables.ADULT_SINGLE_NODE);
+                case Common.Variables.ADULTS_NODE:
+                    tmpList = node.getChildren(Common.Variables.ADULT_SINGLE_NODE);
 
                     for (int j = 0; j < tmpList.size(); j++) {
                         tmpNode = (Element) tmpList.get(j);
 
-                        Adults.add(new Adult(tmpNode.getChildText(Utils.CommonVariables.USER_NAME), tmpNode.getChildText(Utils.CommonVariables.USER_PASSWORD)));
+                        adultList.add(new Adult(tmpNode.getChildText(Common.Variables.USER_NAME), tmpNode.getChildText(Common.Variables.USER_PASSWORD)));
                     }
                     break;
-                case Utils.CommonVariables.STORIES_NODE:
-                    tmpList = node.getChildren(Utils.CommonVariables.STORY_SINGLE_NODE);
+                case Common.Variables.STORIES_NODE:
+                    tmpList = node.getChildren(Common.Variables.STORY_SINGLE_NODE);
 
                     for (int j = 0; j < tmpList.size(); j++) {
                         tmpNode = (Element) tmpList.get(j);
 
                         Story story = new Story();
-                        story.setBackgroundColor(tmpNode.getChildText(Utils.CommonVariables.STORY_BG_COLOR));
-                        story.setFont(tmpNode.getChildText(Utils.CommonVariables.STORY_FONT));
-                        story.setFontSize(Integer.parseInt(tmpNode.getChildText(Utils.CommonVariables.STORY_FONT_SIZE)));
-                        story.setTextColor(tmpNode.getChildText(Utils.CommonVariables.STORY_TEXT_COLOR));
-                        story.setTitle(tmpNode.getChildText(Utils.CommonVariables.STORY_TITLE));
+                        story.setBackgroundColor(tmpNode.getChildText(Common.Variables.STORY_BG_COLOR));
+                        story.setFont(tmpNode.getChildText(Common.Variables.STORY_FONT));
+                        story.setFontSize(Integer.parseInt(tmpNode.getChildText(Common.Variables.STORY_FONT_SIZE)));
+                        story.setTextColor(tmpNode.getChildText(Common.Variables.STORY_TEXT_COLOR));
+                        story.setTitle(tmpNode.getChildText(Common.Variables.STORY_TITLE));
 
-                        Stories.add(story);
+                        storyList.add(story);
                     }
 
                     break;
             }
         }
-
-
-//        Element secondLvlNodes = root.getChild("children");
-
-//        
-//        
-//        secondLvlNodes = root.getChild("stories");
-//        list = secondLvlNodes.getChildren("story");
-//
-//        for (int i = 0; i < list.size(); i++) {
-//            node = (Element) list.get(i);
-//
-//            Childrens.add(new Child(node.getChildText(Utils.CommonVariables.CHILD_NAME),
-//                    node.getChildText(Utils.CommonVariables.CHILD_PASSWORD), node.getChildText(Utils.CommonVariables.CHILD_IMAGE)));
-//        }
     }
 
     /**
@@ -117,5 +93,26 @@ public class DataController {
      * @param file
      */
     public static void saveXml(Document doc, File file) {
+    }
+
+    /**
+     * @return the adultList
+     */
+    public LinkedList<Adult> getAdultList() {
+        return adultList;
+    }
+
+    /**
+     * @return the childrenList
+     */
+    public LinkedList<Child> getChildrenList() {
+        return childrenList;
+    }
+
+    /**
+     * @return the storyList
+     */
+    public LinkedList<Story> getStoryList() {
+        return storyList;
     }
 }

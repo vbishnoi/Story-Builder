@@ -4,6 +4,8 @@
  */
 package view;
 
+import controller.UserController;
+
 /**
  *
  * @author Y0239881
@@ -37,10 +39,13 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setText("Name:");
 
         txtName.setText("Enter name");
+        txtName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtNameFocusGained(evt);
+            }
+        });
 
         jLabel2.setText("Password:");
-
-        txtPassword.setText("Password");
 
         btnLogin.setText("Login");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -86,8 +91,14 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
+        UserController uc = new UserController();
+        uc.login(txtName.getText(), txtPassword.getText());
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void txtNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNameFocusGained
+        if(txtName.getText().equals("Enter name"))
+            txtName.setText("");
+    }//GEN-LAST:event_txtNameFocusGained
 
     /**
      * @param args the command line arguments
