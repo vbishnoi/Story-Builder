@@ -5,6 +5,28 @@ and open the template in the editor.
 -->
 
 
-<root>
+<storybuilder>
+    <adults>
+        <adult></adult>
+        <adult></adult>
+    </adults>
     
-</root>
+    <children>
+        <child></child>
+    </children>
+    
+    <stories>
+        <story>
+            <pages>
+                <page></page>
+                <page></page>
+            </pages>
+        </story>
+        <story>
+            <pages>
+                <page></page>
+                <page></page>
+            </pages>
+        </story>
+    </stories>
+</storybuilder>

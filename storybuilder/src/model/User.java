@@ -9,7 +9,6 @@ public class User {
     
     private String _name;
     private String _password;
-    private String _image;
 
     /**
      * @return the _name
@@ -38,23 +37,8 @@ public class User {
     public void setPassword(String password) {
         this._password = password;
     }
-
-    /**
-     * @return the _image
-     */
-    public String getImage() {
-        return _image;
-    }
-
-    /**
-     * @param image the _image to set
-     */
-    public void setImage(String image) {
-        this._image = image;
-    }
     
-    public User(String name, String password, String image) {
-        this._image = image;
+    public User(String name, String password) {
         this._name = name;
         this._password = password;
         

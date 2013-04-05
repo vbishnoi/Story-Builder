@@ -15,28 +15,9 @@ import org.jdom2.Element;
  */
 public class ChildController {
 
-    private Element root = DataController.loadDatabase();
-
+    
     public ChildController() {
     }
 
-    public LinkedList<Child> getAllChildren() {
-        LinkedList<Child> childrenList = new LinkedList<>();
-
-        Element children = root.getChild("children");
-        
-        List list = children.getChildren("child");
-
-        Element node = null;
-
-        for (int i = 0; i < list.size(); i++) {
-            node = (Element) list.get(i);
-
-            childrenList.add(new Child(node.getChildText("name"), node.getChildText("password"), node.getChildText("image")));
-        } 
-        
-        return childrenList;
-    }
-    
     
 }

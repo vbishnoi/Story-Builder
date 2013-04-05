@@ -26,3 +26,4 @@ tests/bin/
 /.classpath
 /.project
 /storybuilder/build/
+/storybuilder/dist/
