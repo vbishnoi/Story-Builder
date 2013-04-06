@@ -10,6 +10,7 @@ public class Story {
     private int _fontSize;
     private String _textColor;
     private LinkedList<Page> _pages;
+    private String _createdBy;
 
     /**
      * @return the _title
@@ -95,6 +96,20 @@ public class Story {
         this._pages = pages;
     }
     
+    /**
+     * @return the _createdBy
+     */
+    public String getCreatedBy() {
+        return _createdBy;
+    }
+
+    /**
+     * @param createdBy the _createdBy to set
+     */
+    public void setCreatedBy(String createdBy) {
+        this._createdBy = createdBy;
+    }
+    
     public Story() {
         
     }
@@ -114,4 +129,6 @@ public class Story {
         this._font = font;
         this._fontSize = fontSize;
     }
+
+    
 }

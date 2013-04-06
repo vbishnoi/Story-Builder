@@ -30,15 +30,15 @@ public class XpathBuilder {
      * Generate xpath query to get a node by a specific value of an attribute
      *
      * @param nodeName
-     * @param attName
+     * @param attrName
      * @param value
      * @return
      */
-    public static String GetElementByAttNameAndValue(String nodeName, String attName, String value) {
+    public static String GetElementsByAttrNameAndValue(String nodeName, String attrName, String value) {
         StringBuilder sb = new StringBuilder();
         sb.append("//");
         sb.append(nodeName);
-        sb.append("[@" + attName);
+        sb.append("[@" + attrName);
         sb.append("='" + value + "']");
 
         return sb.toString();

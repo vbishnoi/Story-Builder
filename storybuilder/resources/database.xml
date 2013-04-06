@@ -22,10 +22,31 @@
     </children>
     
     <stories>
-        <story>
+        <story createdby="tuanva" url="http://www.magickeys.com/books/bee/index.html">
+            <title>Buzzy Bee</title>
+            <bgcolor></bgcolor>
             <pages>
-                <page></page>
-                <page></page>
+                <page>
+                    <content>Buzzy's not like other bees. Other bees make lots of trips to gather their nectar.</content>
+                </page>
+                <page>
+                    <content>Here's Buzzy sipping from a daffodil.</content>
+                </page>
+                <page>
+                    <content>Tulips are sweet.</content>
+                </page>
+                <page>
+                    <content>Mmm... Hyacinths are sweeter.</content>
+                </page>
+                <page>
+                    <content>Just one more flower.</content>
+                </page>
+                <page>
+                    <content>Uh-oh.</content>
+                </page>
+                 <page>
+                    <content>Rescued again.</content>
+                </page>
             </pages>
         </story>
         <story>

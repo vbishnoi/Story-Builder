@@ -27,12 +27,17 @@ public class Common {
         public static final String ADULT_SINGLE_NODE = "adult";
         public static final String STORIES_NODE = "stories";
         public static final String STORY_SINGLE_NODE = "story";
+        public static final String STORY_CREATED_BY = "createdby";
+        
         public static final String PAGES_NODE = "pages";
         public static final String PAGE_SINGLE_NODE = "page";
+        public static final String PAGE_CONTENT = "content";
+        
         public static final String USER_NAME = "name";
         public static final String USER_PASSWORD = "password";
         public static final String CHILD_IMAGE = "image";
         public static final String CHILD_AGE = "age";
+        
 //        Story's Attributes
         public static final String STORY_BG_COLOR = "bgcolor";
         public static final String STORY_TEXT_COLOR = "textcolor";
