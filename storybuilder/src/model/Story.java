@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 
 public class Story {
+    private int _id;
     private String _title;
     private String _backgroundColor;
     private String _font;
@@ -12,6 +13,20 @@ public class Story {
     private LinkedList<Page> _pages;
     private String _createdBy;
 
+    /**
+     * @return the _id
+     */
+    public int getId() {
+        return _id;
+    }
+
+    /**
+     * @param id the _id to set
+     */
+    public void setId(int id) {
+        this._id = id;
+    }
+    
     /**
      * @return the _title
      */
@@ -129,6 +144,8 @@ public class Story {
         this._font = font;
         this._fontSize = fontSize;
     }
+
+    
 
     
 }

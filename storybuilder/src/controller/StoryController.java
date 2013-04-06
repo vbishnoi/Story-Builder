@@ -57,7 +57,7 @@ public class StoryController {
                     s.setFontSize(Integer.parseInt(e.getChildText(Common.Variables.STORY_FONT_SIZE)));
                     s.setTextColor(e.getChildText(Common.Variables.STORY_TEXT_COLOR));
                     s.setCreatedBy(e.getAttributeValue(Common.Variables.STORY_CREATED_BY));
-                    
+                    s.setId(Integer.parseInt(e.getAttributeValue(Common.Variables.STORY_ID)));
                     /*
                      * Get all the pages that belong to the story
                      */
@@ -76,6 +76,8 @@ public class StoryController {
                     
                     // Then add to the list
                     s.setPages(pages);
+                    
+                    stories.add(s);
                 }
             }
         }
@@ -83,5 +85,23 @@ public class StoryController {
         return stories;
     }
     
-    
+    public LinkedList<Page> getAllPagesByStory(int storyID) {
+        LinkedList<Page> allPages = new LinkedList<>();
+        String query = XpathBuilder.GetElementsByAttrNameAndValue(Common.Variables.STORY_SINGLE_NODE, Common.Variables.STORY_ID, String.valueOf(storyID));
+        
+        Element elm = parser.getElement(query);
+        
+        if(elm != null) {
+            List<Element> pages = elm.getChildren(Common.Variables.PAGE_SINGLE_NODE);
+            
+            if(pages != null && pages.size() > 0) {
+                for(Element p : pages) {
+                    allPages.add(new Page(p.getChildText(Common.Variables.PAGE_CONTENT)));
+                }
+//                
+            }
+        }
+        
+        return allPages;
+    }
 }

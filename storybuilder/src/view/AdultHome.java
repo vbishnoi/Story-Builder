@@ -6,7 +6,11 @@ package view;
 
 import com.uoy.sb.Global;
 import controller.StoryController;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.LinkedList;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import model.Story;
 
 /**
@@ -14,6 +18,9 @@ import model.Story;
  * @author Y0239881
  */
 public class AdultHome extends javax.swing.JFrame {
+
+    private LinkedList<Story> allStories = null;
+    private LinkedList<Story> createdByMe = null;
 
     /**
      * Creates new form AdultHome
@@ -23,11 +30,76 @@ public class AdultHome extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
 
         StoryController sc = new StoryController();
-        LinkedList<Story> allStories = sc.getAllStories();
-        LinkedList<Story> createdByMe = sc.getStoriesByUser(Global.loggedInUser);
-        
-        allStoryList.setListData(allStories.toArray(new String[1]));
+        allStories = sc.getAllStories();
+        createdByMe = sc.getStoriesByUser(Global.loggedInUser);
 
+        final DefaultListModel model = new DefaultListModel();
+        for (Story s : allStories) {
+            model.addElement(s.getTitle());
+
+            // print out to test
+            System.out.println(s.getTitle());
+        }
+
+        allStoryList.setModel(model);
+
+        final DefaultListModel createdByMeModel = new DefaultListModel();
+        for (Story s : createdByMe) {
+            createdByMeModel.addElement(s.getTitle());
+
+            // print out to test
+            System.out.println(s.getTitle());
+        }
+
+        createdByMeList.setModel(createdByMeModel);
+        
+        allStoryList.addMouseListener(new StoryListMouseListener());
+        createdByMeList.addMouseListener(new StoryListMouseListener());
+    }
+
+    class StoryListMouseListener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            JList list = (JList) e.getSource();
+
+            // double click
+            if (e.getClickCount() == 2) {
+                int selectedIndex = list.getSelectedIndex();
+
+                CreatePage cp = new CreatePage();
+                
+                if(jTabs.getSelectedIndex() == 0) {
+                    cp.setStoryID(allStories.get(selectedIndex).getId());
+                }
+                else{
+                    cp.setStoryID(createdByMe.get(selectedIndex).getId());
+                }
+                
+                cp.setAlwaysOnTop(true);
+                cp.setVisible(true);
+            }
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+//            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+//            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+//            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+//            throw new UnsupportedOperationException("Not supported yet.");
+        }
     }
 
     /**
@@ -43,12 +115,12 @@ public class AdultHome extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnNewStory = new javax.swing.JButton();
         btnManageChildren = new javax.swing.JButton();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jTabs = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         createdByMeList = new javax.swing.JList();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
         allStoryList = new javax.swing.JList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -84,9 +156,8 @@ public class AdultHome extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -96,32 +167,29 @@ public class AdultHome extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Created by me", jPanel1);
+        jTabs.addTab("Created by me", jPanel1);
 
         allStoryList.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(allStoryList);
+        jScrollPane3.setViewportView(allStoryList);
 
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
+                .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel2Layout.createSequentialGroup()
-                .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-                .addContainerGap())
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("All stories", jPanel2);
+        jTabs.addTab("All stories", jPanel2);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -136,12 +204,12 @@ public class AdultHome extends javax.swing.JFrame {
                         .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 172, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(0, 0, Short.MAX_VALUE))
                     .add(layout.createSequentialGroup()
-                        .add(jTabbedPane1)
+                        .add(jTabs)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(btnManageChildren, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 115, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(btnNewStory, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 115, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
-                .add(25, 25, 25))
+                            .add(btnNewStory)
+                            .add(btnManageChildren))
+                        .add(12, 12, 12))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -156,49 +224,51 @@ public class AdultHome extends javax.swing.JFrame {
                 .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
-                        .add(btnNewStory, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 73, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(46, 46, 46)
-                        .add(btnManageChildren, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 73, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(jTabbedPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 452, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(23, 23, 23)
+                        .add(btnNewStory)
+                        .add(18, 18, 18)
+                        .add(btnManageChildren))
+                    .add(jTabs, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 452, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
     /**
      * @param args the command line arguments
      */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(AdultHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(AdultHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(AdultHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(AdultHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new AdultHome().setVisible(true);
-//            }
-//        });
-//    }
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(AdultHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(AdultHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(AdultHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(AdultHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new AdultHome().setVisible(true);
+            }
+        });
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList allStoryList;
     private javax.swing.JButton btnManageChildren;
@@ -208,8 +278,8 @@ public class AdultHome extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTabbedPane jTabs;
     private javax.swing.JPanel panelUserImage;
     // End of variables declaration//GEN-END:variables
 }
