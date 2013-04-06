@@ -38,7 +38,24 @@ public class PageEditing extends javax.swing.JPanel {
     public PageEditing() {
         initComponents();
 
-        sc = new StoryController();
+//        sc = new StoryController();
+//
+//        System.out.println(this.getStoryID());
+//
+//        LinkedList<Page> storyPages = sc.getAllPagesByStory(this.getStoryID());
+//
+//        if (storyPages != null && storyPages.size() > 0) {
+//            Page p = storyPages.get(_pageIndex);
+//
+//            txtContent.setText(p.getText());
+//        }
+    }
+    
+    public PageEditing(int StoryID) {
+        initComponents();
+        
+        this.setStoryID(StoryID);
+        sc = new StoryController();       
 
         LinkedList<Page> storyPages = sc.getAllPagesByStory(getStoryID());
 

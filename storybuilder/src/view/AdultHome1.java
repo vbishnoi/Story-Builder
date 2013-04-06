@@ -11,28 +11,23 @@ import java.awt.event.MouseListener;
 import java.util.LinkedList;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
-import javax.swing.SwingUtilities;
 import model.Story;
 
 /**
  *
  * @author Y0239881
  */
-public class AdultHome extends javax.swing.JPanel {
+public class AdultHome1 extends javax.swing.JFrame {
 
     private LinkedList<Story> allStories = null;
     private LinkedList<Story> createdByMe = null;
-    private MainContainer _parent = null;
 
     /**
-     * Creates new form AdultHome
+     * Creates new form AdultHome1
      */
-    public AdultHome(MainContainer parent) {
+    public AdultHome1() {
         initComponents();
 
-        _parent = parent;
-        System.out.println(parent.getName());
-        
         StoryController sc = new StoryController();
         allStories = sc.getAllStories();
         createdByMe = sc.getStoriesByUser(Global.loggedInUser);
@@ -56,7 +51,7 @@ public class AdultHome extends javax.swing.JPanel {
         }
 
         createdByMeList.setModel(createdByMeModel);
-
+        
         allStoryList.addMouseListener(new StoryListMouseListener());
         createdByMeList.addMouseListener(new StoryListMouseListener());
     }
@@ -71,15 +66,17 @@ public class AdultHome extends javax.swing.JPanel {
             if (e.getClickCount() == 2) {
                 int selectedIndex = list.getSelectedIndex();
 
-                PageEditing pe = null;
-
-                if (jTabs.getSelectedIndex() == 0) {
-                    pe = new PageEditing(allStories.get(selectedIndex).getId());
-                } else {
-                    pe = new PageEditing(createdByMe.get(selectedIndex).getId());
+                CreatePage cp = new CreatePage();
+                
+                if(jTabs.getSelectedIndex() == 0) {
+                    cp.setStoryID(allStories.get(selectedIndex).getId());
                 }
-
-                _parent.setDisplay(pe);
+                else{
+                    cp.setStoryID(createdByMe.get(selectedIndex).getId());
+                }
+                
+                cp.setAlwaysOnTop(true);
+                cp.setVisible(true);
             }
         }
 
@@ -103,13 +100,6 @@ public class AdultHome extends javax.swing.JPanel {
 //            throw new UnsupportedOperationException("Not supported yet.");
         }
     }
-    
-    @Override
-    public void addNotify() {
-        getParent().revalidate();
-        repaint();
-        super.addNotify();
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -132,6 +122,8 @@ public class AdultHome extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         allStoryList = new javax.swing.JList();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         panelUserImage.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
@@ -243,23 +235,60 @@ public class AdultHome extends javax.swing.JPanel {
                     .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
-        this.setLayout(layout);
+        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(0, 0, Short.MAX_VALUE)
+                .add(0, 12, Short.MAX_VALUE)
                 .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(0, 0, Short.MAX_VALUE))
+                .add(0, 11, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(0, 0, Short.MAX_VALUE)
+                .add(0, 13, Short.MAX_VALUE)
                 .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(0, 0, Short.MAX_VALUE))
+                .add(0, 14, Short.MAX_VALUE))
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    /**
+     * @param args the command line arguments
+     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(AdultHome1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(AdultHome1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(AdultHome1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(AdultHome1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new AdultHome1().setVisible(true);
+//            }
+//        });
+//    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList allStoryList;
     private javax.swing.JButton btnManageChildren;

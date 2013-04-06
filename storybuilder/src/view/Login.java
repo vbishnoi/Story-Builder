@@ -121,7 +121,7 @@ public class Login extends javax.swing.JFrame {
             this.dispose();
             this.setVisible(false);
             
-            new AdultHome().setVisible(true);
+            new MainContainer().setVisible(true);
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 

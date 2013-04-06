@@ -89,10 +89,14 @@ public class StoryController {
         LinkedList<Page> allPages = new LinkedList<>();
         String query = XpathBuilder.GetElementsByAttrNameAndValue(Common.Variables.STORY_SINGLE_NODE, Common.Variables.STORY_ID, String.valueOf(storyID));
         
+        System.out.println(query);
+        
         Element elm = parser.getElement(query);
         
         if(elm != null) {
-            List<Element> pages = elm.getChildren(Common.Variables.PAGE_SINGLE_NODE);
+            Element pagesContainer = elm.getChild(Common.Variables.PAGES_NODE);
+            
+            List<Element> pages = pagesContainer.getChildren(Common.Variables.PAGE_SINGLE_NODE);
             
             if(pages != null && pages.size() > 0) {
                 for(Element p : pages) {
