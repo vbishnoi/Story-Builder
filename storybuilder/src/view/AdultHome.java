@@ -26,7 +26,7 @@ public class AdultHome extends javax.swing.JFrame {
         LinkedList<Story> allStories = sc.getAllStories();
         LinkedList<Story> createdByMe = sc.getStoriesByUser(Global.loggedInUser);
         
-        allStoryList.setListData(allStories.toArray());
+        allStoryList.setListData(allStories.toArray(new String[1]));
 
     }
 

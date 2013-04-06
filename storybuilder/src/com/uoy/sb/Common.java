@@ -25,6 +25,7 @@ public class Common {
         public static final String CHILD_SINGLE_NODE = "child";
         public static final String ADULTS_NODE = "adults";
         public static final String ADULT_SINGLE_NODE = "adult";
+        
         public static final String STORIES_NODE = "stories";
         public static final String STORY_SINGLE_NODE = "story";
         public static final String STORY_CREATED_BY = "createdby";

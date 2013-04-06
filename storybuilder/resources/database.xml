@@ -25,6 +25,9 @@
         <story createdby="tuanva" url="http://www.magickeys.com/books/bee/index.html">
             <title>Buzzy Bee</title>
             <bgcolor></bgcolor>
+            <fontsize>14</fontsize>
+            <font></font>
+            <textcolor></textcolor>
             <pages>
                 <page>
                     <content>Buzzy's not like other bees. Other bees make lots of trips to gather their nectar.</content>
@@ -50,9 +53,15 @@
             </pages>
         </story>
         <story>
+            <title>Buzzy Bee 1</title>
+            <bgcolor></bgcolor>
+            <fontsize>14</fontsize>
+            <font></font>
+            <textcolor></textcolor>
             <pages>
-                <page></page>
-                <page></page>
+                <page>
+                    <content>Buzzy's not like other bees. Other bees make lots of trips to gather their nectar.</content>
+                </page>
             </pages>
         </story>
     </stories>
