@@ -70,10 +70,12 @@ public class PageEditing extends javax.swing.JPanel {
         this.setStoryID(StoryID);
         sc = new StoryController();
 
-        storyPages = sc.getAllPagesByStory(getStoryID());
+        storyPages = sc.getStory(StoryID).getPages();
 
         if (storyPages != null && storyPages.size() > 0) {
             pageIndexChanged();
+            
+            isChanged = false;
         }
     }
 
@@ -86,9 +88,21 @@ public class PageEditing extends javax.swing.JPanel {
         }
     }
 
+    /*
+     * Store changed values
+     */
     private void savePage() {
+        System.out.println(isChanged);
         if (isChanged) {
+            Page modifiedPage = new Page();
+            modifiedPage.setBackgroundImage(txtBackgroundImage.getText());
+            modifiedPage.setSound(txtSound.getText());
+            modifiedPage.setText(txtContent.getText());
+            
+            storyPages.set(_pageIndex, modifiedPage);
         }
+        
+        isChanged = false;
     }
 
     /**
@@ -146,6 +160,11 @@ public class PageEditing extends javax.swing.JPanel {
         jScrollPane1.setViewportView(txtContent);
 
         btnNewPage.setText("Create new Page");
+        btnNewPage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewPageActionPerformed(evt);
+            }
+        });
 
         btnPrevious.setText("Previous Page");
         btnPrevious.addActionListener(new java.awt.event.ActionListener() {
@@ -254,17 +273,24 @@ public class PageEditing extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreviousActionPerformed
+        savePage();
+        
         _pageIndex = (_pageIndex == 0) ? 0 : _pageIndex - 1;
-        pageIndexChanged();
+        pageIndexChanged();        
     }//GEN-LAST:event_btnPreviousActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
+        savePage();
+        
         _pageIndex = (_pageIndex < storyPages.size() - 1) ? _pageIndex + 1 : storyPages.size() - 1;
         pageIndexChanged();
     }//GEN-LAST:event_btnNextActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        savePage();
         Global.container.setDisplay(new AdultHome());
+        
+        sc.updateStory(sc.getStory(getStoryID()));
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSelectImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectImageActionPerformed
@@ -322,6 +348,13 @@ public class PageEditing extends javax.swing.JPanel {
 
         }
     }//GEN-LAST:event_btnPlayActionPerformed
+
+    private void btnNewPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewPageActionPerformed
+        
+        
+        savePage();
+    }//GEN-LAST:event_btnNewPageActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnNewPage;

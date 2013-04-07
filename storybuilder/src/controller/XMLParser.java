@@ -17,25 +17,35 @@ import org.jdom2.xpath.XPathFactory;
  * @author Y0239881
  */
 public class XMLParser {
+
     private Document doc = null;
-    
+
+    /*
+     * Return the whole XML Document database
+     */
+    public Document getDocument() {
+        return this.doc;
+    }
+
+    /*
+     * Initialize new instance of XML Parser
+     * 
+     */
     public XMLParser() {
         doc = new XMLReader().getXMLDocument(Common.Variables.DATABASE_NAME);
     }
-    
+
     public List<?> getElements(String xpathQuery) {
         XPathExpression<Element> xpath = XPathFactory.instance().compile(xpathQuery, Filters.element());
         List<Element> elements = xpath.evaluate(doc);
- 
+
         return elements;
     }
-    
+
     public Element getElement(String xpathQuery) {
         XPathExpression<Element> xpath = XPathFactory.instance().compile(xpathQuery, Filters.element());
         Element element = xpath.evaluateFirst(doc);
- 
+
         return element;
     }
-    
-    
 }

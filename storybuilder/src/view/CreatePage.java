@@ -27,7 +27,7 @@ public class CreatePage extends javax.swing.JFrame {
         
         sc = new StoryController();
         
-        LinkedList<Page> storyPages = sc.getAllPagesByStory(getStoryID());
+        LinkedList<Page> storyPages = sc.getStory(getStoryID()).getPages();
         
         if (storyPages != null && storyPages.size() > 0) {
             Page p = storyPages.get(_pageIndex);

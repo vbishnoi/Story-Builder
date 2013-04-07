@@ -13,7 +13,7 @@ import java.security.MessageDigest;
  * @author Y0239881
  */
 public class Common {
-    
+
     public static final class ImageType {
 
         public final static String jpeg = "jpeg";
@@ -23,7 +23,7 @@ public class Common {
         public final static String tif = "tif";
         public final static String png = "png";
     }
-    
+
     public static final class SoundType {
 
         public final static String ogg = "ogg";
@@ -36,23 +36,31 @@ public class Common {
 
         public static final String DATABASE_NAME = "resources/database.xml";
         public static final String ROOT = "storybuilder";
-        public static final String USERS_NODE = "users";
-        public static final String USER_SINGLE_NODE = "user";
+        
 //        Node names
         public static final String CHILDREN_NODE = "children";
         public static final String CHILD_SINGLE_NODE = "child";
+        public static final String CHILD_IMAGE = "image";
+        public static final String CHILD_AGE = "age";
+//        adult
         public static final String ADULTS_NODE = "adults";
         public static final String ADULT_SINGLE_NODE = "adult";
-        public static final String STORIES_NODE = "stories";
-        public static final String STORY_SINGLE_NODE = "story";
-        public static final String STORY_CREATED_BY = "createdby";
+//        page
         public static final String PAGES_NODE = "pages";
         public static final String PAGE_SINGLE_NODE = "page";
         public static final String PAGE_CONTENT = "content";
+        public static final String PAGE_IMAGE = "image";
+        public static final String PAGE_SOUND = "sound";
+        
+//        user
+        public static final String USERS_NODE = "users";
+        public static final String USER_SINGLE_NODE = "user";
         public static final String USER_NAME = "name";
         public static final String USER_PASSWORD = "password";
-        public static final String CHILD_IMAGE = "image";
-        public static final String CHILD_AGE = "age";
+//        story
+        public static final String STORIES_NODE = "stories";
+        public static final String STORY_SINGLE_NODE = "story";
+        public static final String STORY_CREATED_BY = "createdby";
 //        Story's Attributes
         public static final String STORY_BG_COLOR = "bgcolor";
         public static final String STORY_TEXT_COLOR = "textcolor";
@@ -85,8 +93,7 @@ public class Common {
             return null;
         }
     }
-    
-    
+
     /*
      * Get the extension of a file.
      */
@@ -94,11 +101,10 @@ public class Common {
         String ext = null;
         String s = f.getName();
         int i = s.lastIndexOf('.');
- 
-        if (i > 0 &&  i < s.length() - 1) {
-            ext = s.substring(i+1).toLowerCase();
+
+        if (i > 0 && i < s.length() - 1) {
+            ext = s.substring(i + 1).toLowerCase();
         }
         return ext;
     }
-    
 }
