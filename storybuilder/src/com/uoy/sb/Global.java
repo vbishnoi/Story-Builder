@@ -4,6 +4,8 @@
  */
 package com.uoy.sb;
 
+import view.MainContainer;
+
 /**
  *
  * @author Y0239881
@@ -11,4 +13,5 @@ package com.uoy.sb;
 public class Global {
     public static boolean loggedIn = false;
     public static String loggedInUser = "";
+    public static MainContainer container = null;
 }

@@ -19,19 +19,14 @@ import model.Story;
  * @author Y0239881
  */
 public class AdultHome extends javax.swing.JPanel {
-
     private LinkedList<Story> allStories = null;
     private LinkedList<Story> createdByMe = null;
-    private MainContainer _parent = null;
 
     /**
      * Creates new form AdultHome
      */
-    public AdultHome(MainContainer parent) {
+    public AdultHome() {
         initComponents();
-
-        _parent = parent;
-        System.out.println(parent.getName());
         
         StoryController sc = new StoryController();
         allStories = sc.getAllStories();
@@ -42,7 +37,7 @@ public class AdultHome extends javax.swing.JPanel {
             model.addElement(s.getTitle());
 
             // print out to test
-            System.out.println(s.getTitle());
+//            System.out.println(s.getTitle());
         }
 
         allStoryList.setModel(model);
@@ -52,7 +47,7 @@ public class AdultHome extends javax.swing.JPanel {
             createdByMeModel.addElement(s.getTitle());
 
             // print out to test
-            System.out.println(s.getTitle());
+//            System.out.println(s.getTitle());
         }
 
         createdByMeList.setModel(createdByMeModel);
@@ -62,7 +57,6 @@ public class AdultHome extends javax.swing.JPanel {
     }
 
     class StoryListMouseListener implements MouseListener {
-
         @Override
         public void mouseClicked(MouseEvent e) {
             JList list = (JList) e.getSource();
@@ -79,7 +73,7 @@ public class AdultHome extends javax.swing.JPanel {
                     pe = new PageEditing(createdByMe.get(selectedIndex).getId());
                 }
 
-                _parent.setDisplay(pe);
+                Global.container.setDisplay(pe);
             }
         }
 

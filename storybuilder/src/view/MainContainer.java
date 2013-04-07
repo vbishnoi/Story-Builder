@@ -4,6 +4,7 @@
  */
 package view;
 
+import com.uoy.sb.Global;
 import java.awt.Dimension;
 import javax.swing.JPanel;
 
@@ -19,8 +20,10 @@ public class MainContainer extends javax.swing.JFrame {
     public MainContainer() {
         initComponents();
         
+        Global.container = this;
+        
         // Add the AdultHome first
-        getContentPane().add(new AdultHome(this));
+        getContentPane().add(new AdultHome());
         setSize(new Dimension(750, 600));
         setLocationRelativeTo(null);
     }
@@ -33,6 +36,8 @@ public class MainContainer extends javax.swing.JFrame {
         getContentPane().removeAll();
         getContentPane().add(panelToDisplay);
 
+        pack();
+        
 //        getContentPane().repaint();
         this.revalidate();
         this.repaint();

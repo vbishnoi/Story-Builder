@@ -101,8 +101,7 @@ public class StoryController {
             if(pages != null && pages.size() > 0) {
                 for(Element p : pages) {
                     allPages.add(new Page(p.getChildText(Common.Variables.PAGE_CONTENT)));
-                }
-//                
+                }               
             }
         }
         
