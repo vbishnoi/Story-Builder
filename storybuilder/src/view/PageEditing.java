@@ -71,6 +71,7 @@ public class PageEditing extends javax.swing.JPanel {
 
     private void savePage() {
         if (isChanged) {
+            
         }
     }
 
