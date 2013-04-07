@@ -5,11 +5,28 @@
 package view;
 
 import com.uoy.sb.Global;
+import com.uoy.sb.ImageFilter;
+import com.uoy.sb.SoundFilter;
 import controller.StoryController;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.JFileChooser;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import model.Page;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
 
 /**
  *
@@ -71,7 +88,6 @@ public class PageEditing extends javax.swing.JPanel {
 
     private void savePage() {
         if (isChanged) {
-            
         }
     }
 
@@ -99,14 +115,25 @@ public class PageEditing extends javax.swing.JPanel {
         btnNext = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         lblPageCount = new javax.swing.JLabel();
+        btnPlay = new javax.swing.JButton();
 
         jLabel3.setText("Sound:");
 
         btnSelectImage.setText("Select Image");
+        btnSelectImage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelectImageActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Page Content:");
 
         btnSelectSound.setText("Select sound");
+        btnSelectSound.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelectSoundActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Background Image:");
 
@@ -143,6 +170,13 @@ public class PageEditing extends javax.swing.JPanel {
 
         lblPageCount.setText("{pageCount}");
 
+        btnPlay.setText("Play");
+        btnPlay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPlayActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -166,18 +200,24 @@ public class PageEditing extends javax.swing.JPanel {
                                 .add(jLabel2)
                                 .add(jLabel3)
                                 .add(lblPageCount))
-                            .add(36, 36, 36)
-                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
+                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                 .add(layout.createSequentialGroup()
+                                    .add(36, 36, 36)
                                     .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                                        .add(txtBackgroundImage, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
-                                        .add(txtSound))
+                                        .add(jScrollPane1)
+                                        .add(layout.createSequentialGroup()
+                                            .add(txtBackgroundImage, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 261, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                            .add(30, 30, 30)
+                                            .add(btnSelectImage, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 106, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                            .add(1, 1, 1))))
+                                .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                                     .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                        .add(btnSelectImage, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 106, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                        .add(btnSelectSound, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 107, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))))))
-                .addContainerGap(29, Short.MAX_VALUE))
+                                    .add(txtSound, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 182, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                    .add(btnPlay)
+                                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                    .add(btnSelectSound, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 107, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -197,12 +237,13 @@ public class PageEditing extends javax.swing.JPanel {
                     .add(txtBackgroundImage, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(btnSelectImage))
                 .add(18, 18, 18)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel3)
                     .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                         .add(txtSound, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(btnSelectSound)))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 30, Short.MAX_VALUE)
+                        .add(btnSelectSound)
+                        .add(btnPlay)))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(btnNewPage)
                     .add(btnPrevious)
@@ -225,10 +266,67 @@ public class PageEditing extends javax.swing.JPanel {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         Global.container.setDisplay(new AdultHome());
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnSelectImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectImageActionPerformed
+        //Create a file chooser
+        final JFileChooser fc = new JFileChooser();
+        fc.addChoosableFileFilter(new ImageFilter());
+        fc.setAcceptAllFileFilterUsed(false);
+
+        //In response to a button click:
+        int returnVal = fc.showOpenDialog(PageEditing.this);
+
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = fc.getSelectedFile();
+
+            txtBackgroundImage.setText(file.getAbsolutePath());
+        } else {
+//            log.append("Open command cancelled by user." + newline);
+        }
+    }//GEN-LAST:event_btnSelectImageActionPerformed
+
+    private void btnSelectSoundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectSoundActionPerformed
+        //Create a file chooser
+        final JFileChooser fc = new JFileChooser();
+        fc.addChoosableFileFilter(new SoundFilter());
+        fc.setAcceptAllFileFilterUsed(false);
+
+        //In response to a button click:
+        int returnVal = fc.showOpenDialog(PageEditing.this);
+
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = fc.getSelectedFile();
+
+            txtSound.setText(file.getAbsolutePath());
+        } else {
+//            log.append("Open command cancelled by user." + newline);
+        }
+    }//GEN-LAST:event_btnSelectSoundActionPerformed
+
+    private void btnPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlayActionPerformed
+        if (!txtSound.getText().equals("")) {
+            AudioInputStream audio;
+            try {
+                audio = AudioSystem.getAudioInputStream(new File(txtSound.getText()));
+
+                Clip clip = AudioSystem.getClip();
+                clip.open(audio);
+                clip.start();
+            } catch (IOException ex) {
+                Logger.getLogger(PageEditing.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (LineUnavailableException ex) {
+                Logger.getLogger(PageEditing.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (UnsupportedAudioFileException ex) {
+                Logger.getLogger(PageEditing.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+    }//GEN-LAST:event_btnPlayActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnNewPage;
     private javax.swing.JButton btnNext;
+    private javax.swing.JButton btnPlay;
     private javax.swing.JButton btnPrevious;
     private javax.swing.JButton btnSelectImage;
     private javax.swing.JButton btnSelectSound;
