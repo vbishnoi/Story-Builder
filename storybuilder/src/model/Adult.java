@@ -12,7 +12,7 @@ public class Adult extends User {
      * @param password
      */
     public Adult(String name, String password) {
-        super(name, password);
+//        super(name, password);
     }
     
 }

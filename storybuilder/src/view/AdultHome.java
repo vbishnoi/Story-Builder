@@ -151,6 +151,11 @@ public class AdultHome extends javax.swing.JPanel {
         });
 
         btnManageChildren.setText("Manage Children");
+        btnManageChildren.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageChildrenActionPerformed(evt);
+            }
+        });
 
         createdByMeList.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -263,6 +268,11 @@ public class AdultHome extends javax.swing.JPanel {
     private void btnNewStoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewStoryActionPerformed
         Global.container.setDisplay(new PageEditing());
     }//GEN-LAST:event_btnNewStoryActionPerformed
+
+    private void btnManageChildrenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageChildrenActionPerformed
+        Global.container.setDisplay(new ChildList());
+        
+    }//GEN-LAST:event_btnManageChildrenActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList allStoryList;

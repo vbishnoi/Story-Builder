@@ -57,6 +57,7 @@ public class Common {
         public static final String USER_SINGLE_NODE = "user";
         public static final String USER_NAME = "name";
         public static final String USER_PASSWORD = "password";
+        public static final String USER_GROUP = "group";
 //        story
         public static final String STORIES_NODE = "stories";
         public static final String STORY_SINGLE_NODE = "story";

@@ -21,6 +21,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.BorderFactory;
 import javax.swing.JFileChooser;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -35,7 +36,7 @@ import sun.audio.AudioStream;
  */
 public class PageEditing extends javax.swing.JPanel {
 
-    private int _storyID;
+    private int _storyID = -1;
     private StoryController sc = null;
     private int _pageIndex = 0;
     private LinkedList<Page> storyPages = null;
@@ -64,6 +65,9 @@ public class PageEditing extends javax.swing.JPanel {
 
     public PageEditing(int StoryID) {
         initComponents();
+
+        pnlStory.setBorder(BorderFactory.createTitledBorder("Story"));
+
         txtContent.getDocument().addDocumentListener(new PageDocumentListener());
         txtBackgroundImage.getDocument().addDocumentListener(new PageDocumentListener());
         txtSound.getDocument().addDocumentListener(new PageDocumentListener());
@@ -75,7 +79,7 @@ public class PageEditing extends javax.swing.JPanel {
 
         if (storyPages != null && storyPages.size() > 0) {
             pageIndexChanged();
-            
+
             isChanged = false;
         }
     }
@@ -99,10 +103,10 @@ public class PageEditing extends javax.swing.JPanel {
             modifiedPage.setBackgroundImage(txtBackgroundImage.getText());
             modifiedPage.setSound(txtSound.getText());
             modifiedPage.setText(txtContent.getText());
-            
+
             storyPages.set(_pageIndex, modifiedPage);
         }
-        
+
         isChanged = false;
     }
 
@@ -131,6 +135,7 @@ public class PageEditing extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
         lblPageCount = new javax.swing.JLabel();
         btnPlay = new javax.swing.JButton();
+        pnlStory = new javax.swing.JPanel();
 
         jLabel3.setText("Sound:");
 
@@ -197,6 +202,19 @@ public class PageEditing extends javax.swing.JPanel {
             }
         });
 
+        pnlStory.setToolTipText("");
+
+        org.jdesktop.layout.GroupLayout pnlStoryLayout = new org.jdesktop.layout.GroupLayout(pnlStory);
+        pnlStory.setLayout(pnlStoryLayout);
+        pnlStoryLayout.setHorizontalGroup(
+            pnlStoryLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 100, Short.MAX_VALUE)
+        );
+        pnlStoryLayout.setVerticalGroup(
+            pnlStoryLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 100, Short.MAX_VALUE)
+        );
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -205,36 +223,41 @@ public class PageEditing extends javax.swing.JPanel {
                 .add(19, 19, 19)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jLabel4)
-                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                        .add(layout.createSequentialGroup()
-                            .add(btnBack)
-                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                            .add(btnNewPage)
-                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                            .add(btnPrevious)
-                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                            .add(btnNext))
-                        .add(layout.createSequentialGroup()
+                    .add(layout.createSequentialGroup()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                            .add(pnlStory, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                 .add(jLabel1)
                                 .add(jLabel2)
                                 .add(jLabel3)
-                                .add(lblPageCount))
-                            .add(36, 36, 36)
-                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                                .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                                    .add(txtSound)
-                                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                    .add(btnPlay)
-                                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                    .add(btnSelectSound, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 107, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+                                .add(lblPageCount)))
+                        .add(36, 36, 36)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                                 .add(layout.createSequentialGroup()
-                                    .add(txtBackgroundImage)
-                                    .add(30, 30, 30)
-                                    .add(btnSelectImage, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 106, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(1, 1, 1))))))
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                        .add(layout.createSequentialGroup()
+                                            .add(txtSound, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 204, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                            .add(btnPlay)
+                                            .add(0, 101, Short.MAX_VALUE))
+                                        .add(txtBackgroundImage))
+                                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                                        .add(org.jdesktop.layout.GroupLayout.TRAILING, btnSelectSound, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 107, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .add(layout.createSequentialGroup()
+                                            .add(btnSelectImage, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 106, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                            .add(1, 1, 1))))
+                                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 494, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                                .add(btnBack)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(btnNewPage)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(btnPrevious)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(btnNext)))))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -249,46 +272,59 @@ public class PageEditing extends javax.swing.JPanel {
                         .add(lblPageCount))
                     .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 110, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel2)
-                    .add(txtBackgroundImage, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(btnSelectImage))
-                .add(18, 18, 18)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel3)
-                    .add(txtSound, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(btnSelectSound)
-                    .add(btnPlay))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(btnNewPage)
-                    .add(btnPrevious)
-                    .add(btnNext)
-                    .add(btnBack))
-                .add(34, 34, 34))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(layout.createSequentialGroup()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(jLabel2)
+                            .add(txtBackgroundImage, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(18, 18, 18)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(jLabel3)
+                            .add(txtSound, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(btnPlay))
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(layout.createSequentialGroup()
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                    .add(btnNewPage)
+                                    .add(btnPrevious)
+                                    .add(btnNext)
+                                    .add(btnBack))
+                                .add(34, 34, 34))
+                            .add(layout.createSequentialGroup()
+                                .add(18, 18, 18)
+                                .add(pnlStory, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .add(layout.createSequentialGroup()
+                        .add(btnSelectImage)
+                        .add(18, 18, 18)
+                        .add(btnSelectSound)
+                        .addContainerGap())))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreviousActionPerformed
         savePage();
-        
+
         _pageIndex = (_pageIndex == 0) ? 0 : _pageIndex - 1;
-        pageIndexChanged();        
+        pageIndexChanged();
     }//GEN-LAST:event_btnPreviousActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
         savePage();
-        
+
         _pageIndex = (_pageIndex < storyPages.size() - 1) ? _pageIndex + 1 : storyPages.size() - 1;
         pageIndexChanged();
     }//GEN-LAST:event_btnNextActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         savePage();
-        
-        Story s = sc.getStory(getStoryID());
-        s.setPages(storyPages);
-        sc.updateStory(s);
+
+        if (getStoryID() != -1) {
+            Story s = sc.getStory(getStoryID());
+            s.setPages(storyPages);
+            sc.updateStory(s);
+        }
         
         Global.container.setDisplay(new AdultHome());
     }//GEN-LAST:event_btnBackActionPerformed
@@ -350,11 +386,10 @@ public class PageEditing extends javax.swing.JPanel {
     }//GEN-LAST:event_btnPlayActionPerformed
 
     private void btnNewPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewPageActionPerformed
-        
-        
+
+
         savePage();
     }//GEN-LAST:event_btnNewPageActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnNewPage;
@@ -369,6 +404,7 @@ public class PageEditing extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblPageCount;
+    private javax.swing.JPanel pnlStory;
     private javax.swing.JTextField txtBackgroundImage;
     private javax.swing.JTextArea txtContent;
     private javax.swing.JTextField txtSound;

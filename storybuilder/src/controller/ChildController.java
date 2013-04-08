@@ -14,10 +14,16 @@ import org.jdom2.Element;
  * @author Y0239881
  */
 public class ChildController {
-
+XMLParser parser = null;
     
     public ChildController() {
+        parser = new XMLParser();
     }
 
-    
+    public LinkedList<Child> getAllChildren() {
+        
+        String query = "//story";
+        
+        return null;
+    }
 }

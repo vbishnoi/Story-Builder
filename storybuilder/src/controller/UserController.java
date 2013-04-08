@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.User;
+import model.UserGroup;
 import org.jdom2.Document;
 import org.jdom2.Element;
 
@@ -20,6 +21,7 @@ import org.jdom2.Element;
  * @author Y0239881
  */
 public class UserController {
+
     private XMLParser parser = null;
 
     public UserController() {
@@ -32,10 +34,18 @@ public class UserController {
         String query = "//user";
         List<Element> elements = (List<Element>) parser.getElements(query);
 
-        if (elements != null && elements.size() > 0) {
+        if (elements != null && elements.size() > 0) {  
             for (Element e : elements) {
                 if (e != null) {
-                    users.add(new User(e.getAttributeValue(Variables.USER_NAME), e.getChildText(Variables.USER_PASSWORD)));
+                    User u = new User();
+                    
+                    u.setName(e.getAttributeValue(Variables.USER_NAME));
+                    u.setPassword(e.getChildText(Variables.USER_PASSWORD));
+                    u.setGroup(UserGroup.fromInteger(Integer.parseInt(e.getAttributeValue(Variables.USER_GROUP))));
+                    u.setImage("");
+                    u.setAge(0);
+                    
+                    users.add(u);
                 } else {
                     Logger.getLogger(UserController.class.getName()).log(Level.WARNING, null, "Element is null");
                 }
@@ -43,6 +53,36 @@ public class UserController {
         }
 
         return users;
+    }
+
+    public LinkedList<User> getAllAdults() {
+        LinkedList<User> adults = new LinkedList<>();
+        LinkedList<User> users = getAllUsers();
+
+        if (users != null & users.size() > 0) {
+            for (User u : users) {
+                if (u.getGroup() == UserGroup.Adult) {
+                    adults.add(u);
+                }
+            }
+        }
+
+        return adults;
+    }
+    
+    public LinkedList<User> getAllChildren() {
+        LinkedList<User> children = new LinkedList<>();
+        LinkedList<User> users = getAllUsers();
+
+        if (users != null & users.size() > 0) {
+            for (User u : users) {
+                if (u.getGroup().equals(UserGroup.Child)) {
+                    children.add(u);
+                }
+            }
+        }
+
+        return children;
     }
 
     public User getUserByName(String name) {
@@ -79,4 +119,5 @@ public class UserController {
         }
         return success;
     }
+    
 }

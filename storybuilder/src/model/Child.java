@@ -16,7 +16,7 @@ public class Child extends User {
      * @param age
      */
     public Child(String name, String password, String image, int age) {
-        super(name, password);
+//        super(name, password);
         this._age = age;
         this._image = image;
     }
