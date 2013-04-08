@@ -27,3 +27,4 @@ tests/bin/
 /.project
 /storybuilder/build/
 /storybuilder/dist/
+/tests/build/

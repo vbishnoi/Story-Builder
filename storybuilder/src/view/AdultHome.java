@@ -68,9 +68,9 @@ public class AdultHome extends javax.swing.JPanel {
                 PageEditing pe = null;
 
                 if (jTabs.getSelectedIndex() == 0) {
-                    pe = new PageEditing(allStories.get(selectedIndex).getId());
-                } else {
                     pe = new PageEditing(createdByMe.get(selectedIndex).getId());
+                } else {
+                    pe = new PageEditing(allStories.get(selectedIndex).getId());
                 }
 
                 Global.container.setDisplay(pe);
@@ -98,12 +98,12 @@ public class AdultHome extends javax.swing.JPanel {
         }
     }
     
-    @Override
-    public void addNotify() {
-        getParent().revalidate();
-        repaint();
-        super.addNotify();
-    }
+//    @Override
+//    public void addNotify() {
+//        getParent().revalidate();
+//        repaint();
+//        super.addNotify();
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -144,6 +144,11 @@ public class AdultHome extends javax.swing.JPanel {
         jLabel1.setText("Welcome, user");
 
         btnNewStory.setText("Create new story");
+        btnNewStory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewStoryActionPerformed(evt);
+            }
+        });
 
         btnManageChildren.setText("Manage Children");
 
@@ -254,6 +259,11 @@ public class AdultHome extends javax.swing.JPanel {
                 .add(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnNewStoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewStoryActionPerformed
+        Global.container.setDisplay(new PageEditing());
+    }//GEN-LAST:event_btnNewStoryActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList allStoryList;
     private javax.swing.JButton btnManageChildren;

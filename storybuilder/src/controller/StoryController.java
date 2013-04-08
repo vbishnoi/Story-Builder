@@ -82,15 +82,15 @@ public class StoryController {
 //
 //        return allPages;
 //    }
-
     public void updateStory(Story storyToUpdate) {
         Document objDoc = parser.getDocument();
-        
+
         Element story = getStoryElement(storyToUpdate.getId());
 
         if (story != null) {
             // update the story
             story.getChild(Common.Variables.STORY_TITLE).setText(storyToUpdate.getTitle());
+//            story.getChild(Common.Variables.STORY_TITLE).setText("test");
             story.getChild(Common.Variables.STORY_BG_COLOR).setText(storyToUpdate.getBackgroundColor());
             story.getChild(Common.Variables.STORY_FONT).setText(storyToUpdate.getFont());
             story.getChild(Common.Variables.STORY_FONT_SIZE).setText(String.valueOf(storyToUpdate.getFontSize()));
@@ -111,11 +111,12 @@ public class StoryController {
                     p = pages.get(i);
 
                     e.getChild(Common.Variables.PAGE_CONTENT).setText(p.getText());
+//                    e.getChild(Common.Variables.PAGE_CONTENT).setText("123244");
                     e.getChild(Common.Variables.PAGE_IMAGE).setText(p.getBackgroundImage());
                     e.getChild(Common.Variables.PAGE_SOUND).setText(p.getSound());
-                    
+
 //                    pageElements.set(i, e);
-                }   
+                }
             }
 
             // create new output writer to update back to file
@@ -124,23 +125,24 @@ public class StoryController {
             // display nice nice
             xmlOutput.setFormat(Format.getPrettyFormat());
             try {
-//                xmlOutput.output(parser.getDocument(), new FileWriter(Common.Variables.DATABASE_NAME));
-                xmlOutput.output(objDoc, System.out);
+                xmlOutput.output(objDoc, new FileWriter(Common.Variables.DATABASE_NAME));
+                
+                // print out
+//                xmlOutput.output(objDoc, System.out);
             } catch (IOException ex) {
                 Logger.getLogger(StoryController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-             
-
             System.out.println("Story updated!");
         }
+
     }
 
     private Element getStoryElement(int StoryID) {
         String query = XpathBuilder.GetElementsByAttrNameAndValue(Common.Variables.STORY_SINGLE_NODE, Common.Variables.STORY_ID, String.valueOf(StoryID));
-        
+
         System.out.println(query);
-        
+
         return parser.getElement(query);
     }
 
@@ -164,7 +166,7 @@ public class StoryController {
             story.setId(Integer.parseInt(storyElm.getAttributeValue(Common.Variables.STORY_ID)));
 
             Element pagesContainer = storyElm.getChild(Common.Variables.PAGES_NODE);
-            
+
             /*
              * Get all the pages that belong to the story
              */
@@ -197,7 +199,7 @@ public class StoryController {
      */
     public Story getStory(int storyID) {
         Element e = getStoryElement(storyID);
-        
+
         return getStory(e);
     }
 }
