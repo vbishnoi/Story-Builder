@@ -5,8 +5,10 @@
 package view;
 
 import com.uoy.sb.Global;
+import controller.UserController;
 import java.awt.Dimension;
 import javax.swing.JPanel;
+import model.User;
 
 /**
  *
@@ -14,20 +16,34 @@ import javax.swing.JPanel;
  */
 public class MainContainer extends javax.swing.JFrame {
 
+    private final User user;
+
     /**
      * Creates new form MainContainer
      */
     public MainContainer() {
         initComponents();
-        
+
         Global.container = this;
-        
-        // Add the AdultHome first
-        getContentPane().add(new AdultHome());
+
+        user = new UserController().getUserByName(Global.loggedInUser);
+
+        if (user != null) {
+            switch (user.getGroup()) {
+                case Adult:
+                    getContentPane().add(new AdultHome());
+                    break;
+                case Child:
+                    getContentPane().add(new ChildHome());
+                    break;
+            }
+        }
+
+
         setSize(new Dimension(750, 600));
         setLocationRelativeTo(null);
     }
-    
+
     /*
      * Set the panel to be displayed 
      * @param panelToDisplay JPanel to be displayed
@@ -37,7 +53,7 @@ public class MainContainer extends javax.swing.JFrame {
         getContentPane().add(panelToDisplay);
 
         pack();
-        
+
 //        getContentPane().repaint();
         this.revalidate();
         this.repaint();
