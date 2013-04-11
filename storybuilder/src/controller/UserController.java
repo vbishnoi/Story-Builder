@@ -98,6 +98,9 @@ public class UserController {
         if (element != null) {
             u.setName(name);
             u.setPassword(element.getChildText(Variables.USER_PASSWORD));
+            u.setGroup(UserGroup.fromInteger(Integer.parseInt(element.getAttributeValue(Common.Variables.USER_GROUP))));
+            u.setImage(element.getChildText(Common.Variables.USER_IMAGE));
+            u.setAge(Integer.parseInt(element.getChildText(Common.Variables.USER_AGE)));
         }
 
         return u;

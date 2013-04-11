@@ -38,9 +38,9 @@ public class Launcher {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 // uncomment to enable login
-//                new Login().setVisible(true);
+                new Login().setVisible(true);
 
-                new MainContainer().setVisible(true);
+//                new MainContainer().setVisible(true);
             }
         });
 

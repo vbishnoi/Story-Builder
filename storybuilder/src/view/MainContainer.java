@@ -39,7 +39,6 @@ public class MainContainer extends javax.swing.JFrame {
             }
         }
 
-
         setSize(new Dimension(750, 600));
         setLocationRelativeTo(null);
     }
