@@ -38,10 +38,8 @@ public class Common {
         public static final String ROOT = "storybuilder";
         
 //        Node names
-        public static final String CHILDREN_NODE = "children";
-        public static final String CHILD_SINGLE_NODE = "child";
-        public static final String CHILD_IMAGE = "image";
-        public static final String CHILD_AGE = "age";
+        public static final String USER_IMAGE = "image";
+        public static final String USER_AGE = "age";
 //        adult
         public static final String ADULTS_NODE = "adults";
         public static final String ADULT_SINGLE_NODE = "adult";
