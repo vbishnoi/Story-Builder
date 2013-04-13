@@ -4,6 +4,7 @@
  */
 package view;
 
+import com.uoy.sb.Global;
 import controller.UserController;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -118,6 +119,7 @@ public class Login extends javax.swing.JFrame {
 
         UserController uc = new UserController();
         if(uc.login(txtName.getText(), txtPassword.getText())) {
+            
             this.dispose();
             this.setVisible(false);
             

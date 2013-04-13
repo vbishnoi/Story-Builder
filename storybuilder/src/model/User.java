@@ -11,7 +11,7 @@ public class User {
     private String _password;
     private UserGroup _group;
     private String _image;
-    private int _age;
+    private int _age = 0;
 
     /**
      * @return the _name
