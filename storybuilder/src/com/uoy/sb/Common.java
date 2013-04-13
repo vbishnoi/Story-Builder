@@ -76,7 +76,7 @@ public class Common {
         /**
          * Generate hashed MD5 from plain string
          *
-         * @param md5
+         * @param 
          * @return hashed string
          * http://m2tec.be/blog/2010/02/03/java-md5-hex-0093
          */
