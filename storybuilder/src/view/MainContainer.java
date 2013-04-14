@@ -53,7 +53,7 @@ public class MainContainer extends javax.swing.JFrame {
 
         pack();
 
-//        getContentPane().repaint();
+          getContentPane().repaint();
         this.revalidate();
         this.repaint();
     }
