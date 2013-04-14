@@ -11,7 +11,7 @@ package view;
 public class GiveFeedback extends javax.swing.JPanel {
 
     /**
-     * Creates new form NewJPanel
+     * Creates new form GiveFeedback
      */
     public GiveFeedback() {
         initComponents();
@@ -26,31 +26,26 @@ public class GiveFeedback extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
         finishStory = new javax.swing.JButton();
+        jRadioButton4 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton1 = new javax.swing.JRadioButton();
 
-        jRadioButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jRadioButton1.setText("Happy");
-
-        jRadioButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jRadioButton2.setText("Sad");
-
-        jRadioButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jRadioButton3.setText("Mad");
+        finishStory.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        finishStory.setText("Finish");
 
         jRadioButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jRadioButton4.setText("Confused");
 
-        finishStory.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        finishStory.setText("Finish");
-        finishStory.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                finishStoryActionPerformed(evt);
-            }
-        });
+        jRadioButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jRadioButton3.setText("Mad");
+
+        jRadioButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jRadioButton2.setText("Sad");
+
+        jRadioButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jRadioButton1.setText("Happy");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -68,7 +63,7 @@ public class GiveFeedback extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(312, 312, 312)
                         .addComponent(finishStory)))
-                .addContainerGap(279, Short.MAX_VALUE))
+                .addContainerGap(189, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -86,11 +81,6 @@ public class GiveFeedback extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void finishStoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishStoryActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_finishStoryActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton finishStory;
     private javax.swing.JRadioButton jRadioButton1;

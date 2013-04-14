@@ -31,7 +31,7 @@
                   <Component id="storyName" alignment="0" pref="450" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="assignStory" min="-2" pref="226" max="-2" attributes="0"/>
+                          <Component id="childBox" min="-2" pref="226" max="-2" attributes="0"/>
                           <Component id="feedback" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -117,7 +117,7 @@
                   <Group type="102" attributes="0">
                       <Component id="AssignStory" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                      <Component id="assignStory" min="-2" max="-2" attributes="0"/>
+                      <Component id="childBox" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
@@ -223,7 +223,7 @@
         <Property name="text" type="java.lang.String" value="Choose Font Size:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="assignStory">
+    <Component class="javax.swing.JComboBox" name="childBox">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
@@ -235,7 +235,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="assignStoryActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="childBoxActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="AssignStory">
@@ -284,7 +284,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JList" name="jList1">
+        <Component class="javax.swing.JList" name="childListModel">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
               <StringArray count="5">

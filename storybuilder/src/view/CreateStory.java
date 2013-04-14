@@ -4,18 +4,30 @@
  */
 package view;
 
+import controller.UserController;
+import java.util.LinkedList;
+import javax.swing.DefaultListModel;
+import model.User;
+
 /**
  *
  * @author Y0199223
  */
 public class CreateStory extends javax.swing.JPanel {
-
+    private UserController uc = null;
     /**
      * Creates new form CreateStory1
      */
     public CreateStory() {
         initComponents();
+        getChildUser();
     }
+    
+    // method to display list of children on story creation page
+    private void getChildUser() {
+      
+    }
+        
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -40,14 +52,14 @@ public class CreateStory extends javax.swing.JPanel {
         jColorChooser1 = new javax.swing.JColorChooser();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        assignStory = new javax.swing.JComboBox();
+        childBox = new javax.swing.JComboBox();
         AssignStory = new javax.swing.JLabel();
         storyAssignedTo = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
         jComboBox2 = new javax.swing.JComboBox();
         deleteButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        childListModel = new javax.swing.JList();
 
         storyTitleLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         storyTitleLabel.setText("Story Title:");
@@ -80,10 +92,10 @@ public class CreateStory extends javax.swing.JPanel {
 
         jLabel2.setText("Choose Font Size:");
 
-        assignStory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        assignStory.addActionListener(new java.awt.event.ActionListener() {
+        childBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        childBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                assignStoryActionPerformed(evt);
+                childBoxActionPerformed(evt);
             }
         });
 
@@ -97,12 +109,12 @@ public class CreateStory extends javax.swing.JPanel {
 
         deleteButton.setText("Delete");
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
+        childListModel.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(childListModel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -121,7 +133,7 @@ public class CreateStory extends javax.swing.JPanel {
                     .addComponent(storyName, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(assignStory, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(childBox, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(feedback))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(saveStory))
@@ -191,7 +203,7 @@ public class CreateStory extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(AssignStory)
                         .addGap(5, 5, 5)
-                        .addComponent(assignStory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(childBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -209,14 +221,15 @@ public class CreateStory extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void assignStoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignStoryActionPerformed
+    private void childBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_childBoxActionPerformed
         
-    }//GEN-LAST:event_assignStoryActionPerformed
+    }//GEN-LAST:event_childBoxActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AssignStory;
-    private javax.swing.JComboBox assignStory;
     private javax.swing.JButton cancel;
+    private javax.swing.JComboBox childBox;
+    private javax.swing.JList childListModel;
     private javax.swing.JButton deleteButton;
     private javax.swing.JButton deletePage;
     private javax.swing.JButton editPage;
@@ -226,7 +239,6 @@ public class CreateStory extends javax.swing.JPanel {
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton newPage;
     private javax.swing.JList pageList;
@@ -237,4 +249,6 @@ public class CreateStory extends javax.swing.JPanel {
     private javax.swing.JTextField storyName;
     private javax.swing.JLabel storyTitleLabel;
     // End of variables declaration//GEN-END:variables
+
+
 }
