@@ -29,7 +29,7 @@ public class StoryController {
     public StoryController() {
         parser = new XMLParser();
     }
-
+// get all the stories from xml file
     public LinkedList<Story> getAllStories() {
         String query = "//story";
 
@@ -37,7 +37,7 @@ public class StoryController {
 
         return buildList(elements);
     }
-
+// get all the stories for the logged in user 
     public LinkedList<Story> getStoriesByUser(String username) {
         String query = XpathBuilder.GetElementsByAttrNameAndValue(Common.Variables.STORY_SINGLE_NODE, Common.Variables.STORY_CREATED_BY, username);
 
@@ -82,6 +82,8 @@ public class StoryController {
 //
 //        return allPages;
 //    }
+    
+    // update the xml file with the updated content
     public void updateStory(Story storyToUpdate) {
         Document objDoc = parser.getDocument();
 
@@ -138,6 +140,7 @@ public class StoryController {
 
     }
 
+    //get element contents from the xml file by the story ID 
     private Element getStoryElement(int StoryID) {
         String query = XpathBuilder.GetElementsByAttrNameAndValue(Common.Variables.STORY_SINGLE_NODE, Common.Variables.STORY_ID, String.valueOf(StoryID));
 
