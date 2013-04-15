@@ -35,6 +35,8 @@ public class ViewFeedback extends javax.swing.JPanel {
         madLabel = new javax.swing.JLabel();
         confusedLabel = new javax.swing.JLabel();
 
+        setPreferredSize(new java.awt.Dimension(650, 650));
+
         backButton.setText("back");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N

@@ -131,6 +131,8 @@ public class AdultHome extends javax.swing.JPanel {
         buttonViewFeedback = new javax.swing.JButton();
         buttonPrintStory = new javax.swing.JButton();
 
+        setPreferredSize(new java.awt.Dimension(650, 650));
+
         panelUserImage.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         org.jdesktop.layout.GroupLayout panelUserImageLayout = new org.jdesktop.layout.GroupLayout(panelUserImage);

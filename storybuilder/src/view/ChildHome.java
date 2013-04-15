@@ -36,6 +36,8 @@ public class ChildHome extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         lstChildren = new javax.swing.JList();
 
+        setPreferredSize(new java.awt.Dimension(650, 650));
+
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 3, 14)); // NOI18N
         jLabel1.setText("Welcome, user ");
 
