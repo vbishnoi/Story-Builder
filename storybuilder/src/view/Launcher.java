@@ -40,7 +40,7 @@ public class Launcher {
                 // uncomment to enable login
                 new Login().setVisible(true);
 
-                new MainContainer().setVisible(true);
+//                new MainContainer().setVisible(true);
             }
         });
 
