@@ -297,7 +297,7 @@ public class AdultHome extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNewStoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewStoryActionPerformed
-        Global.container.setDisplay(new PageEditing());
+        Global.container.setDisplay(new CreateStory());
     }//GEN-LAST:event_btnNewStoryActionPerformed
 
     private void btnManageChildrenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageChildrenActionPerformed

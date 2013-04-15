@@ -90,12 +90,13 @@ public class UserController {
     }
 
     public User getUserByName(String name) {
-        User u = new User();
+        User u = null;
         String query = XpathBuilder.GetElementsByAttrNameAndValue(Variables.USER_SINGLE_NODE, Variables.USER_NAME, name);
 
         Element element = parser.getElement(query);
 
         if (element != null) {
+            u = new User();
             u.setName(name);
             u.setPassword(element.getChildText(Variables.USER_PASSWORD));
             u.setGroup(UserGroup.fromInteger(Integer.parseInt(element.getAttributeValue(Common.Variables.USER_GROUP))));
