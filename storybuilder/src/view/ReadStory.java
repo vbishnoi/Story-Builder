@@ -31,39 +31,28 @@ public class ReadStory extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        storyName = new javax.swing.JLabel();
-        pageTextScroll = new javax.swing.JScrollPane();
-        pageText = new javax.swing.JTextArea();
-        pagePicture = new javax.swing.JLabel();
         buttonPanel = new javax.swing.JPanel();
         btnNext = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
+        btnPrev = new javax.swing.JButton();
+        storyPanel = new javax.swing.JPanel();
+        storyName = new javax.swing.JLabel();
+        pageTextScroll = new javax.swing.JScrollPane();
+        pageText = new javax.swing.JTextArea();
+        imagePanel = new javax.swing.JPanel();
         btnReplay = new javax.swing.JButton();
         btnPrint = new javax.swing.JButton();
-        btnPrev = new javax.swing.JButton();
-
-        storyName.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        storyName.setText("Story name");
-
-        pageText.setColumns(20);
-        pageText.setRows(5);
-        pageTextScroll.setViewportView(pageText);
-
-        pagePicture.setText("picture");
 
         btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Next.png"))); // NOI18N
         btnNext.setText("Next page");
 
-        btnClose.setText("Close");
+        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/storybuilder/resources/home.png"))); // NOI18N
+        btnClose.setText("Home");
         btnClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCloseActionPerformed(evt);
             }
         });
-
-        btnReplay.setText("Replay Sound");
-
-        btnPrint.setText("Print");
 
         btnPrev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Back.png"))); // NOI18N
         btnPrev.setText("Previous Page");
@@ -73,33 +62,89 @@ public class ReadStory extends javax.swing.JPanel {
         buttonPanelLayout.setHorizontalGroup(
             buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(buttonPanelLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(buttonPanelLayout.createSequentialGroup()
-                        .addComponent(btnReplay)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnPrint))
-                    .addGroup(buttonPanelLayout.createSequentialGroup()
-                        .addComponent(btnPrev)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnNext)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnClose)))
+                .addContainerGap()
+                .addComponent(btnClose)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnPrev)
+                .addGap(18, 18, 18)
+                .addComponent(btnNext)
                 .addContainerGap())
         );
         buttonPanelLayout.setVerticalGroup(
             buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, buttonPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPrint)
-                    .addComponent(btnReplay))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
+                .addGap(52, 52, 52)
                 .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNext)
-                    .addComponent(btnPrev)
-                    .addComponent(btnClose))
-                .addGap(38, 38, 38))
+                    .addComponent(btnPrev))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, buttonPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnClose)
+                .addContainerGap())
+        );
+
+        buttonPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnClose, btnNext, btnPrev});
+
+        storyName.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        storyName.setText("Story name:");
+
+        pageText.setColumns(20);
+        pageText.setRows(5);
+        pageTextScroll.setViewportView(pageText);
+
+        javax.swing.GroupLayout imagePanelLayout = new javax.swing.GroupLayout(imagePanel);
+        imagePanel.setLayout(imagePanelLayout);
+        imagePanelLayout.setHorizontalGroup(
+            imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 380, Short.MAX_VALUE)
+        );
+        imagePanelLayout.setVerticalGroup(
+            imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        btnReplay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/storybuilder/resources/play.png"))); // NOI18N
+        btnReplay.setText("Play Sound");
+
+        btnPrint.setText("Print");
+
+        javax.swing.GroupLayout storyPanelLayout = new javax.swing.GroupLayout(storyPanel);
+        storyPanel.setLayout(storyPanelLayout);
+        storyPanelLayout.setHorizontalGroup(
+            storyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(storyPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(storyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pageTextScroll, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(storyPanelLayout.createSequentialGroup()
+                        .addComponent(storyName)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnPrint))
+                    .addGroup(storyPanelLayout.createSequentialGroup()
+                        .addComponent(imagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 293, Short.MAX_VALUE)
+                        .addComponent(btnReplay)))
+                .addContainerGap())
+        );
+        storyPanelLayout.setVerticalGroup(
+            storyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, storyPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(storyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(storyName)
+                    .addComponent(btnPrint))
+                .addGroup(storyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(storyPanelLayout.createSequentialGroup()
+                        .addGap(83, 83, 83)
+                        .addComponent(btnReplay)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(storyPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(imagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(pageTextScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -107,39 +152,20 @@ public class ReadStory extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(storyName)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(pagePicture, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
-                        .addComponent(buttonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20))))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(19, 19, 19)
-                    .addComponent(pageTextScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE)
-                    .addGap(19, 19, 19)))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(buttonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(storyPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(storyName)
-                .addGap(220, 220, 220)
-                .addComponent(pagePicture, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(132, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(storyPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(42, 42, 42)
-                    .addComponent(pageTextScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(295, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -159,9 +185,10 @@ public class ReadStory extends javax.swing.JPanel {
     private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnReplay;
     private javax.swing.JPanel buttonPanel;
-    private javax.swing.JLabel pagePicture;
+    private javax.swing.JPanel imagePanel;
     private javax.swing.JTextArea pageText;
     private javax.swing.JScrollPane pageTextScroll;
     private javax.swing.JLabel storyName;
+    private javax.swing.JPanel storyPanel;
     // End of variables declaration//GEN-END:variables
 }

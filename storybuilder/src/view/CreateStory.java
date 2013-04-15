@@ -52,18 +52,17 @@ public class CreateStory extends javax.swing.JPanel {
         jComboBox1 = new javax.swing.JComboBox();
         jComboBox2 = new javax.swing.JComboBox();
         assignstoryPanel = new javax.swing.JPanel();
-        feedback = new javax.swing.JCheckBox();
-        childBox = new javax.swing.JComboBox();
         storyAssignedTo = new javax.swing.JLabel();
         AssignStory = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        childListScroll = new javax.swing.JScrollPane();
         childListModel = new javax.swing.JList();
         deleteButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        childListModel = new javax.swing.JList();
+        jList1 = new javax.swing.JList();
         buttonPanel = new javax.swing.JPanel();
         saveStory = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
+        feedback = new javax.swing.JCheckBox();
         storyNamePanel = new javax.swing.JPanel();
         storyName = new javax.swing.JTextField();
         storyTitleLabel = new javax.swing.JLabel();
@@ -102,8 +101,8 @@ public class CreateStory extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(pagesLabel)
                 .addGap(43, 43, 43)
-                .addComponent(pageListScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pageListScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                         .addComponent(newPage)
@@ -117,19 +116,16 @@ public class CreateStory extends javax.swing.JPanel {
         pagePanelLayout.setVerticalGroup(
             pagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pagePanelLayout.createSequentialGroup()
-                .addGroup(pagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(pagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pagePanelLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(newPage)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(editPage)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(deletePage))
-                    .addGroup(pagePanelLayout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addGroup(pagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pageListScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pagesLabel))))
+                    .addComponent(pagesLabel)
+                    .addComponent(pageListScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -148,13 +144,13 @@ public class CreateStory extends javax.swing.JPanel {
             .addGroup(colorPanelLayout.createSequentialGroup()
                 .addGap(91, 91, 91)
                 .addComponent(jColorChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addGroup(colorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         colorPanelLayout.setVerticalGroup(
             colorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,15 +169,6 @@ public class CreateStory extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        feedback.setText("Ask for feedback?");
-
-        childBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        childBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                childBoxActionPerformed(evt);
-            }
-        });
-
         storyAssignedTo.setText("This story is assigned to ");
 
         AssignStory.setText("Assign this story to: ");
@@ -191,67 +178,76 @@ public class CreateStory extends javax.swing.JPanel {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(childListModel);
+        childListScroll.setViewportView(childListModel);
 
-        deleteButton.setText("Delete");
+        deleteButton.setText("Remove");
 
-        childListModel.setModel(new javax.swing.AbstractListModel() {
+        jList1.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(childListModel);
+        jScrollPane1.setViewportView(jList1);
 
         javax.swing.GroupLayout assignstoryPanelLayout = new javax.swing.GroupLayout(assignstoryPanel);
         assignstoryPanel.setLayout(assignstoryPanelLayout);
         assignstoryPanelLayout.setHorizontalGroup(
             assignstoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(assignstoryPanelLayout.createSequentialGroup()
-                .addGap(94, 94, 94)
+                .addGap(89, 89, 89)
                 .addGroup(assignstoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(feedback, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(childBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(AssignStory))
-                .addGap(94, 94, 94)
+                .addGap(28, 28, 28)
                 .addGroup(assignstoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(deleteButton)
-                    .addComponent(jScrollPane1)
+                    .addGroup(assignstoryPanelLayout.createSequentialGroup()
+                        .addComponent(childListScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                        .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(storyAssignedTo))
-                .addContainerGap(200, Short.MAX_VALUE))
+                .addContainerGap())
         );
+
+        assignstoryPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {childListScroll, jScrollPane1});
+
         assignstoryPanelLayout.setVerticalGroup(
             assignstoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(assignstoryPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(assignstoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AssignStory)
-                    .addComponent(storyAssignedTo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(assignstoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(assignstoryPanelLayout.createSequentialGroup()
-                        .addComponent(childBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(feedback)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
-                .addComponent(deleteButton)
-                .addContainerGap())
+                        .addComponent(AssignStory)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(assignstoryPanelLayout.createSequentialGroup()
+                        .addComponent(storyAssignedTo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(assignstoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(childListScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(deleteButton))))
+                .addGap(61, 61, 61))
         );
+
+        assignstoryPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {childListScroll, jScrollPane1});
 
         saveStory.setText("Save Story");
 
         cancel.setText("Cancel");
+
+        feedback.setText("Ask for feedback?");
 
         javax.swing.GroupLayout buttonPanelLayout = new javax.swing.GroupLayout(buttonPanel);
         buttonPanel.setLayout(buttonPanelLayout);
         buttonPanelLayout.setHorizontalGroup(
             buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(buttonPanelLayout.createSequentialGroup()
-                .addGap(424, 424, 424)
+                .addGap(88, 88, 88)
+                .addComponent(feedback, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                 .addComponent(saveStory)
-                .addGap(12, 12, 12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cancel)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         buttonPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cancel, saveStory});
@@ -262,7 +258,8 @@ public class CreateStory extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveStory)
-                    .addComponent(cancel))
+                    .addComponent(cancel)
+                    .addComponent(feedback))
                 .addContainerGap())
         );
 
@@ -278,9 +275,9 @@ public class CreateStory extends javax.swing.JPanel {
             .addGroup(storyNamePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(storyTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(storyName, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(storyName, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(111, Short.MAX_VALUE))
         );
         storyNamePanelLayout.setVerticalGroup(
             storyNamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -307,6 +304,9 @@ public class CreateStory extends javax.swing.JPanel {
                     .addComponent(buttonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {assignstoryPanel, buttonPanel, colorPanel, pagePanel, storyNamePanel});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -318,7 +318,7 @@ public class CreateStory extends javax.swing.JPanel {
                 .addComponent(colorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(assignstoryPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(buttonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -327,10 +327,6 @@ public class CreateStory extends javax.swing.JPanel {
     private void newPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPageActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_newPageActionPerformed
-
-    private void childBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_childBoxActionPerformed
-
-    }//GEN-LAST:event_childBoxActionPerformed
 
     private void editPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPageActionPerformed
         // TODO add your handling code here:
@@ -341,8 +337,8 @@ public class CreateStory extends javax.swing.JPanel {
     private javax.swing.JPanel assignstoryPanel;
     private javax.swing.JPanel buttonPanel;
     private javax.swing.JButton cancel;
-    private javax.swing.JComboBox childBox;
     private javax.swing.JList childListModel;
+    private javax.swing.JScrollPane childListScroll;
     private javax.swing.JPanel colorPanel;
     private javax.swing.JButton deleteButton;
     private javax.swing.JButton deletePage;
@@ -353,6 +349,7 @@ public class CreateStory extends javax.swing.JPanel {
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton newPage;
     private javax.swing.JList pageList;

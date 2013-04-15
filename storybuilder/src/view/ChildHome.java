@@ -31,6 +31,7 @@ public class ChildHome extends javax.swing.JPanel {
         buttonPanel = new javax.swing.JPanel();
         btnRead = new javax.swing.JButton();
         btnPrint = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         storyPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstChildren = new javax.swing.JList();
@@ -51,18 +52,22 @@ public class ChildHome extends javax.swing.JPanel {
             .add(0, 100, Short.MAX_VALUE)
         );
 
+        btnRead.setIcon(new javax.swing.ImageIcon(getClass().getResource("/storybuilder/resources/main1.png"))); // NOI18N
         btnRead.setText("Read");
 
         btnPrint.setText("Print");
+
+        jButton1.setText("Exit");
 
         org.jdesktop.layout.GroupLayout buttonPanelLayout = new org.jdesktop.layout.GroupLayout(buttonPanel);
         buttonPanel.setLayout(buttonPanelLayout);
         buttonPanelLayout.setHorizontalGroup(
             buttonPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(buttonPanelLayout.createSequentialGroup()
-                .add(buttonPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(btnRead, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 85, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(btnPrint, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 85, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(buttonPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                    .add(btnRead, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(btnPrint, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(jButton1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         buttonPanelLayout.setVerticalGroup(
@@ -72,10 +77,11 @@ public class ChildHome extends javax.swing.JPanel {
                 .add(btnRead, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(btnPrint, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 8, Short.MAX_VALUE)
+                .add(jButton1))
         );
 
-        buttonPanelLayout.linkSize(new java.awt.Component[] {btnPrint, btnRead}, org.jdesktop.layout.GroupLayout.VERTICAL);
+        buttonPanelLayout.linkSize(new java.awt.Component[] {btnPrint, btnRead, jButton1}, org.jdesktop.layout.GroupLayout.VERTICAL);
 
         lstChildren.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -137,6 +143,7 @@ public class ChildHome extends javax.swing.JPanel {
     private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnRead;
     private javax.swing.JPanel buttonPanel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList lstChildren;

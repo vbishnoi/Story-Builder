@@ -20,12 +20,12 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="colorPanel" alignment="1" max="32767" attributes="0"/>
-                      <Component id="pagePanel" max="32767" attributes="0"/>
-                      <Component id="storyNamePanel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="colorPanel" linkSize="3" alignment="1" max="32767" attributes="0"/>
+                      <Component id="pagePanel" linkSize="3" max="32767" attributes="0"/>
+                      <Component id="storyNamePanel" linkSize="3" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="assignstoryPanel" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="buttonPanel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="assignstoryPanel" linkSize="3" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonPanel" linkSize="3" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -42,7 +42,7 @@
               <Component id="colorPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="assignstoryPanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="8" max="32767" attributes="0"/>
+              <EmptySpace pref="11" max="32767" attributes="0"/>
               <Component id="buttonPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -59,10 +59,10 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="pagesLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                  <Component id="pageListScrollPane" min="-2" pref="413" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="pageListScrollPane" min="-2" pref="321" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="2" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="2" attributes="0">
                           <Component id="newPage" linkSize="2" alignment="2" min="-2" max="-2" attributes="0"/>
                           <Component id="deletePage" linkSize="2" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -75,22 +75,17 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="newPage" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="editPage" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="deletePage" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="11" pref="11" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="pageListScrollPane" min="-2" pref="100" max="-2" attributes="0"/>
-                              <Component id="pagesLabel" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <Component id="pagesLabel" min="-2" max="-2" attributes="0"/>
+                      <Component id="pageListScrollPane" alignment="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -156,14 +151,14 @@
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
                   <Component id="jColorChooser1" min="-2" pref="274" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace pref="63" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel2" max="32767" attributes="0"/>
                       <Component id="jComboBox2" max="32767" attributes="0"/>
-                      <Component id="jComboBox1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jComboBox1" alignment="0" min="-2" pref="87" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -233,19 +228,21 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="feedback" alignment="0" max="32767" attributes="0"/>
-                      <Component id="childBox" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" linkSize="4" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
                       <Component id="AssignStory" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="deleteButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
-                      <Component id="storyAssignedTo" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="childListScroll" linkSize="4" min="-2" pref="143" max="-2" attributes="0"/>
+                          <EmptySpace pref="27" max="32767" attributes="0"/>
+                          <Component id="deleteButton" min="-2" pref="85" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="storyAssignedTo" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="200" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -254,46 +251,26 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="AssignStory" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="storyAssignedTo" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane1" alignment="0" min="-2" pref="58" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="childBox" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="feedback" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="AssignStory" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" linkSize="5" min="-2" pref="74" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="storyAssignedTo" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="childListScroll" linkSize="5" min="-2" pref="74" max="-2" attributes="0"/>
+                              <Component id="deleteButton" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="6" max="32767" attributes="0"/>
-                  <Component id="deleteButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JCheckBox" name="feedback">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Ask for feedback?"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="childBox">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="childBoxActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JLabel" name="storyAssignedTo">
           <Properties>
             <Property name="text" type="java.lang.String" value="This story is assigned to "/>
@@ -304,7 +281,7 @@
             <Property name="text" type="java.lang.String" value="Assign this story to: "/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+        <Container class="javax.swing.JScrollPane" name="childListScroll">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
@@ -328,7 +305,7 @@
         </Container>
         <Component class="javax.swing.JButton" name="deleteButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Delete"/>
+            <Property name="text" type="java.lang.String" value="Remove"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -338,7 +315,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JList" name="childListModel">
+            <Component class="javax.swing.JList" name="jList1">
               <Properties>
                 <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                   <StringArray count="5">
@@ -361,11 +338,13 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="424" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+                  <Component id="feedback" pref="150" max="32767" attributes="0"/>
+                  <EmptySpace pref="101" max="32767" attributes="0"/>
                   <Component id="saveStory" linkSize="1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="cancel" linkSize="1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -376,6 +355,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="saveStory" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cancel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="feedback" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -393,6 +373,11 @@
             <Property name="text" type="java.lang.String" value="Cancel"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JCheckBox" name="feedback">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ask for feedback?"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="storyNamePanel">
@@ -403,9 +388,9 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="storyTitleLabel" min="-2" pref="78" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="storyName" pref="412" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
+                  <Component id="storyName" min="-2" pref="322" max="-2" attributes="0"/>
+                  <EmptySpace pref="111" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -417,7 +402,7 @@
                       <Component id="storyName" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                       <Component id="storyTitleLabel" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

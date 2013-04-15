@@ -89,9 +89,10 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btnRead" min="-2" pref="85" max="-2" attributes="0"/>
-                      <Component id="btnPrint" min="-2" pref="85" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="btnRead" max="32767" attributes="0"/>
+                      <Component id="btnPrint" max="32767" attributes="0"/>
+                      <Component id="jButton1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -104,7 +105,8 @@
                   <Component id="btnRead" linkSize="1" min="-2" pref="36" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnPrint" linkSize="1" min="-2" pref="34" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace pref="8" max="32767" attributes="0"/>
+                  <Component id="jButton1" linkSize="1" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -112,12 +114,20 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="btnRead">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/storybuilder/resources/main1.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Read"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnPrint">
           <Properties>
             <Property name="text" type="java.lang.String" value="Print"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Exit"/>
           </Properties>
         </Component>
       </SubComponents>
