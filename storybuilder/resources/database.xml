@@ -3,17 +3,17 @@
   <users>
     <user name="tuanva" group="0">
       <password>202cb962ac59075b964b07152d234b70</password>
-      <image></image>
+      <image />
       <age>0</age>
     </user>
     <user name="vijay" group="0">
-      <password>pass</password>
-      <image></image>
+      <password>202cb962ac59075b964b07152d234b70</password>
+      <image />
       <age>0</age>
     </user>
     <user name="Anna" group="1">
       <password>202cb962ac59075b964b07152d234b70</password>
-      <image></image>
+      <image />
       <age>0</age>
     </user>
   </users>
@@ -26,7 +26,7 @@
       <textcolor />
       <pages>
         <page>
-          <content>Buzzy's not like other bees. Other bees make lots of trips to gather their nectar.</content>
+          <content>Test Buzzy's not like other bees. Other bees make lots of trips to gather their nectar.</content>
           <sound />
           <image />
         </page>
