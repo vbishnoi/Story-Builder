@@ -6,7 +6,9 @@ package view;
 
 import com.uoy.sb.Global;
 import controller.UserController;
+import java.awt.Dialog;
 import java.awt.Dimension;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 import model.User;
 
@@ -56,6 +58,17 @@ public class MainContainer extends javax.swing.JFrame {
 //          getContentPane().repaint();
         this.revalidate();
         this.repaint();
+    }
+    
+    public void showModalDialog(JPanel panel, String title) {
+        JDialog dialog = new JDialog(this, title);
+        dialog.getContentPane().add(panel);
+        dialog.setLocationRelativeTo(this);
+        dialog.setResizable(false);
+        dialog.pack();
+        dialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+        dialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        dialog.setVisible(true);
     }
 
     /**

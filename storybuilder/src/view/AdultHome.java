@@ -66,14 +66,15 @@ public class AdultHome extends javax.swing.JPanel {
                 int selectedIndex = list.getSelectedIndex();
 
                 CreatePage pe = null;
-
+                CreateStory story = null;
+                
                 if (jTabs.getSelectedIndex() == 0) {
-                    pe = new CreatePage(createdByMe.get(selectedIndex).getId());
+                    story = new CreateStory(createdByMe.get(selectedIndex).getId());
                 } else {
-                    pe = new CreatePage(allStories.get(selectedIndex).getId());
+                    story = new CreateStory(allStories.get(selectedIndex).getId());
                 }
 
-                Global.container.setDisplay(pe);
+                Global.container.setDisplay(story);
             }
         }
 

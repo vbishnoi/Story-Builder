@@ -6,8 +6,12 @@ package view;
 
 import com.uoy.sb.Global;
 import controller.UserController;
+import java.awt.Dialog;
 import java.util.LinkedList;
 import javax.swing.DefaultListModel;
+import javax.swing.JDialog;
+import model.Page;
+
 import model.User;
 
 /**
@@ -17,13 +21,26 @@ import model.User;
 public class CreateStory extends javax.swing.JPanel {
 
     private UserController uc = null;
+    private int _storyID;
+    private DefaultListModel model;
+    private LinkedList<Page> _pages;
 
     /**
-     * Creates new form CreateStory1
+     * Creates new form CreateStory
      */
     public CreateStory() {
         initComponents();
+
+        _pages = new LinkedList<>();
+
+//        model = new DefaultListModel();
+//        pageList.setModel(model);
+
         getChildUser();
+    }
+
+    public CreateStory(int StoryID) {
+        initComponents();
     }
 
     // method to display list of children on story creation page
@@ -64,14 +81,19 @@ public class CreateStory extends javax.swing.JPanel {
         saveStory = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
         feedback = new javax.swing.JCheckBox();
+        btnHome = new javax.swing.JButton();
         storyNamePanel = new javax.swing.JPanel();
         storyName = new javax.swing.JTextField();
         storyTitleLabel = new javax.swing.JLabel();
-        btnHome = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(650, 650));
 
         deletePage.setText("Delete Page");
+        deletePage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletePageActionPerformed(evt);
+            }
+        });
 
         newPage.setText("New Page");
         newPage.addActionListener(new java.awt.event.ActionListener() {
@@ -87,11 +109,7 @@ public class CreateStory extends javax.swing.JPanel {
             }
         });
 
-        pageList.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "page 1", "page 2", "page 3", "page 4", "page 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        pageList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         pageListScrollPane.setViewportView(pageList);
 
         pagesLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -240,12 +258,21 @@ public class CreateStory extends javax.swing.JPanel {
 
         feedback.setText("Ask for feedback?");
 
+        btnHome.setText("Home");
+        btnHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHomeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout buttonPanelLayout = new javax.swing.GroupLayout(buttonPanel);
         buttonPanel.setLayout(buttonPanelLayout);
         buttonPanelLayout.setHorizontalGroup(
             buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(buttonPanelLayout.createSequentialGroup()
-                .addGap(192, 192, 192)
+                .addContainerGap()
+                .addComponent(btnHome)
+                .addGap(105, 105, 105)
                 .addComponent(feedback, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(saveStory)
@@ -260,15 +287,15 @@ public class CreateStory extends javax.swing.JPanel {
             buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(buttonPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(saveStory)
-                        .addComponent(cancel))
-                    .addComponent(feedback, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnHome)
+                    .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(saveStory)
+                            .addComponent(cancel))
+                        .addComponent(feedback, javax.swing.GroupLayout.Alignment.TRAILING)))
                 .addContainerGap())
         );
-
-        storyName.setText("Story Name");
 
         storyTitleLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         storyTitleLabel.setText("Story Title:");
@@ -294,21 +321,12 @@ public class CreateStory extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        btnHome.setText("Home");
-        btnHome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHomeActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnHome)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(colorPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -316,15 +334,15 @@ public class CreateStory extends javax.swing.JPanel {
                         .addComponent(storyNamePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(assignstoryPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {assignstoryPanel, buttonPanel, colorPanel, pagePanel, storyNamePanel});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(15, 15, 15)
                 .addComponent(storyNamePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -332,25 +350,39 @@ public class CreateStory extends javax.swing.JPanel {
                 .addComponent(colorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(assignstoryPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnHome)
-                    .addComponent(buttonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addComponent(buttonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void newPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPageActionPerformed
-        // TODO add your handling code here:
+        CreatePage page = new CreatePage();
+        page.setParentPanel(this);
+        Global.container.showModalDialog(page, "Create new page");
     }//GEN-LAST:event_newPageActionPerformed
 
     private void editPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPageActionPerformed
-        // TODO add your handling code here:
+        if (pageList.getSelectedIndex() >= 0) {
+            CreatePage page = new CreatePage();
+            page.setStoryID(_storyID);
+            page.setEditIndex(pageList.getSelectedIndex());
+
+            Global.container.showModalDialog(page, "Edit page");
+        }
     }//GEN-LAST:event_editPageActionPerformed
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         Global.container.setDisplay(new AdultHome());
     }//GEN-LAST:event_btnHomeActionPerformed
+
+    private void deletePageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePageActionPerformed
+        DefaultListModel dataModel = new DefaultListModel();
+        if (pageList.getSelectedIndex() >= 0) {
+            dataModel = (DefaultListModel) pageList.getModel();
+            dataModel.remove(pageList.getSelectedIndex());
+        }
+    }//GEN-LAST:event_deletePageActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AssignStory;
     private javax.swing.JPanel assignstoryPanel;
@@ -382,4 +414,34 @@ public class CreateStory extends javax.swing.JPanel {
     private javax.swing.JPanel storyNamePanel;
     private javax.swing.JLabel storyTitleLabel;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the _pages
+     */
+    public LinkedList<Page> getPages() {
+        return _pages;
+    }
+
+    /**
+     * @param pages the _pages to set
+     */
+    public void setPages(LinkedList<Page> pages) {
+        this._pages = pages;
+    }
+
+    /*
+     * Add a new page to the current pages list of the story
+     */
+    public void addPage(Page page) {
+        this._pages.add(page);
+
+        model = new DefaultListModel();
+        pageList.removeAll();
+
+        for (Page p : getPages()) {
+            model.addElement(p.getText());
+        }
+
+        pageList.setModel(model);
+    }
 }
