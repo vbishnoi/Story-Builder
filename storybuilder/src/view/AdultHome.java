@@ -65,12 +65,12 @@ public class AdultHome extends javax.swing.JPanel {
             if (e.getClickCount() == 2) {
                 int selectedIndex = list.getSelectedIndex();
 
-                PageEditing pe = null;
+                CreatePage pe = null;
 
                 if (jTabs.getSelectedIndex() == 0) {
-                    pe = new PageEditing(createdByMe.get(selectedIndex).getId());
+                    pe = new CreatePage(createdByMe.get(selectedIndex).getId());
                 } else {
-                    pe = new PageEditing(allStories.get(selectedIndex).getId());
+                    pe = new CreatePage(allStories.get(selectedIndex).getId());
                 }
 
                 Global.container.setDisplay(pe);
