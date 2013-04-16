@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Page;
 import model.Story;
+import org.jdom2.Attribute;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.output.Format;
@@ -88,9 +89,21 @@ public class StoryController {
      * Create a new story and save to the database
      */
     public void createNewStory(Story s) {
+        int sId = 0;
+
+        LinkedList<Story> allStories = getAllStories();
+        if (allStories.size() > 0) {
+            Story last = allStories.get(allStories.size() - 1);
+
+            sId = last.getId() + 1;
+        } else {
+            sId = 1;
+        }
+
         Document objDoc = parser.getDocument();
         Element story = new Element(Common.Variables.STORY_SINGLE_NODE);
 
+        story.setAttribute(new Attribute(Common.Variables.STORY_ID, String.valueOf(sId)));
         story.addContent(new Element(Common.Variables.STORY_TITLE).setText(s.getTitle()));
         story.addContent(new Element(Common.Variables.STORY_BG_COLOR).setText(s.getBackgroundColor()));
         story.addContent(new Element(Common.Variables.STORY_FONT_SIZE).setText(String.valueOf(s.getFontSize())));
@@ -100,27 +113,41 @@ public class StoryController {
         Element pages = new Element(Common.Variables.PAGES_NODE);
         Element page = null;
 
+        System.out.println(s.getPages().size());
+        int count = 0;
+        
         if (s.getPages().size() > 0) {
             for (Page p : s.getPages()) {
+                count++;
+                System.out.println("page count:" + count);
+                
+                // create a new instance of the page element
                 page = new Element(Common.Variables.PAGE_SINGLE_NODE);
-
+                
+                // then add the content
                 page.addContent(new Element(Common.Variables.PAGE_CONTENT).setText(p.getText()));
                 page.addContent(new Element(Common.Variables.PAGE_SOUND).setText(p.getSound()));
-
+                
                 Element images = new Element(Common.Variables.PAGE_IMAGES);
 
+                // loop through the list of all the images
                 if (p.getImg().size() > 0) {
                     for (int i = 0; i < p.getImg().size(); i++) {
+                        // create a new image element and add the the image list
                         images.addContent(new Element(Common.Variables.PAGE_IMAGE).setText(p.getImg().get(i)));
                     }
                 }
-
+                // add the image list to the current page
                 page.addContent(images);
+                
+                // add the current page to the page list
+                pages.addContent(page);
             }
 
+            // add the page list to the story
             story.addContent(pages);
         }
-        
+
         Element parent = parser.getElement("//stories");
         parent.addContent(story);
 

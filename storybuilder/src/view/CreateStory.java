@@ -8,10 +8,14 @@ import com.uoy.sb.Global;
 import controller.StoryController;
 import controller.UserController;
 import java.awt.Dialog;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.LinkedList;
 import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import model.Page;
 import model.Story;
 
@@ -22,7 +26,7 @@ import model.User;
  * @author Y0199223
  */
 public class CreateStory extends javax.swing.JPanel {
-    
+
     private StoryController sc = null;
     private int _storyID;
     private DefaultListModel model;
@@ -33,7 +37,8 @@ public class CreateStory extends javax.swing.JPanel {
      */
     public CreateStory() {
         initComponents();
-        
+        pageList.addMouseListener(new PageListMouseListener());
+
         _pages = new LinkedList<>();
 
 //        model = new DefaultListModel();
@@ -41,12 +46,32 @@ public class CreateStory extends javax.swing.JPanel {
 
         getChildUser();
     }
-    
+
+    /**
+     * Creates new form CreateStory and display the content of a particular
+     * story
+     */
     public CreateStory(int StoryID) {
         initComponents();
-        sc = new StoryController();
+        pageList.addMouseListener(new PageListMouseListener());
         
+        sc = new StoryController();
         _pages = new LinkedList<>();
+
+        // load story data
+        Story story = sc.getStory(StoryID);
+
+        if (story != null) {
+            model = new DefaultListModel();
+            txtTitle.setText(story.getTitle());
+            _pages = story.getPages();
+
+            for (Page p : getPages()) {
+                model.addElement(p.getText());
+            }
+
+            pageList.setModel(model);
+        }
     }
 
     // method to display list of children on story creation page
@@ -372,41 +397,45 @@ public class CreateStory extends javax.swing.JPanel {
         page.setParentPanel(this);
         Global.container.showModalDialog(page, "Create new page");
     }//GEN-LAST:event_newPageActionPerformed
-    
+
     private void editPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPageActionPerformed
         if (pageList.getSelectedIndex() >= 0) {
             CreatePage page = new CreatePage();
             page.setStoryID(_storyID);
-            page.setEditIndex(pageList.getSelectedIndex());
-            
+            page.setCurrentPage(this.getPages().get(pageList.getSelectedIndex()));
+
             Global.container.showModalDialog(page, "Edit page");
+        } else {
+            JOptionPane.showMessageDialog(SwingUtilities.getWindowAncestor(this), "Please select a page to edit");
         }
     }//GEN-LAST:event_editPageActionPerformed
-    
+
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         Global.container.setDisplay(new AdultHome());
     }//GEN-LAST:event_btnHomeActionPerformed
-    
+
     private void deletePageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePageActionPerformed
         DefaultListModel dataModel = new DefaultListModel();
+        int selectedIndex = pageList.getSelectedIndex();
+
         if (pageList.getSelectedIndex() >= 0) {
             dataModel = (DefaultListModel) pageList.getModel();
-            dataModel.remove(pageList.getSelectedIndex());
+            dataModel.remove(selectedIndex);
+
+            _pages.remove(selectedIndex);
         }
     }//GEN-LAST:event_deletePageActionPerformed
-    
+
     private void saveStoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveStoryActionPerformed
         sc = new StoryController();
         if (!txtTitle.getText().equals("")) {
             Story story = new Story();
             story.setTitle(txtTitle.getText());
             story.setPages(this.getPages());
-            
-            sc.getAllStories();
-            
+
             // insert
             sc.createNewStory(story);
-            
+
         } else {
             JOptionPane.showMessageDialog(this, "Please enter the story title!");
         }
@@ -450,26 +479,61 @@ public class CreateStory extends javax.swing.JPanel {
         return _pages;
     }
 
-    /**
-     * @param pages the _pages to set
-     */
-    public void setPages(LinkedList<Page> pages) {
-        this._pages = pages;
-    }
-
     /*
      * Add a new page to the current pages list of the story
      */
     public void addPage(Page page) {
         this._pages.add(page);
-        
-        model = new DefaultListModel();
+
+        if (model == null) {
+            model = new DefaultListModel();
+        }
+
         pageList.removeAll();
-        
+
         for (Page p : getPages()) {
             model.addElement(p.getText());
         }
-        
+
         pageList.setModel(model);
+    }
+
+    class PageListMouseListener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            JList list = (JList) e.getSource();
+
+            // double click
+            if (e.getClickCount() == 2) {
+                int selectedIndex = list.getSelectedIndex();
+
+                CreatePage page = new CreatePage();
+                page.setStoryID(_storyID);
+                page.setCurrentPage(getPages().get(pageList.getSelectedIndex()));
+
+                Global.container.showModalDialog(page, "Edit page");
+            }
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+//            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+//            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+//            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+//            throw new UnsupportedOperationException("Not supported yet.");
+        }
     }
 }

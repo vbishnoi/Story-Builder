@@ -82,13 +82,6 @@
         </page>
       </pages>
     </story>
-    <story>
-      <title>new story</title>
-      <bgcolor />
-      <fontsize>0</fontsize>
-      <font />
-      <textcolor />
-      <pages />
-    </story>
+    
   </stories>
 </storybuilder>

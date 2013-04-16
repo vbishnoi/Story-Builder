@@ -24,6 +24,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BorderFactory;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
@@ -44,7 +45,7 @@ public class CreatePage extends javax.swing.JPanel {
     private int _pageIndex = 0;
     private LinkedList<Page> storyPages = null;
     private boolean isChanged = false;
-    private int _editIndex;
+    private Page currentPage;
     private JPanel _parentPanel;
 
     /**
@@ -66,6 +67,7 @@ public class CreatePage extends javax.swing.JPanel {
      */
     public CreatePage() {
         initComponents();
+        
     }
 
     public CreatePage(int StoryID) {
@@ -115,18 +117,27 @@ public class CreatePage extends javax.swing.JPanel {
         isChanged = false;
     }
 
-    
-    private void createNewPage() {
+    /*
+     * Create a new page
+     */
+    private boolean createNewPage() {
+        if (txtContent.getText().equals("")) {
+            JOptionPane.showMessageDialog(SwingUtilities.getWindowAncestor(this), "Please enter the page content");
+            return false;
+        }
+
         Page page = new Page();
 
         page.setBackgroundImage(txtBackgroundImage.getText());
         page.setSound(txtSound.getText());
         page.setText(txtContent.getText());
-        
-        CreateStory parent = (CreateStory)this.getParentPanel();
+
+        CreateStory parent = (CreateStory) this.getParentPanel();
         parent.addPage(page);
+
+        return true;
     }
-    
+
     /**
      * This method is called from within the constructor to initialise the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -400,20 +411,20 @@ public class CreatePage extends javax.swing.JPanel {
     }//GEN-LAST:event_btnNewPageActionPerformed
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
-        
-        createNewPage();
-        
-        JDialog dialog = (JDialog) SwingUtilities.getWindowAncestor(this);
-        dialog.dispose();
-        dialog.setVisible(false);
+
+        if (createNewPage()) {
+            JDialog dialog = (JDialog) SwingUtilities.getWindowAncestor(this);
+            dialog.dispose();
+            dialog.setVisible(false);
+        }
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void btnSaveNCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveNCreateActionPerformed
-        createNewPage();
-        
-        txtBackgroundImage.setText("");
-        txtContent.setText("");
-        txtSound.setText("");
+        if (createNewPage()) {
+            txtBackgroundImage.setText("");
+            txtContent.setText("");
+            txtSound.setText("");
+        }
     }//GEN-LAST:event_btnSaveNCreateActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
@@ -436,20 +447,6 @@ public class CreatePage extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     /**
-     * @return the _editIndex
-     */
-    public int getEditIndex() {
-        return _editIndex;
-    }
-
-    /**
-     * @param editIndex the _editIndex to set
-     */
-    public void setEditIndex(int editIndex) {
-        this._editIndex = editIndex;
-    }
-
-    /**
      * @return the _parentPanel
      */
     public JPanel getParentPanel() {
@@ -461,6 +458,26 @@ public class CreatePage extends javax.swing.JPanel {
      */
     public void setParentPanel(JPanel parentPanel) {
         this._parentPanel = parentPanel;
+    }
+
+    /**
+     * @return the currentPage
+     */
+    public Page getCurrentPage() {
+        return currentPage;
+    }
+
+    /**
+     * @param currentPage the currentPage to set
+     */
+    public void setCurrentPage(Page currentPage) {
+        this.currentPage = currentPage;
+        
+        if(currentPage != null) {
+            txtBackgroundImage.setText(currentPage.getBackgroundImage());
+            txtContent.setText(currentPage.getText());
+            txtSound.setText(currentPage.getSound());
+        }
     }
 
     class PageDocumentListener implements DocumentListener {
