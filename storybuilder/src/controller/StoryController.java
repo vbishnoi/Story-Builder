@@ -91,11 +91,11 @@ public class StoryController {
         Document objDoc = parser.getDocument();
         Element story = new Element(Common.Variables.STORY_SINGLE_NODE);
 
-        story.addContent(Common.Variables.STORY_TITLE).setText(s.getTitle());
-        story.addContent(Common.Variables.STORY_BG_COLOR).setText(s.getBackgroundColor());
-        story.addContent(Common.Variables.STORY_FONT_SIZE).setText(String.valueOf(s.getFontSize()));
-        story.addContent(Common.Variables.STORY_FONT).setText(s.getFont());
-        story.addContent(Common.Variables.STORY_TEXT_COLOR).setText(s.getTextColor());
+        story.addContent(new Element(Common.Variables.STORY_TITLE).setText(s.getTitle()));
+        story.addContent(new Element(Common.Variables.STORY_BG_COLOR).setText(s.getBackgroundColor()));
+        story.addContent(new Element(Common.Variables.STORY_FONT_SIZE).setText(String.valueOf(s.getFontSize())));
+        story.addContent(new Element(Common.Variables.STORY_FONT).setText(s.getFont()));
+        story.addContent(new Element(Common.Variables.STORY_TEXT_COLOR).setText(s.getTextColor()));
 
         Element pages = new Element(Common.Variables.PAGES_NODE);
         Element page = null;
@@ -104,14 +104,14 @@ public class StoryController {
             for (Page p : s.getPages()) {
                 page = new Element(Common.Variables.PAGE_SINGLE_NODE);
 
-                page.addContent(Common.Variables.PAGE_CONTENT).setText(p.getText());
-                page.addContent(Common.Variables.PAGE_SOUND).setText(p.getSound());
+                page.addContent(new Element(Common.Variables.PAGE_CONTENT).setText(p.getText()));
+                page.addContent(new Element(Common.Variables.PAGE_SOUND).setText(p.getSound()));
 
                 Element images = new Element(Common.Variables.PAGE_IMAGES);
 
                 if (p.getImg().size() > 0) {
                     for (int i = 0; i < p.getImg().size(); i++) {
-                        images.addContent(Common.Variables.PAGE_IMAGE).setText(p.getImg().get(i));
+                        images.addContent(new Element(Common.Variables.PAGE_IMAGE).setText(p.getImg().get(i)));
                     }
                 }
 
