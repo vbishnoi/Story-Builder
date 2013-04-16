@@ -58,7 +58,10 @@
         <page>
           <content>Rescued again.</content>
           <sound />
-          <image />
+          <images>
+            <image />
+            <image />
+          </images>
         </page>
       </pages>
     </story>
@@ -72,9 +75,15 @@
         <page>
           <content>Buzzy's not like other bees. Other bees make lots of trips to gather their nectar.</content>
           <sound />
-          <image />
+          <images>
+            <image />
+            <image />
+          </images>
         </page>
       </pages>
+    </story>
+    <story>
+      <pages />
     </story>
   </stories>
 </storybuilder>

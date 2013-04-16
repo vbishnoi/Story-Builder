@@ -43,12 +43,14 @@ public class Common {
 //        adult
         public static final String ADULTS_NODE = "adults";
         public static final String ADULT_SINGLE_NODE = "adult";
+        
 //        page
         public static final String PAGES_NODE = "pages";
         public static final String PAGE_SINGLE_NODE = "page";
         public static final String PAGE_CONTENT = "content";
-        public static final String PAGE_IMAGE = "image";
         public static final String PAGE_SOUND = "sound";
+        public static final String PAGE_IMAGES = "images";
+        public static final String PAGE_IMAGE = "image";
         
 //        user
         public static final String USERS_NODE = "users";

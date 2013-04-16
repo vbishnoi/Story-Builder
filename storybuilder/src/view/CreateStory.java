@@ -5,12 +5,15 @@
 package view;
 
 import com.uoy.sb.Global;
+import controller.StoryController;
 import controller.UserController;
 import java.awt.Dialog;
 import java.util.LinkedList;
 import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import model.Page;
+import model.Story;
 
 import model.User;
 
@@ -19,8 +22,8 @@ import model.User;
  * @author Y0199223
  */
 public class CreateStory extends javax.swing.JPanel {
-
-    private UserController uc = null;
+    
+    private StoryController sc = null;
     private int _storyID;
     private DefaultListModel model;
     private LinkedList<Page> _pages;
@@ -30,7 +33,7 @@ public class CreateStory extends javax.swing.JPanel {
      */
     public CreateStory() {
         initComponents();
-
+        
         _pages = new LinkedList<>();
 
 //        model = new DefaultListModel();
@@ -38,9 +41,12 @@ public class CreateStory extends javax.swing.JPanel {
 
         getChildUser();
     }
-
+    
     public CreateStory(int StoryID) {
         initComponents();
+        sc = new StoryController();
+        
+        _pages = new LinkedList<>();
     }
 
     // method to display list of children on story creation page
@@ -83,7 +89,7 @@ public class CreateStory extends javax.swing.JPanel {
         feedback = new javax.swing.JCheckBox();
         btnHome = new javax.swing.JButton();
         storyNamePanel = new javax.swing.JPanel();
-        storyName = new javax.swing.JTextField();
+        txtTitle = new javax.swing.JTextField();
         storyTitleLabel = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(650, 650));
@@ -253,6 +259,11 @@ public class CreateStory extends javax.swing.JPanel {
         assignstoryPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {childListScroll, jScrollPane1});
 
         saveStory.setText("Save Story");
+        saveStory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveStoryActionPerformed(evt);
+            }
+        });
 
         cancel.setText("Cancel");
 
@@ -308,7 +319,7 @@ public class CreateStory extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(storyTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(storyName, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(164, Short.MAX_VALUE))
         );
         storyNamePanelLayout.setVerticalGroup(
@@ -316,7 +327,7 @@ public class CreateStory extends javax.swing.JPanel {
             .addGroup(storyNamePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(storyNamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(storyName, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(storyTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -361,21 +372,21 @@ public class CreateStory extends javax.swing.JPanel {
         page.setParentPanel(this);
         Global.container.showModalDialog(page, "Create new page");
     }//GEN-LAST:event_newPageActionPerformed
-
+    
     private void editPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPageActionPerformed
         if (pageList.getSelectedIndex() >= 0) {
             CreatePage page = new CreatePage();
             page.setStoryID(_storyID);
             page.setEditIndex(pageList.getSelectedIndex());
-
+            
             Global.container.showModalDialog(page, "Edit page");
         }
     }//GEN-LAST:event_editPageActionPerformed
-
+    
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         Global.container.setDisplay(new AdultHome());
     }//GEN-LAST:event_btnHomeActionPerformed
-
+    
     private void deletePageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePageActionPerformed
         DefaultListModel dataModel = new DefaultListModel();
         if (pageList.getSelectedIndex() >= 0) {
@@ -383,6 +394,23 @@ public class CreateStory extends javax.swing.JPanel {
             dataModel.remove(pageList.getSelectedIndex());
         }
     }//GEN-LAST:event_deletePageActionPerformed
+    
+    private void saveStoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveStoryActionPerformed
+        sc = new StoryController();
+        if (!txtTitle.getText().equals("")) {
+            Story story = new Story();
+            story.setTitle(txtTitle.getText());
+            story.setPages(this.getPages());
+            
+            sc.getAllStories();
+            
+            // insert
+            sc.createNewStory(story);
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "Please enter the story title!");
+        }
+    }//GEN-LAST:event_saveStoryActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AssignStory;
     private javax.swing.JPanel assignstoryPanel;
@@ -410,9 +438,9 @@ public class CreateStory extends javax.swing.JPanel {
     private javax.swing.JLabel pagesLabel;
     private javax.swing.JButton saveStory;
     private javax.swing.JLabel storyAssignedTo;
-    private javax.swing.JTextField storyName;
     private javax.swing.JPanel storyNamePanel;
     private javax.swing.JLabel storyTitleLabel;
+    private javax.swing.JTextField txtTitle;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -434,14 +462,14 @@ public class CreateStory extends javax.swing.JPanel {
      */
     public void addPage(Page page) {
         this._pages.add(page);
-
+        
         model = new DefaultListModel();
         pageList.removeAll();
-
+        
         for (Page p : getPages()) {
             model.addElement(p.getText());
         }
-
+        
         pageList.setModel(model);
     }
 }

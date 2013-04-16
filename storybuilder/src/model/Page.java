@@ -7,7 +7,7 @@ import java.util.List;
 public class Page {
 
     private String text;
-    private List<String> img = new ArrayList<String>();
+    private List<String> img = new ArrayList<>();
     private Color background;
     private String sound;
     private String backgroundImage;

@@ -65,7 +65,7 @@ public class AdultHome extends javax.swing.JPanel {
             if (e.getClickCount() == 2) {
                 int selectedIndex = list.getSelectedIndex();
 
-                CreatePage pe = null;
+//                CreatePage pe = null;
                 CreateStory story = null;
                 
                 if (jTabs.getSelectedIndex() == 0) {

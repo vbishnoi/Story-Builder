@@ -377,6 +377,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Save Story"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveStoryActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="cancel">
           <Properties>
@@ -407,7 +410,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="storyTitleLabel" min="-2" pref="78" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="storyName" min="-2" pref="322" max="-2" attributes="0"/>
+                  <Component id="txtTitle" min="-2" pref="322" max="-2" attributes="0"/>
                   <EmptySpace pref="164" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -417,7 +420,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="storyName" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="txtTitle" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                       <Component id="storyTitleLabel" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -426,7 +429,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="storyName">
+        <Component class="javax.swing.JTextField" name="txtTitle">
         </Component>
         <Component class="javax.swing.JLabel" name="storyTitleLabel">
           <Properties>

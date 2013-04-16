@@ -30,6 +30,7 @@ public class StoryController {
         parser = new XMLParser();
     }
 // get all the stories from xml file
+
     public LinkedList<Story> getAllStories() {
         String query = "//story";
 
@@ -38,6 +39,7 @@ public class StoryController {
         return buildList(elements);
     }
 // get all the stories for the logged in user 
+
     public LinkedList<Story> getStoriesByUser(String username) {
         String query = XpathBuilder.GetElementsByAttrNameAndValue(Common.Variables.STORY_SINGLE_NODE, Common.Variables.STORY_CREATED_BY, username);
 
@@ -82,8 +84,67 @@ public class StoryController {
 //
 //        return allPages;
 //    }
-    
-    // update the xml file with the updated content
+    /*
+     * Create a new story and save to the database
+     */
+    public void createNewStory(Story s) {
+        Document objDoc = parser.getDocument();
+        Element story = new Element(Common.Variables.STORY_SINGLE_NODE);
+
+        story.addContent(Common.Variables.STORY_TITLE).setText(s.getTitle());
+        story.addContent(Common.Variables.STORY_BG_COLOR).setText(s.getBackgroundColor());
+        story.addContent(Common.Variables.STORY_FONT_SIZE).setText(String.valueOf(s.getFontSize()));
+        story.addContent(Common.Variables.STORY_FONT).setText(s.getFont());
+        story.addContent(Common.Variables.STORY_TEXT_COLOR).setText(s.getTextColor());
+
+        Element pages = new Element(Common.Variables.PAGES_NODE);
+        Element page = null;
+
+        if (s.getPages().size() > 0) {
+            for (Page p : s.getPages()) {
+                page = new Element(Common.Variables.PAGE_SINGLE_NODE);
+
+                page.addContent(Common.Variables.PAGE_CONTENT).setText(p.getText());
+                page.addContent(Common.Variables.PAGE_SOUND).setText(p.getSound());
+
+                Element images = new Element(Common.Variables.PAGE_IMAGES);
+
+                if (p.getImg().size() > 0) {
+                    for (int i = 0; i < p.getImg().size(); i++) {
+                        images.addContent(Common.Variables.PAGE_IMAGE).setText(p.getImg().get(i));
+                    }
+                }
+
+                page.addContent(images);
+            }
+
+            story.addContent(pages);
+        }
+        
+        Element parent = parser.getElement("//stories");
+        parent.addContent(story);
+
+        // create new output writer to update back to file
+        XMLOutputter xmlOutput = new XMLOutputter();
+
+        // display nice nice
+        xmlOutput.setFormat(Format.getPrettyFormat());
+        try {
+            xmlOutput.output(objDoc, new FileWriter(Common.Variables.DATABASE_NAME));
+
+            // print out
+//                xmlOutput.output(objDoc, System.out);
+        } catch (IOException ex) {
+            Logger.getLogger(StoryController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        System.out.println("Story created!");
+    }
+
+    /*
+     * update the xml file with the updated content
+     * 
+     */
     public void updateStory(Story storyToUpdate) {
         Document objDoc = parser.getDocument();
 
@@ -128,7 +189,7 @@ public class StoryController {
             xmlOutput.setFormat(Format.getPrettyFormat());
             try {
                 xmlOutput.output(objDoc, new FileWriter(Common.Variables.DATABASE_NAME));
-                
+
                 // print out
 //                xmlOutput.output(objDoc, System.out);
             } catch (IOException ex) {
@@ -137,10 +198,12 @@ public class StoryController {
 
             System.out.println("Story updated!");
         }
-
     }
 
-    //get element contents from the xml file by the story ID 
+    /*
+     * get element contents from the xml file by the story ID 
+     * 
+     */
     private Element getStoryElement(int StoryID) {
         String query = XpathBuilder.GetElementsByAttrNameAndValue(Common.Variables.STORY_SINGLE_NODE, Common.Variables.STORY_ID, String.valueOf(StoryID));
 
