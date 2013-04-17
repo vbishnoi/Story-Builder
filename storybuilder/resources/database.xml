@@ -33,41 +33,38 @@
         <page>
           <content>Test Buzzy's not like other bees. Other bees make lots of trips to gather their nectar.</content>
           <sound />
-          <image />
+          <images />
         </page>
         <page>
           <content>Here's Buzzy sipping from a daffodil.</content>
           <sound />
-          <image />
+          <images />
         </page>
         <page>
           <content>Tulips are sweet.</content>
           <sound />
-          <image />
+          <images />
         </page>
         <page>
           <content>Mmm... Hyacinths are sweeter.</content>
           <sound />
-          <image />
+          <images />
         </page>
         <page>
           <content>Just one more flower.</content>
           <sound />
-          <image />
+          <images />
         </page>
         <page>
           <content>Uh-oh.</content>
           <sound />
-          <image />
+          <images />
         </page>
         <page>
           <content>Rescued again.</content>
           <sound />
           <image />
-          <images>
-            <image />
-            <image />
-          </images>
+          <images />
         </page>
       </pages>
     </story>
@@ -81,10 +78,7 @@
         <page>
           <content>Buzzy's not like other bees. Other bees make lots of trips to gather their nectar.</content>
           <sound />
-          <images>
-            <image />
-            <image />
-          </images>
+          <images />
         </page>
       </pages>
     </story>
@@ -106,7 +100,7 @@
       <title>666</title>
       <bgcolor>WHITE</bgcolor>
       <fontsize>10</fontsize>
-      <font>Abadi MT Condensed Extra Bold</font>
+      <font>Arial</font>
       <textcolor>BLACK</textcolor>
       <pages>
         <page>

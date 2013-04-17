@@ -132,7 +132,7 @@ public class StoryController {
                 Element images = new Element(Common.Variables.PAGE_IMAGES);
 
                 // loop through the list of all the images
-                if (p.getImg().size() > 0) {
+                if (p.getImg() != null && p.getImg().size() > 0) {
                     for (int i = 0; i < p.getImg().size(); i++) {
                         // create a new image element and add the the image list
                         images.addContent(new Element(Common.Variables.PAGE_IMAGE).setText(p.getImg().get(i)));
@@ -167,7 +167,7 @@ public class StoryController {
         }
 
         System.out.println("Story created!");
-        
+
         return sId;
     }
 
@@ -205,6 +205,29 @@ public class StoryController {
 
                     e.getChild(Common.Variables.PAGE_CONTENT).setText(p.getText());
 //                    e.getChild(Common.Variables.PAGE_CONTENT).setText("123244");
+
+                    Element images_elm = e.getChild(Common.Variables.PAGE_IMAGES);
+
+                    if (images_elm != null) {
+                        List<Element> images = images_elm.getChildren(Common.Variables.PAGE_IMAGE);
+
+                        // detach (delete) all current images
+                        if (images != null && images.size() > 0) {
+                            for (Element img : images) {
+                                if (img != null) {
+                                    img.detach();
+                                }
+                            }
+                        }
+
+                        // then add new images again
+                        if (p.getImg() != null && p.getImg().size() > 0) {
+                            for (String img : p.getImg()) {
+                                images_elm.addContent(new Element(Common.Variables.PAGE_IMAGE).setText(img));
+                            }
+                        }
+                    }
+
                     e.getChild(Common.Variables.PAGE_IMAGE).setText(p.getBackgroundImage());
                     e.getChild(Common.Variables.PAGE_SOUND).setText(p.getSound());
 

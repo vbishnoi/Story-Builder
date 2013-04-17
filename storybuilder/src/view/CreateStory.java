@@ -420,8 +420,9 @@ public class CreateStory extends javax.swing.JPanel {
     private void editPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPageActionPerformed
         if (pageList.getSelectedIndex() >= 0) {
             CreatePage page = new CreatePage();
-            page.setStoryID(getStoryID());
-            page.setCurrentPage(this.getPages().get(pageList.getSelectedIndex()));
+            page.setParentPanel(this);
+            page.setPage(this.getPages().get(pageList.getSelectedIndex()));
+            page.setPageIndex(pageList.getSelectedIndex());
 
             Global.container.showModalDialog(page, "Edit page");
         } else {
@@ -460,18 +461,18 @@ public class CreateStory extends javax.swing.JPanel {
                 // insert story into database
                 int sID = sc.createNewStory(story);
                 story.setId(sID);
-                
+
                 System.out.println("after story created");
-                
+
                 usc = new UserStoryController();
-                
+
                 // assign to chidren
                 try {
                     List<String> selectedChildren = lstChildren.getSelectedValuesList();
-                    
-                    if(selectedChildren != null && selectedChildren.size() > 0)
+
+                    if (selectedChildren != null && selectedChildren.size() > 0) {
                         usc.assignStory(story, selectedChildren);
-                    else {
+                    } else {
                         System.out.println("No children selected");
                     }
                 } catch (Exception ex) {
@@ -489,16 +490,16 @@ public class CreateStory extends javax.swing.JPanel {
 
                 // update
                 sc.updateStory(story);
-                
+
                 usc = new UserStoryController();
-                
+
                 // re-assign to chidren
                 try {
                     List<String> selectedChildren = lstChildren.getSelectedValuesList();
-                    
-                    if(selectedChildren != null && selectedChildren.size() > 0)
+
+                    if (selectedChildren != null && selectedChildren.size() > 0) {
                         usc.assignStory(story, selectedChildren);
-                    else {
+                    } else {
                         // 
                     }
                 } catch (Exception ex) {
@@ -510,7 +511,6 @@ public class CreateStory extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please enter the story title!");
         }
     }//GEN-LAST:event_saveStoryActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AssignStory;
     private javax.swing.JPanel assignstoryPanel;
@@ -569,6 +569,20 @@ public class CreateStory extends javax.swing.JPanel {
         pageList.setModel(model);
     }
 
+    /*
+     * Edit the page at the position @param index with the new value @param page
+     */
+    public void updatePage(int index, Page page) {
+        this._pages.set(index, page);
+        model.clear();
+
+        for (Page p : getPages()) {
+            model.addElement(p.getText());
+        }
+
+        pageList.setModel(model);
+    }
+
     /**
      * @return the _storyID
      */
@@ -594,8 +608,9 @@ public class CreateStory extends javax.swing.JPanel {
                 int selectedIndex = list.getSelectedIndex();
 
                 CreatePage page = new CreatePage();
-                page.setStoryID(getStoryID());
-                page.setCurrentPage(getPages().get(pageList.getSelectedIndex()));
+                page.setParentPanel(CreateStory.this);
+                page.setPage(getPages().get(selectedIndex));
+                page.setPageIndex(selectedIndex);
 
                 Global.container.showModalDialog(page, "Edit page");
             }
