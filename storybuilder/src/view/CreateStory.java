@@ -442,7 +442,7 @@ public class CreateStory extends javax.swing.JPanel {
 
     private void saveStoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveStoryActionPerformed
         sc = new StoryController();
-        UserStoryController usc = new UserStoryController();
+        UserStoryController usc = null;
 
         if (!txtTitle.getText().equals("")) {
             // new story
@@ -457,7 +457,12 @@ public class CreateStory extends javax.swing.JPanel {
                 story.setCreatedBy(Global.loggedInUser);
 
                 // insert story into database
-                sc.createNewStory(story);
+                int sID = sc.createNewStory(story);
+                story.setId(sID);
+                
+                System.out.println("after story created");
+                
+                usc = new UserStoryController();
                 
                 // assign to chidren
                 try {
@@ -466,7 +471,7 @@ public class CreateStory extends javax.swing.JPanel {
                     if(selectedChildren != null && selectedChildren.size() > 0)
                         usc.assignStory(story, selectedChildren);
                     else {
-                        
+                        System.out.println("No children selected");
                     }
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(this, ex.getMessage());
@@ -483,6 +488,8 @@ public class CreateStory extends javax.swing.JPanel {
 
                 // update
                 sc.updateStory(story);
+                
+                usc = new UserStoryController();
                 
                 // re-assign to chidren
                 try {
@@ -552,6 +559,7 @@ public class CreateStory extends javax.swing.JPanel {
         }
 
         pageList.removeAll();
+        model.clear();
 
         for (Page p : getPages()) {
             model.addElement(p.getText());

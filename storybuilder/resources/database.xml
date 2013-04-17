@@ -88,44 +88,85 @@
         </page>
       </pages>
     </story>
-    <story id="3">
-      <title>sdf</title>
-      <bgcolor />
-      <fontsize>0</fontsize>
-      <font />
-      <textcolor />
+    <story id="3" createdby="tuanva">
+      <title>44444</title>
+      <bgcolor>WHITE</bgcolor>
+      <fontsize>10</fontsize>
+      <font>Abadi MT Condensed Extra Bold</font>
+      <textcolor>BLACK</textcolor>
       <pages>
         <page>
-          <content>sdfsdf</content>
+          <content>dddd</content>
           <sound />
           <images />
         </page>
       </pages>
     </story>
     <story id="4" createdby="tuanva">
-      <title>new story by tuanva</title>
-      <bgcolor />
+      <title>666</title>
+      <bgcolor>WHITE</bgcolor>
       <fontsize>10</fontsize>
-      <font>Adobe Fangsong Std</font>
-      <textcolor>LIGHT_GRAY</textcolor>
+      <font>Abadi MT Condensed Extra Bold</font>
+      <textcolor>BLACK</textcolor>
       <pages>
         <page>
-          <content>sdfsdf</content>
+          <content>gg</content>
           <sound />
           <images />
         </page>
+      </pages>
+    </story>
+    <story id="5" createdby="tuanva">
+      <title>999</title>
+      <bgcolor>WHITE</bgcolor>
+      <fontsize>10</fontsize>
+      <font>Abadi MT Condensed Extra Bold</font>
+      <textcolor>BLACK</textcolor>
+      <pages>
         <page>
-          <content>test</content>
+          <content>gg</content>
           <sound />
           <images />
         </page>
+      </pages>
+    </story>
+    <story id="6" createdby="tuanva">
+      <title>1111111</title>
+      <bgcolor>WHITE</bgcolor>
+      <fontsize>10</fontsize>
+      <font>Abadi MT Condensed Extra Bold</font>
+      <textcolor>BLACK</textcolor>
+      <pages>
         <page>
-          <content>df</content>
+          <content>gg</content>
           <sound />
           <images />
         </page>
+      </pages>
+    </story>
+    <story id="7" createdby="tuanva">
+      <title>newwwwww</title>
+      <bgcolor>WHITE</bgcolor>
+      <fontsize>10</fontsize>
+      <font>Abadi MT Condensed Extra Bold</font>
+      <textcolor>BLACK</textcolor>
+      <pages>
         <page>
-          <content>new</content>
+          <content>vvvvv</content>
+          <sound />
+          <images />
+        </page>
+      </pages>
+    </story>
+    <story id="8" createdby="tuanva">
+      <title>ffff</title>
+      <bgcolor>WHITE</bgcolor>
+      <fontsize>10</fontsize>
+      <font>Abadi MT Condensed Extra Bold</font>
+      <textcolor>BLACK</textcolor>
+      <pages>
+        <page>
+          <content>ggg</content>
           <sound />
           <images />
         </page>
@@ -138,6 +179,18 @@
       <feedback />
     </item>
     <item story="1" user="Helen">
+      <done>0</done>
+      <feedback />
+    </item>
+    <item story="0" user="Helen">
+      <done>0</done>
+      <feedback />
+    </item>
+    <item story="8" user="Anna">
+      <done>0</done>
+      <feedback />
+    </item>
+    <item story="8" user="Helen">
       <done>0</done>
       <feedback />
     </item>

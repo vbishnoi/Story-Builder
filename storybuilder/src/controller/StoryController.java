@@ -88,7 +88,7 @@ public class StoryController {
     /*
      * Create a new story and save to the database
      */
-    public void createNewStory(Story s) {
+    public int createNewStory(Story s) {
         int sId = 0;
 
         LinkedList<Story> allStories = getAllStories();
@@ -114,13 +114,13 @@ public class StoryController {
         Element pages = new Element(Common.Variables.PAGES_NODE);
         Element page = null;
 
-        System.out.println(s.getPages().size());
-        int count = 0;
+//        System.out.println(s.getPages().size());
+//        int count = 0;
 
         if (s.getPages().size() > 0) {
             for (Page p : s.getPages()) {
-                count++;
-                System.out.println("page count:" + count);
+//                count++;
+//                System.out.println("page count:" + count);
 
                 // create a new instance of the page element
                 page = new Element(Common.Variables.PAGE_SINGLE_NODE);
@@ -167,6 +167,8 @@ public class StoryController {
         }
 
         System.out.println("Story created!");
+        
+        return sId;
     }
 
     /*
