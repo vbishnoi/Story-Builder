@@ -97,7 +97,7 @@ public class ReadStory extends javax.swing.JPanel {
             pageText.setText(p.getText());      
             pageCountLabel.setText("Page " + (_pageIndex + 1) + "/" + storyPages.size());
             
-             List<String> images = p.getImg();
+             List<String> images = p.getImages();
             
             if (!images.isEmpty())
         { 

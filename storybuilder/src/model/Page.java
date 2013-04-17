@@ -7,17 +7,14 @@ import java.util.List;
 public class Page {
 
     private String text;
-    private List<String> img = new ArrayList<>();
-    private Color background;
+    private List<String> _images = new ArrayList<>();
     private String sound;
-
 
     public Page() {
     }
 
     public Page(String text) {
         this.text = text;
-        this.background = Color.WHITE;
         this.sound = "";
     }
 
@@ -45,17 +42,23 @@ public class Page {
     }
 
     /**
-     * @return the img
+     * @return the _images
      */
-    public List<String> getImg() {
-        return img;
+    public List<String> getImages() {
+        return _images;
     }
 
     /**
-     * @param img the img to set
+     * @param _images the _images to set
      */
-    public void setImg(List<String> img) {
-        this.img = img;
+    public void setImages(List<String> img) {
+        this._images = img;
+    }
+
+    public void addImage(String image) {
+        if (this._images != null) {
+            this._images.add(image);
+        }
     }
 
     /**
@@ -64,5 +67,4 @@ public class Page {
     public String getSound() {
         return sound;
     }
-
 }

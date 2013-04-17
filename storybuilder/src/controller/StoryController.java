@@ -132,10 +132,10 @@ public class StoryController {
                 Element images = new Element(Common.Variables.PAGE_IMAGES);
 
                 // loop through the list of all the images
-                if (p.getImg() != null && p.getImg().size() > 0) {
-                    for (int i = 0; i < p.getImg().size(); i++) {
+                if (p.getImages() != null && p.getImages().size() > 0) {
+                    for (int i = 0; i < p.getImages().size(); i++) {
                         // create a new image element and add the the image list
-                        images.addContent(new Element(Common.Variables.PAGE_IMAGE).setText(p.getImg().get(i)));
+                        images.addContent(new Element(Common.Variables.PAGE_IMAGE).setText(p.getImages().get(i)));
                     }
                 }
                 // add the image list to the current page
@@ -221,14 +221,13 @@ public class StoryController {
                         }
 
                         // then add new images again
-                        if (p.getImg() != null && p.getImg().size() > 0) {
-                            for (String img : p.getImg()) {
+                        if (p.getImages() != null && p.getImages().size() > 0) {
+                            for (String img : p.getImages()) {
                                 images_elm.addContent(new Element(Common.Variables.PAGE_IMAGE).setText(img));
                             }
                         }
                     }
 
-                    e.getChild(Common.Variables.PAGE_IMAGE).setText(p.getBackgroundImage());
                     e.getChild(Common.Variables.PAGE_SOUND).setText(p.getSound());
 
 //                    pageElements.set(i, e);

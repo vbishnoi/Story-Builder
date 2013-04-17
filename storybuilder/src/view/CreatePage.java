@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.AudioInputStream;
@@ -72,7 +73,17 @@ public class CreatePage extends javax.swing.JPanel {
         this._page = currentPage;
 
         if (currentPage != null) {
-            txtImage1.setText(currentPage.getBackgroundImage());
+            List<String> images = currentPage.getImages();
+            if (images != null && !images.isEmpty()) {
+                if (images.size() == 1) {
+                    txtImage1.setText(images.get(0));
+                }
+                if (images.size() == 2) {
+                    txtImage1.setText(images.get(1));
+                }
+
+            }
+
             txtContent.setText(currentPage.getText());
             txtSound.setText(currentPage.getSound());
         }
@@ -110,13 +121,23 @@ public class CreatePage extends javax.swing.JPanel {
 
         Page page = new Page();
 
-        page.setBackgroundImage(txtImage1.getText());
+//        page.setBackgroundImage(txtImage1.getText());
+
+        if (!txtImage1.equals("")) {
+            page.addImage(txtImage1.getText());
+        }
+        if (!txtImage2.equals("")) {
+            page.addImage(txtImage2.getText());
+        }
+
+
         page.setSound(txtSound.getText());
         page.setText(txtContent.getText());
 
-        if(getParentPanel() == null)
+        if (getParentPanel() == null) {
             JOptionPane.showMessageDialog(null, "null");
-        
+        }
+
         if (this.getPageIndex() == -1) {
             getParentPanel().addPage(page);
         } else {
