@@ -62,29 +62,7 @@ public class StoryController {
 
         return stories;
     }
-
-//    public LinkedList<Page> getAllPagesByStory(int storyID) {
-//        LinkedList<Page> allPages = new LinkedList<>();
-//        String query = XpathBuilder.GetElementsByAttrNameAndValue(Common.Variables.STORY_SINGLE_NODE, Common.Variables.STORY_ID, String.valueOf(storyID));
-//
-//        System.out.println(query);
-//
-//        Element elm = parser.getElement(query);
-//
-//        if (elm != null) {
-//            Element pagesContainer = elm.getChild(Common.Variables.PAGES_NODE);
-//
-//            List<Element> pages = pagesContainer.getChildren(Common.Variables.PAGE_SINGLE_NODE);
-//
-//            if (pages != null && pages.size() > 0) {
-//                for (Element p : pages) {
-//                    allPages.add(new Page(p.getChildText(Common.Variables.PAGE_CONTENT)));
-//                }
-//            }
-//        }
-//
-//        return allPages;
-//    }
+    
     /*
      * Create a new story and save to the database
      */
@@ -290,11 +268,23 @@ public class StoryController {
              */
             List<Element> pageElements = pagesContainer.getChildren(Common.Variables.PAGE_SINGLE_NODE);
             if (pageElements != null && pageElements.size() > 0) {
-                for (Element e1 : pageElements) {
-                    if (e1 != null) {
+                for (Element e : pageElements) {
+                    if (e != null) {
                         page = new Page();
 
-                        page.setText(e1.getChildText(Common.Variables.PAGE_CONTENT));
+                        page.setText(e.getChildText(Common.Variables.PAGE_CONTENT));
+                        page.setSound(e.getChildText(Common.Variables.PAGE_SOUND));
+                        
+                        Element images = pagesContainer.getChild(Common.Variables.PAGE_IMAGES);
+                        if(images != null) {
+                            List<Element> imageList = images.getChildren(Common.Variables.PAGE_IMAGE);
+                            
+                            if(imageList != null && imageList.size() > 0) {
+                                for(Element img : imageList) {
+                                    page.addImage(img.getText());
+                                }
+                            }
+                        }
 
                         pages.add(page);
                     }
