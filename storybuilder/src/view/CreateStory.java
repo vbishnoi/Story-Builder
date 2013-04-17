@@ -23,7 +23,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.colorchooser.AbstractColorChooserPanel;
-import model.Child;
 import model.Page;
 import model.Story;
 

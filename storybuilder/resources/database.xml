@@ -126,4 +126,18 @@
       </pages>
     </story>
   </stories>
+  <assign>
+      <userstory user="Anna">
+          <item>
+            <story>1</story>
+            <feedback>MAD</feedback>
+            <done>1</done>
+          </item>
+          <item>
+            <story>2</story>
+            <feedback></feedback>
+            <done>0</done>
+          </item>
+      </userstory>
+  </assign>
 </storybuilder>
