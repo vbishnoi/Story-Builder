@@ -31,6 +31,7 @@ public class ReadStory extends javax.swing.JPanel {
     private int _pageIndex = 0;
     private LinkedList<Page> storyPages = null;
     private  Story story;
+    private JLabel pageImage;
     
     /**
      * @return the _storyID
@@ -100,13 +101,17 @@ public class ReadStory extends javax.swing.JPanel {
             
             if (!images.isEmpty())
         { 
+            System.out.println("this line");
             for(int i = 0; i < images.size(); i++)
     		{
     			Image img = Common.readImage(images.get(i));
+                        System.out.println("image");
+                        pageImage = new JLabel();
        			pageImage.setIcon(new ImageIcon(img.getScaledInstance(140, -1, Image.SCALE_DEFAULT)));
-    			
+    			imagePanel.add(pageImage);
     		}
         }
+            System.out.println("out side");
     }
     }
     /**
@@ -130,7 +135,6 @@ public class ReadStory extends javax.swing.JPanel {
         btnReplay = new javax.swing.JButton();
         btnPrint = new javax.swing.JButton();
         imagePanel = new javax.swing.JPanel();
-        pageImage = new javax.swing.JLabel();
 
         btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Next.png"))); // NOI18N
         btnNext.setText("Next page");
@@ -199,23 +203,15 @@ public class ReadStory extends javax.swing.JPanel {
 
         btnPrint.setText("Print");
 
-        pageImage.setText("jLabel1");
-
         javax.swing.GroupLayout imagePanelLayout = new javax.swing.GroupLayout(imagePanel);
         imagePanel.setLayout(imagePanelLayout);
         imagePanelLayout.setHorizontalGroup(
             imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(imagePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pageImage)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 555, Short.MAX_VALUE)
         );
         imagePanelLayout.setVerticalGroup(
             imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(imagePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pageImage)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 119, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout storyPanelLayout = new javax.swing.GroupLayout(storyPanel);
@@ -308,7 +304,6 @@ public class ReadStory extends javax.swing.JPanel {
     private javax.swing.JPanel buttonPanel;
     private javax.swing.JPanel imagePanel;
     private javax.swing.JLabel pageCountLabel;
-    private javax.swing.JLabel pageImage;
     private javax.swing.JTextArea pageText;
     private javax.swing.JScrollPane pageTextScroll;
     private javax.swing.JLabel storyName;
