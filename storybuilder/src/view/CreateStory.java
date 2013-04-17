@@ -94,6 +94,7 @@ public class CreateStory extends javax.swing.JPanel {
         GraphicsEnvironment e = GraphicsEnvironment.getLocalGraphicsEnvironment();
         String[] fonts = e.getAvailableFontFamilyNames(); // Get the fonts
         jcbFonts.setModel(new DefaultComboBoxModel(fonts));
+        jcbFonts.setSelectedItem("Arial");
 
         UserController uc = new UserController();
         LinkedList<User> children = uc.getAllChildren();
