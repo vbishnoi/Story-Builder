@@ -8,6 +8,7 @@ import com.uoy.sb.ColorListCellRenderer;
 import com.uoy.sb.Global;
 import controller.StoryController;
 import controller.UserController;
+import controller.UserStoryController;
 import java.awt.Color;
 import java.awt.Dialog;
 import java.awt.Font;
@@ -15,6 +16,9 @@ import java.awt.GraphicsEnvironment;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
@@ -438,6 +442,7 @@ public class CreateStory extends javax.swing.JPanel {
 
     private void saveStoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveStoryActionPerformed
         sc = new StoryController();
+        UserStoryController usc = new UserStoryController();
 
         if (!txtTitle.getText().equals("")) {
             // new story
@@ -451,9 +456,22 @@ public class CreateStory extends javax.swing.JPanel {
                 story.setBackgroundColor(jcbBgColor.getSelectedItem().toString());
                 story.setCreatedBy(Global.loggedInUser);
 
-                // insert into database
+                // insert story into database
                 sc.createNewStory(story);
-
+                
+                // assign to chidren
+                try {
+                    List<String> selectedChildren = lstChildren.getSelectedValuesList();
+                    
+                    if(selectedChildren != null && selectedChildren.size() > 0)
+                        usc.assignStory(story, selectedChildren);
+                    else {
+                        
+                    }
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, ex.getMessage());
+                    Logger.getLogger(CreateStory.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } // update story
             else {
                 story.setTitle(txtTitle.getText());
@@ -465,6 +483,20 @@ public class CreateStory extends javax.swing.JPanel {
 
                 // update
                 sc.updateStory(story);
+                
+                // re-assign to chidren
+                try {
+                    List<String> selectedChildren = lstChildren.getSelectedValuesList();
+                    
+                    if(selectedChildren != null && selectedChildren.size() > 0)
+                        usc.assignStory(story, selectedChildren);
+                    else {
+                        // 
+                    }
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, ex.getMessage());
+                    Logger.getLogger(CreateStory.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         } else {
             JOptionPane.showMessageDialog(this, "Please enter the story title!");

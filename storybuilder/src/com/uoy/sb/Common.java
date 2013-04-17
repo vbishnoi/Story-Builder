@@ -69,6 +69,12 @@ public class Common {
         public static final String STORY_FONT_SIZE = "fontsize";
         public static final String STORY_TITLE = "title";
         public static final String STORY_ID = "id";
+        
+        public static final String ASSIGNED_STORY = "item";
+        public static final String ASSIGNED_STORY_STORY = "story";
+        public static final String ASSIGNED_STORY_USER = "user";
+        public static final String ASSIGNED_STORY_FEEDBACK = "feedback";
+        public static final String ASSIGNED_STORY_DONE = "done";
     }
 
     public static class Security {

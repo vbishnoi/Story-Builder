@@ -127,13 +127,6 @@
         </story>
     </stories>
     <assigned>      
-        <item story="1" user="Anna">
-            <feedback>MAD</feedback>
-            <done>1</done>
-        </item>
-        <item story="2" user="Anna">
-            <feedback></feedback>
-            <done>0</done>
-        </item>
+        
     </assigned>
 </storybuilder>
