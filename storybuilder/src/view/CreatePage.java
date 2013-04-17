@@ -406,7 +406,6 @@ public class CreatePage extends javax.swing.JPanel {
 
     private void btnNewPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewPageActionPerformed
 
-
         savePage();
     }//GEN-LAST:event_btnNewPageActionPerformed
 
