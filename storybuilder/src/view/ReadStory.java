@@ -4,10 +4,18 @@
  */
 package view;
 
+import com.uoy.sb.Common;
 import controller.StoryController;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
+import java.lang.reflect.Field;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import model.Page;
@@ -22,6 +30,7 @@ public class ReadStory extends javax.swing.JPanel {
     private StoryController sc = null;
     private int _pageIndex = 0;
     private LinkedList<Page> storyPages = null;
+    private  Story story;
     
     /**
      * @return the _storyID
@@ -42,19 +51,41 @@ public class ReadStory extends javax.swing.JPanel {
     public ReadStory(int storyID) {
         initComponents();
         
-//        pageText.getDocument().addDocumentListener();
-//        txtBackgroundImage.getDocument().addDocumentListener(new PageDocumentListener());
-//        txtSound.getDocument().addDocumentListener(new PageDocumentListener());
-
         this.setStoryID(storyID);
         sc = new StoryController();
-
-        storyPages = sc.getStory(storyID).getPages();
+        story = sc.getStory(storyID);
+        storyPages = story.getPages();
+        
+        //set the story name
+        storyName.setText(story.getTitle());
+        
+        Color color = null;
+        try {
+            Field field = Class.forName("java.awt.Color").getField(story.getBackgroundColor());
+            color = (Color) field.get(null);
+        } catch (Exception ex) {
+            Logger.getLogger(ReadStory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+        //set textback ground color
+        pageText.setBackground(color);
+        
+        //set story font size and font color
+        pageText.setFont(new Font(story.getFont(), Font.PLAIN, story.getFontSize()));
+        
+         try {
+            Field field = Class.forName("java.awt.Color").getField(story.getTextColor());
+            color = (Color) field.get(null);
+        } catch (Exception ex) {
+            Logger.getLogger(ReadStory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //set text color
+        pageText.setForeground(color);
+        
 
         if (storyPages != null && storyPages.size() > 0) {
             pageIndexChanged();
             
-//            isChanged = false;
         }
         
     }
@@ -62,12 +93,22 @@ public class ReadStory extends javax.swing.JPanel {
     private void pageIndexChanged() {
         if (storyPages != null) {
             Page p = storyPages.get(_pageIndex);
-            pageText.setText(p.getText());
-
-//            lblPageCount.setText("Page " + (_pageIndex + 1) + "/" + storyPages.size());
+            pageText.setText(p.getText());      
+            pageCountLabel.setText("Page " + (_pageIndex + 1) + "/" + storyPages.size());
+            
+             List<String> images = p.getImg();
+            
+            if (!images.isEmpty())
+        { 
+            for(int i = 0; i < images.size(); i++)
+    		{
+    			Image img = Common.readImage(images.get(i));
+       			pageImage.setIcon(new ImageIcon(img.getScaledInstance(140, -1, Image.SCALE_DEFAULT)));
+    			
+    		}
         }
     }
-
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -82,12 +123,14 @@ public class ReadStory extends javax.swing.JPanel {
         btnClose = new javax.swing.JButton();
         btnPrev = new javax.swing.JButton();
         storyPanel = new javax.swing.JPanel();
+        pageCountLabel = new javax.swing.JLabel();
         storyName = new javax.swing.JLabel();
         pageTextScroll = new javax.swing.JScrollPane();
         pageText = new javax.swing.JTextArea();
-        imagePanel = new javax.swing.JPanel();
         btnReplay = new javax.swing.JButton();
         btnPrint = new javax.swing.JButton();
+        imagePanel = new javax.swing.JPanel();
+        pageImage = new javax.swing.JLabel();
 
         btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Next.png"))); // NOI18N
         btnNext.setText("Next page");
@@ -120,7 +163,7 @@ public class ReadStory extends javax.swing.JPanel {
             .addGroup(buttonPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnClose)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 413, Short.MAX_VALUE)
                 .addComponent(btnPrev)
                 .addGap(18, 18, 18)
                 .addComponent(btnNext)
@@ -129,7 +172,7 @@ public class ReadStory extends javax.swing.JPanel {
         buttonPanelLayout.setVerticalGroup(
             buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, buttonPanelLayout.createSequentialGroup()
-                .addGap(52, 52, 52)
+                .addContainerGap()
                 .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNext)
                     .addComponent(btnPrev))
@@ -142,6 +185,8 @@ public class ReadStory extends javax.swing.JPanel {
 
         buttonPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnClose, btnNext, btnPrev});
 
+        pageCountLabel.setText("jLabel1");
+
         storyName.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         storyName.setText("Story name:");
 
@@ -149,21 +194,29 @@ public class ReadStory extends javax.swing.JPanel {
         pageText.setRows(5);
         pageTextScroll.setViewportView(pageText);
 
-        javax.swing.GroupLayout imagePanelLayout = new javax.swing.GroupLayout(imagePanel);
-        imagePanel.setLayout(imagePanelLayout);
-        imagePanelLayout.setHorizontalGroup(
-            imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 380, Short.MAX_VALUE)
-        );
-        imagePanelLayout.setVerticalGroup(
-            imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
         btnReplay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/storybuilder/resources/play.png"))); // NOI18N
         btnReplay.setText("Play Sound");
 
         btnPrint.setText("Print");
+
+        pageImage.setText("jLabel1");
+
+        javax.swing.GroupLayout imagePanelLayout = new javax.swing.GroupLayout(imagePanel);
+        imagePanel.setLayout(imagePanelLayout);
+        imagePanelLayout.setHorizontalGroup(
+            imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(imagePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pageImage)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        imagePanelLayout.setVerticalGroup(
+            imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(imagePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pageImage)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout storyPanelLayout = new javax.swing.GroupLayout(storyPanel);
         storyPanel.setLayout(storyPanelLayout);
@@ -178,8 +231,10 @@ public class ReadStory extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnPrint))
                     .addGroup(storyPanelLayout.createSequentialGroup()
-                        .addComponent(imagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 293, Short.MAX_VALUE)
+                        .addComponent(pageCountLabel)
+                        .addGap(86, 86, 86)
+                        .addComponent(imagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnReplay)))
                 .addContainerGap())
         );
@@ -190,16 +245,16 @@ public class ReadStory extends javax.swing.JPanel {
                 .addGroup(storyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(storyName)
                     .addComponent(btnPrint))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(storyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(storyPanelLayout.createSequentialGroup()
-                        .addGap(83, 83, 83)
-                        .addComponent(btnReplay)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(storyPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(imagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addComponent(pageTextScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(imagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, storyPanelLayout.createSequentialGroup()
+                        .addGap(0, 78, Short.MAX_VALUE)
+                        .addGroup(storyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnReplay, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(pageCountLabel, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pageTextScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -252,6 +307,8 @@ public class ReadStory extends javax.swing.JPanel {
     private javax.swing.JButton btnReplay;
     private javax.swing.JPanel buttonPanel;
     private javax.swing.JPanel imagePanel;
+    private javax.swing.JLabel pageCountLabel;
+    private javax.swing.JLabel pageImage;
     private javax.swing.JTextArea pageText;
     private javax.swing.JScrollPane pageTextScroll;
     private javax.swing.JLabel storyName;
