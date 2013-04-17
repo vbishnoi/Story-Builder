@@ -104,6 +104,7 @@ public class StoryController {
         Element story = new Element(Common.Variables.STORY_SINGLE_NODE);
 
         story.setAttribute(new Attribute(Common.Variables.STORY_ID, String.valueOf(sId)));
+        story.setAttribute(new Attribute(Common.Variables.STORY_CREATED_BY, s.getCreatedBy()));
         story.addContent(new Element(Common.Variables.STORY_TITLE).setText(s.getTitle()));
         story.addContent(new Element(Common.Variables.STORY_BG_COLOR).setText(s.getBackgroundColor()));
         story.addContent(new Element(Common.Variables.STORY_FONT_SIZE).setText(String.valueOf(s.getFontSize())));

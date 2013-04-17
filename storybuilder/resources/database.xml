@@ -82,6 +82,48 @@
         </page>
       </pages>
     </story>
-    
+    <story id="3">
+      <title>sdf</title>
+      <bgcolor />
+      <fontsize>0</fontsize>
+      <font />
+      <textcolor />
+      <pages>
+        <page>
+          <content>sdfsdf</content>
+          <sound />
+          <images />
+        </page>
+      </pages>
+    </story>
+    <story id="4" createdby="tuanva">
+      <title>new story by tuanva</title>
+      <bgcolor />
+      <fontsize>10</fontsize>
+      <font>Adobe Fangsong Std</font>
+      <textcolor>LIGHT_GRAY</textcolor>
+      <pages>
+        <page>
+          <content>sdfsdf</content>
+          <sound />
+          <images />
+        </page>
+        <page>
+          <content>test</content>
+          <sound />
+          <images />
+        </page>
+        <page>
+          <content>df</content>
+          <sound />
+          <images />
+        </page>
+        <page>
+          <content>new</content>
+          <sound />
+          <images />
+        </page>
+      </pages>
+    </story>
   </stories>
 </storybuilder>
