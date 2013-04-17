@@ -63,7 +63,7 @@ public class MainContainer extends javax.swing.JFrame {
     public void showModalDialog(JPanel panel, String title) {
         JDialog dialog = new JDialog(this, title);
         dialog.getContentPane().add(panel);
-        dialog.setLocationRelativeTo(this);
+        dialog.setLocationRelativeTo(null);
         dialog.setResizable(false);
         dialog.pack();
         dialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
