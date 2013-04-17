@@ -4,9 +4,12 @@
  */
 package com.uoy.sb;
 
+import java.awt.Image;
 import java.io.File;
+import java.io.IOException;
 import java.security.DigestException;
 import java.security.MessageDigest;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -115,4 +118,16 @@ public class Common {
         return ext;
     }
     
+    public static Image readImage(String url)
+	{
+		try
+		{
+			return ImageIO.read(new File(url));
+		}
+		catch (IOException ex)
+		{
+		
+                        return null;
+		}
+	}
 }

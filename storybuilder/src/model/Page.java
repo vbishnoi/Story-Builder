@@ -10,7 +10,7 @@ public class Page {
     private List<String> img = new ArrayList<>();
     private Color background;
     private String sound;
-    private String backgroundImage;
+
 
     public Page() {
     }
@@ -59,37 +59,10 @@ public class Page {
     }
 
     /**
-     * @return the background
-     */
-    public Color getBackground() {
-        return background;
-    }
-
-    /**
-     * @param background the background to set
-     */
-    public void setBackground(Color background) {
-        this.background = background;
-    }
-
-    /**
      * @return the sound
      */
     public String getSound() {
         return sound;
     }
 
-    /**
-     * @return the backgroundImage
-     */
-    public String getBackgroundImage() {
-        return backgroundImage;
-    }
-
-    /**
-     * @param backgroundImage the backgroundImage to set
-     */
-    public void setBackgroundImage(String backgroundImage) {
-        this.backgroundImage = backgroundImage;
-    }
 }
