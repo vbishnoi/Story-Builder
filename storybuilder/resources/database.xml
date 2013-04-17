@@ -1,143 +1,139 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <storybuilder>
-  <users>
-    <user name="tuanva" group="0">
-      <password>202cb962ac59075b964b07152d234b70</password>
-      <image />
-      <age>0</age>
-    </user>
-    <user name="vijay" group="0">
-      <password>202cb962ac59075b964b07152d234b70</password>
-      <image />
-      <age>0</age>
-    </user>
-    <user name="Anna" group="1">
-      <password>202cb962ac59075b964b07152d234b70</password>
-      <image />
-      <age>0</age>
-    </user>
-  </users>
-  <stories>
-    <story id="1" createdby="tuanva" url="http://www.magickeys.com/books/bee/index.html">
-      <title>Buzzy Bee</title>
-      <bgcolor />
-      <fontsize>14</fontsize>
-      <font />
-      <textcolor />
-      <pages>
-        <page>
-          <content>Test Buzzy's not like other bees. Other bees make lots of trips to gather their nectar.</content>
-          <sound />
-          <image />
-        </page>
-        <page>
-          <content>Here's Buzzy sipping from a daffodil.</content>
-          <sound />
-          <image />
-        </page>
-        <page>
-          <content>Tulips are sweet.</content>
-          <sound />
-          <image />
-        </page>
-        <page>
-          <content>Mmm... Hyacinths are sweeter.</content>
-          <sound />
-          <image />
-        </page>
-        <page>
-          <content>Just one more flower.</content>
-          <sound />
-          <image />
-        </page>
-        <page>
-          <content>Uh-oh.</content>
-          <sound />
-          <image />
-        </page>
-        <page>
-          <content>Rescued again.</content>
-          <sound />
-          <images>
+    <users>
+        <user name="tuanva" group="0">
+            <password>202cb962ac59075b964b07152d234b70</password>
             <image />
+            <age>0</age>
+        </user>
+        <user name="vijay" group="0">
+            <password>202cb962ac59075b964b07152d234b70</password>
             <image />
-          </images>
-        </page>
-      </pages>
-    </story>
-    <story id="2">
-      <title>Buzzy Bee 1</title>
-      <bgcolor />
-      <fontsize>14</fontsize>
-      <font />
-      <textcolor />
-      <pages>
-        <page>
-          <content>Buzzy's not like other bees. Other bees make lots of trips to gather their nectar.</content>
-          <sound />
-          <images>
+            <age>0</age>
+        </user>
+        <user name="Anna" group="1">
+            <password>202cb962ac59075b964b07152d234b70</password>
             <image />
-            <image />
-          </images>
-        </page>
-      </pages>
-    </story>
-    <story id="3">
-      <title>sdf</title>
-      <bgcolor />
-      <fontsize>0</fontsize>
-      <font />
-      <textcolor />
-      <pages>
-        <page>
-          <content>sdfsdf</content>
-          <sound />
-          <images />
-        </page>
-      </pages>
-    </story>
-    <story id="4" createdby="tuanva">
-      <title>new story by tuanva</title>
-      <bgcolor />
-      <fontsize>10</fontsize>
-      <font>Adobe Fangsong Std</font>
-      <textcolor>LIGHT_GRAY</textcolor>
-      <pages>
-        <page>
-          <content>sdfsdf</content>
-          <sound />
-          <images />
-        </page>
-        <page>
-          <content>test</content>
-          <sound />
-          <images />
-        </page>
-        <page>
-          <content>df</content>
-          <sound />
-          <images />
-        </page>
-        <page>
-          <content>new</content>
-          <sound />
-          <images />
-        </page>
-      </pages>
-    </story>
-  </stories>
-  <assign>
-      <userstory user="Anna">
-          <item>
-            <story>1</story>
+            <age>0</age>
+        </user>
+    </users>
+    <stories>
+        <story id="1" createdby="tuanva" url="http://www.magickeys.com/books/bee/index.html">
+            <title>Buzzy Bee</title>
+            <bgcolor />
+            <fontsize>14</fontsize>
+            <font />
+            <textcolor />
+            <pages>
+                <page>
+                    <content>Test Buzzy's not like other bees. Other bees make lots of trips to gather their nectar.</content>
+                    <sound />
+                    <image />
+                </page>
+                <page>
+                    <content>Here's Buzzy sipping from a daffodil.</content>
+                    <sound />
+                    <image />
+                </page>
+                <page>
+                    <content>Tulips are sweet.</content>
+                    <sound />
+                    <image />
+                </page>
+                <page>
+                    <content>Mmm... Hyacinths are sweeter.</content>
+                    <sound />
+                    <image />
+                </page>
+                <page>
+                    <content>Just one more flower.</content>
+                    <sound />
+                    <image />
+                </page>
+                <page>
+                    <content>Uh-oh.</content>
+                    <sound />
+                    <image />
+                </page>
+                <page>
+                    <content>Rescued again.</content>
+                    <sound />
+                    <images>
+                        <image />
+                        <image />
+                    </images>
+                </page>
+            </pages>
+        </story>
+        <story id="2">
+            <title>Buzzy Bee 1</title>
+            <bgcolor />
+            <fontsize>14</fontsize>
+            <font />
+            <textcolor />
+            <pages>
+                <page>
+                    <content>Buzzy's not like other bees. Other bees make lots of trips to gather their nectar.</content>
+                    <sound />
+                    <images>
+                        <image />
+                        <image />
+                    </images>
+                </page>
+            </pages>
+        </story>
+        <story id="3">
+            <title>sdf</title>
+            <bgcolor />
+            <fontsize>0</fontsize>
+            <font />
+            <textcolor />
+            <pages>
+                <page>
+                    <content>sdfsdf</content>
+                    <sound />
+                    <images />
+                </page>
+            </pages>
+        </story>
+        <story id="4" createdby="tuanva">
+            <title>new story by tuanva</title>
+            <bgcolor />
+            <fontsize>10</fontsize>
+            <font>Adobe Fangsong Std</font>
+            <textcolor>LIGHT_GRAY</textcolor>
+            <pages>
+                <page>
+                    <content>sdfsdf</content>
+                    <sound />
+                    <images />
+                </page>
+                <page>
+                    <content>test</content>
+                    <sound />
+                    <images />
+                </page>
+                <page>
+                    <content>df</content>
+                    <sound />
+                    <images />
+                </page>
+                <page>
+                    <content>new</content>
+                    <sound />
+                    <images />
+                </page>
+            </pages>
+        </story>
+    </stories>
+    <assigned>      
+        <item story="1" user="Anna">
             <feedback>MAD</feedback>
             <done>1</done>
-          </item>
-          <item>
-            <story>2</story>
+        </item>
+        <item story="2" user="Anna">
             <feedback></feedback>
             <done>0</done>
-          </item>
-      </userstory>
-  </assign>
+        </item>
+    </assigned>
 </storybuilder>

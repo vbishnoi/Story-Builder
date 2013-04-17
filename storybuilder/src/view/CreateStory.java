@@ -17,7 +17,6 @@ import java.awt.event.MouseListener;
 import java.util.LinkedList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
-import javax.swing.JDialog;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
