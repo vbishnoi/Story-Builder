@@ -81,6 +81,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Next page"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNextActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnClose">
           <Properties>
@@ -100,6 +103,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Previous Page"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPrevActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

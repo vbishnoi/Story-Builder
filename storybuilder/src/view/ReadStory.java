@@ -4,22 +4,68 @@
  */
 package view;
 
+import controller.StoryController;
 import java.awt.Image;
+import java.util.LinkedList;
 import javax.swing.ImageIcon;
-
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import model.Page;
+import model.Story;
+//import view.CreatePage.PageDocumentListener;
 /**
  *
  * @author Radical
  */
 public class ReadStory extends javax.swing.JPanel {
-
+    private int _storyID ;
+    private StoryController sc = null;
+    private int _pageIndex = 0;
+    private LinkedList<Page> storyPages = null;
+    
+    /**
+     * @return the _storyID
+     */
+    public int getStoryID() {
+        return _storyID;
+    }
 
     /**
+     * @param storyID the _storyID to set
+     */
+    public void setStoryID(int storyID) {
+        this._storyID = storyID;
+    }
+     /**
      * Creates new form ReadStory1
      */
-    public ReadStory() {
+    public ReadStory(int storyID) {
         initComponents();
-        showStory();
+        
+//        pageText.getDocument().addDocumentListener();
+//        txtBackgroundImage.getDocument().addDocumentListener(new PageDocumentListener());
+//        txtSound.getDocument().addDocumentListener(new PageDocumentListener());
+
+        this.setStoryID(storyID);
+        sc = new StoryController();
+
+        storyPages = sc.getStory(storyID).getPages();
+
+        if (storyPages != null && storyPages.size() > 0) {
+            pageIndexChanged();
+            
+//            isChanged = false;
+        }
+        
+    }
+    
+    private void pageIndexChanged() {
+        if (storyPages != null) {
+            Page p = storyPages.get(_pageIndex);
+            pageText.setText(p.getText());
+
+//            lblPageCount.setText("Page " + (_pageIndex + 1) + "/" + storyPages.size());
+        }
     }
 
     /**
@@ -45,6 +91,11 @@ public class ReadStory extends javax.swing.JPanel {
 
         btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Next.png"))); // NOI18N
         btnNext.setText("Next page");
+        btnNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNextActionPerformed(evt);
+            }
+        });
 
         btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/storybuilder/resources/home.png"))); // NOI18N
         btnClose.setText("Home");
@@ -56,6 +107,11 @@ public class ReadStory extends javax.swing.JPanel {
 
         btnPrev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Back.png"))); // NOI18N
         btnPrev.setText("Previous Page");
+        btnPrev.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrevActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout buttonPanelLayout = new javax.swing.GroupLayout(buttonPanel);
         buttonPanel.setLayout(buttonPanelLayout);
@@ -174,9 +230,19 @@ public class ReadStory extends javax.swing.JPanel {
         this.setVisible(false);
     }//GEN-LAST:event_btnCloseActionPerformed
 
-     private void showStory() {
-        
-    }
+    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
+        // TODO add your handling code here:
+        _pageIndex = (_pageIndex < storyPages.size() - 1) ? _pageIndex + 1 : storyPages.size() - 1;
+        pageIndexChanged();
+    }//GEN-LAST:event_btnNextActionPerformed
+
+    private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
+        // TODO add your handling code here:
+        _pageIndex = (_pageIndex == 0) ? 0 : _pageIndex - 1;
+        pageIndexChanged(); 
+    }//GEN-LAST:event_btnPrevActionPerformed
+
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
@@ -192,3 +258,4 @@ public class ReadStory extends javax.swing.JPanel {
     private javax.swing.JPanel storyPanel;
     // End of variables declaration//GEN-END:variables
 }
+

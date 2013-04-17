@@ -131,6 +131,7 @@ public class AdultHome extends javax.swing.JPanel {
         buttonDeleteStory = new javax.swing.JButton();
         buttonViewFeedback = new javax.swing.JButton();
         buttonPrintStory = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(650, 650));
 
@@ -227,17 +228,25 @@ public class AdultHome extends javax.swing.JPanel {
 
         buttonPrintStory.setText("Print Story");
 
+        jButton1.setText("View Story");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout buttonPanelLayout = new org.jdesktop.layout.GroupLayout(buttonPanel);
         buttonPanel.setLayout(buttonPanelLayout);
         buttonPanelLayout.setHorizontalGroup(
             buttonPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(buttonPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(buttonPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(buttonDeleteStory)
-                    .add(buttonViewFeedback)
-                    .add(buttonPrintStory)
-                    .add(btnManageChildren))
+                .add(buttonPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                    .add(buttonDeleteStory, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(buttonViewFeedback, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(buttonPrintStory, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(btnManageChildren, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(jButton1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(20, Short.MAX_VALUE))
             .add(buttonPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                 .add(buttonPanelLayout.createSequentialGroup()
@@ -251,7 +260,9 @@ public class AdultHome extends javax.swing.JPanel {
         buttonPanelLayout.setVerticalGroup(
             buttonPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, buttonPanelLayout.createSequentialGroup()
-                .addContainerGap(62, Short.MAX_VALUE)
+                .addContainerGap(59, Short.MAX_VALUE)
+                .add(jButton1)
+                .add(38, 38, 38)
                 .add(btnManageChildren)
                 .add(18, 18, 18)
                 .add(buttonDeleteStory)
@@ -264,7 +275,7 @@ public class AdultHome extends javax.swing.JPanel {
                 .add(buttonPanelLayout.createSequentialGroup()
                     .add(18, 18, 18)
                     .add(btnNewStory)
-                    .addContainerGap(174, Short.MAX_VALUE)))
+                    .addContainerGap(232, Short.MAX_VALUE)))
         );
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
@@ -293,9 +304,9 @@ public class AdultHome extends javax.swing.JPanel {
                     .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 99, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(buttonPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(tabsPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                    .add(tabsPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(buttonPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -308,6 +319,11 @@ public class AdultHome extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnManageChildrenActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Global.container.setDisplay(new ReadStory(1));
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList allStoryList;
     private javax.swing.JButton btnManageChildren;
@@ -317,6 +333,7 @@ public class AdultHome extends javax.swing.JPanel {
     private javax.swing.JButton buttonPrintStory;
     private javax.swing.JButton buttonViewFeedback;
     private javax.swing.JList createdByMeList;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
