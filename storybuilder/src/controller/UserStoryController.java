@@ -57,37 +57,42 @@ public class UserStoryController {
 
         LinkedList<AssignedStory> assigned = getAssignedChidrenByStory(story.getId(), false);
 
+        // delete all un-finished story first
         if (elements != null && elements.size() > 0) {
-            // delete all first
             for (Element e : elements) {
-                e.detach();
-            }
-
-            // then re-insert
-            for (String username : children) {
-                Element ne = new Element(Common.Variables.ASSIGNED_STORY);
-
-                ne.setAttribute(new Attribute(Common.Variables.ASSIGNED_STORY_STORY, String.valueOf(story.getId())));
-                ne.setAttribute(new Attribute(Common.Variables.ASSIGNED_STORY_USER, username));
-
-                ne.addContent(new Element(Common.Variables.ASSIGNED_STORY_DONE).setText("0"));
-                ne.addContent(new Element(Common.Variables.ASSIGNED_STORY_FEEDBACK).setText(""));
-
-                if (parent != null) {
-                    parent.addContent(ne);
-
-                    XMLOutputter xmlOutputter = new XMLOutputter(Format.getPrettyFormat());
-
-                    //output xml to console for debugging
-                    //xmlOutputter.output(doc, System.out);
-
-                    xmlOutputter.output(doc, new FileOutputStream(Common.Variables.DATABASE_NAME));
-                    
-                    System.out.println("story assigned");
+                for (int i = 0; i < assigned.size(); i++) {
+                    if (e.getAttributeValue(Common.Variables.ASSIGNED_STORY_STORY).equals(assigned.get(i).getStory()) && e.getChildText(Common.Variables.ASSIGNED_STORY_DONE).equals("0")) {
+                        e.detach();
+                    }
                 }
-            }
 
+            }
         }
+        
+        // then re-insert
+        for (String username : children) {
+            Element ne = new Element(Common.Variables.ASSIGNED_STORY);
+
+            ne.setAttribute(new Attribute(Common.Variables.ASSIGNED_STORY_STORY, String.valueOf(story.getId())));
+            ne.setAttribute(new Attribute(Common.Variables.ASSIGNED_STORY_USER, username));
+
+            ne.addContent(new Element(Common.Variables.ASSIGNED_STORY_DONE).setText("0"));
+            ne.addContent(new Element(Common.Variables.ASSIGNED_STORY_FEEDBACK).setText(""));
+
+            if (parent != null) {
+                parent.addContent(ne);
+            }
+        }
+
+        XMLOutputter xmlOutputter = new XMLOutputter(Format.getPrettyFormat());
+
+        //output xml to console for debugging
+        //xmlOutputter.output(doc, System.out);
+
+        xmlOutputter.output(doc, new FileOutputStream(Common.Variables.DATABASE_NAME));
+
+        System.out.println("story assigned");
+
     }
 
     private LinkedList<AssignedStory> getAssignedList(String query, boolean isDone) throws Exception {
@@ -97,6 +102,7 @@ public class UserStoryController {
 
         if (elements != null && elements.size() > 0) {
             AssignedStory item = null;
+            result = new LinkedList<>();
 
             for (Element el : elements) {
                 if (el != null) {

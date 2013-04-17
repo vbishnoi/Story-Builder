@@ -116,19 +116,19 @@ public class StoryController {
 
         System.out.println(s.getPages().size());
         int count = 0;
-        
+
         if (s.getPages().size() > 0) {
             for (Page p : s.getPages()) {
                 count++;
                 System.out.println("page count:" + count);
-                
+
                 // create a new instance of the page element
                 page = new Element(Common.Variables.PAGE_SINGLE_NODE);
-                
+
                 // then add the content
                 page.addContent(new Element(Common.Variables.PAGE_CONTENT).setText(p.getText()));
                 page.addContent(new Element(Common.Variables.PAGE_SOUND).setText(p.getSound()));
-                
+
                 Element images = new Element(Common.Variables.PAGE_IMAGES);
 
                 // loop through the list of all the images
@@ -140,7 +140,7 @@ public class StoryController {
                 }
                 // add the image list to the current page
                 page.addContent(images);
-                
+
                 // add the current page to the page list
                 pages.addContent(page);
             }
