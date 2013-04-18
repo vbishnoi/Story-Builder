@@ -341,7 +341,7 @@ public class ReadStory extends javax.swing.JPanel {
                     audio = AudioSystem.getAudioInputStream(new File(p.getSound()));
 
                     Clip clip = AudioSystem.getClip();
-                    clip.open(audio);
+                    clip.open(audio); 
                     clip.start();
                 } catch (IOException ex) {
                     JOptionPane.showMessageDialog(null, "Sound couldn't be played.");
