@@ -100,7 +100,7 @@
         </page>
       </pages>
     </story>
-    <story id="4" createdby="tuanva" feedback_require="TRUE">
+    <story id="4" createdby="tuanva" feedback_require="true">
       <title>new story</title>
       <bgcolor>WHITE</bgcolor>
       <fontsize>10</fontsize>
@@ -164,43 +164,15 @@
       <done>TRUE</done>
       <feedback />
     </item>
-    <item story="0" user="Helen">
-      <done>FALSE</done>
-      <feedback />
-    </item>
     <item story="3" user="Helen">
       <done>FALSE</done>
       <feedback />
     </item>
-    <item story="4" user="Helen">
-      <done>FALSE</done>
-      <feedback />
-    </item>
     <item story="1" user="Anna">
       <done>FALSE</done>
       <feedback />
     </item>
     <item story="4" user="Helen">
-      <done>FALSE</done>
-      <feedback />
-    </item>
-    <item story="4" user="Helen">
-      <done>FALSE</done>
-      <feedback />
-    </item>
-    <item story="4" user="Helen">
-      <done>FALSE</done>
-      <feedback />
-    </item>
-    <item story="1" user="Anna">
-      <done>FALSE</done>
-      <feedback />
-    </item>
-    <item story="1" user="Anna">
-      <done>FALSE</done>
-      <feedback />
-    </item>
-    <item story="1" user="Anna">
       <done>FALSE</done>
       <feedback />
     </item>

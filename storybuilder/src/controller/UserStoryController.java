@@ -97,7 +97,7 @@ public class UserStoryController {
         if (elements != null && elements.size() > 0) {
             for (Element e : elements) {
                 for (int i = 0; i < assigned.size(); i++) {
-                    if (e.getAttributeValue(Common.Variables.ASSIGNED_STORY_STORY).equals(assigned.get(i).getStory()) && e.getChildText(Common.Variables.ASSIGNED_STORY_DONE).equals("0")) {
+                    if (e.getAttributeValue(Common.Variables.ASSIGNED_STORY_STORY).equals(assigned.get(i).getStory()) && e.getChildText(Common.Variables.ASSIGNED_STORY_DONE).equals("FALSE")) {
                         e.detach();
                     }
                 }

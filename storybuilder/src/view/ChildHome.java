@@ -5,7 +5,14 @@
 package view;
 
 import com.uoy.sb.Global;
+import controller.StoryController;
+import controller.UserStoryController;
+import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import model.AssignedStory;
 
 /**
  *
@@ -18,6 +25,26 @@ public class ChildHome extends javax.swing.JPanel {
      */
     public ChildHome() {
         initComponents();
+
+        LinkedList<AssignedStory> assigned;
+        StoryController sc = new StoryController();
+        
+        try {
+            assigned = new UserStoryController().getAssignedStoriesByUser(Global.loggedInUser, false);
+
+            if (assigned != null && !assigned.isEmpty()) {
+                DefaultListModel model = new DefaultListModel();
+                
+                for(AssignedStory as : assigned) {
+                    model.addElement(sc.getStory(Integer.parseInt(as.getStory())).getTitle());
+                }
+                
+                lstStory.setModel(model);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(ChildHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     /**
@@ -37,7 +64,7 @@ public class ChildHome extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         storyPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        lstChildren = new javax.swing.JList();
+        lstStory = new javax.swing.JList();
 
         setPreferredSize(new java.awt.Dimension(650, 650));
 
@@ -93,12 +120,12 @@ public class ChildHome extends javax.swing.JPanel {
 
         buttonPanelLayout.linkSize(new java.awt.Component[] {btnPrint, btnRead, jButton1}, org.jdesktop.layout.GroupLayout.VERTICAL);
 
-        lstChildren.setModel(new javax.swing.AbstractListModel() {
+        lstStory.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(lstChildren);
+        jScrollPane1.setViewportView(lstStory);
 
         org.jdesktop.layout.GroupLayout storyPanelLayout = new org.jdesktop.layout.GroupLayout(storyPanel);
         storyPanel.setLayout(storyPanelLayout);
@@ -163,7 +190,7 @@ public class ChildHome extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList lstChildren;
+    private javax.swing.JList lstStory;
     private javax.swing.JPanel panelUserImage;
     private javax.swing.JPanel storyPanel;
     // End of variables declaration//GEN-END:variables
