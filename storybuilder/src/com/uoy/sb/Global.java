@@ -4,6 +4,7 @@
  */
 package com.uoy.sb;
 
+import model.UserGroup;
 import view.MainContainer;
 
 /**
@@ -14,4 +15,5 @@ public class Global {
     public static boolean loggedIn = false;
     public static String loggedInUser = "";
     public static MainContainer container = null;
+    public static UserGroup group = null;
 }

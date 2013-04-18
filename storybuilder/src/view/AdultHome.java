@@ -20,6 +20,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import model.Story;
@@ -336,8 +337,28 @@ public class AdultHome extends javax.swing.JPanel {
     }//GEN-LAST:event_btnManageChildrenActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        Global.container.setDisplay(new ReadStory(4));
+        int selectedIndex = -1;
+        Story s = null;
+
+        if (jTabs.getSelectedIndex() == 0) {
+            selectedIndex = createdByMeList.getSelectedIndex();
+            if (selectedIndex != -1) {
+                s = createdByMe.get(selectedIndex);
+            } else {
+                JOptionPane.showMessageDialog(this, "Please select story to view");
+            }
+        } else {
+            selectedIndex = allStoryList.getSelectedIndex();
+            if (selectedIndex != -1) {
+                s = allStories.get(selectedIndex);
+            } else {
+                JOptionPane.showMessageDialog(this, "Please select story to view");
+            }
+        }
+
+        if (s != null) {
+            Global.container.setDisplay(new ReadStory(s.getId()));
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void buttonDeleteStoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteStoryActionPerformed
@@ -350,11 +371,11 @@ public class AdultHome extends javax.swing.JPanel {
         } catch (IOException ex) {
             Logger.getLogger(AdultHome.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         JLabel lblimage = new JLabel(new ImageIcon(image));
-        
+
         panel.add(lblimage);
-        
+
         Global.container.setDisplay(panel);
     }//GEN-LAST:event_buttonDeleteStoryActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables

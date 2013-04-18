@@ -26,6 +26,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import model.Page;
 import model.Story;
+import model.UserGroup;
 
 /**
  *
@@ -109,7 +110,7 @@ public class ReadStory extends javax.swing.JPanel {
 
             if (images != null && !images.isEmpty()) {
                 imagePanel.setBorder(BorderFactory.createTitledBorder("Images"));
-                
+
                 for (int i = 0; i < images.size(); i++) {
                     try {
                         image = ImageIO.read(new File(images.get(i)));
@@ -143,7 +144,7 @@ public class ReadStory extends javax.swing.JPanel {
 
         buttonPanel = new javax.swing.JPanel();
         btnNext = new javax.swing.JButton();
-        btnClose = new javax.swing.JButton();
+        btnHome = new javax.swing.JButton();
         btnPrev = new javax.swing.JButton();
         storyPanel = new javax.swing.JPanel();
         storyName = new javax.swing.JLabel();
@@ -152,6 +153,7 @@ public class ReadStory extends javax.swing.JPanel {
         btnReplay = new javax.swing.JButton();
         btnPrint = new javax.swing.JButton();
         imagePanel = new javax.swing.JPanel();
+        lblPageCount = new javax.swing.JLabel();
 
         btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/storybuilder/resources/Next.png"))); // NOI18N
         btnNext.setText("Next page");
@@ -161,11 +163,11 @@ public class ReadStory extends javax.swing.JPanel {
             }
         });
 
-        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/storybuilder/resources/home.png"))); // NOI18N
-        btnClose.setText("Home");
-        btnClose.addActionListener(new java.awt.event.ActionListener() {
+        btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/storybuilder/resources/home.png"))); // NOI18N
+        btnHome.setText("Home");
+        btnHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCloseActionPerformed(evt);
+                btnHomeActionPerformed(evt);
             }
         });
 
@@ -183,7 +185,7 @@ public class ReadStory extends javax.swing.JPanel {
             buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(buttonPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnClose)
+                .addComponent(btnHome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 463, Short.MAX_VALUE)
                 .addComponent(btnPrev)
                 .addGap(18, 18, 18)
@@ -200,11 +202,11 @@ public class ReadStory extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, buttonPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnClose)
+                .addComponent(btnHome)
                 .addContainerGap())
         );
 
-        buttonPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnClose, btnNext, btnPrev});
+        buttonPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnHome, btnNext, btnPrev});
 
         storyName.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         storyName.setText("Story name:");
@@ -224,12 +226,14 @@ public class ReadStory extends javax.swing.JPanel {
         imagePanel.setLayout(imagePanelLayout);
         imagePanelLayout.setHorizontalGroup(
             imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 599, Short.MAX_VALUE)
         );
         imagePanelLayout.setVerticalGroup(
             imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 154, Short.MAX_VALUE)
         );
+
+        lblPageCount.setText("jLabel1");
 
         javax.swing.GroupLayout storyPanelLayout = new javax.swing.GroupLayout(storyPanel);
         storyPanel.setLayout(storyPanelLayout);
@@ -245,7 +249,9 @@ public class ReadStory extends javax.swing.JPanel {
                         .addComponent(btnPrint))
                     .addGroup(storyPanelLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(imagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+                        .addComponent(lblPageCount)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(imagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnReplay)))
                 .addContainerGap())
@@ -262,7 +268,10 @@ public class ReadStory extends javax.swing.JPanel {
                     .addGroup(storyPanelLayout.createSequentialGroup()
                         .addGap(0, 110, Short.MAX_VALUE)
                         .addComponent(btnReplay))
-                    .addComponent(imagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
+                    .addComponent(imagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                    .addGroup(storyPanelLayout.createSequentialGroup()
+                        .addComponent(lblPageCount)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pageTextScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -290,10 +299,14 @@ public class ReadStory extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
 
-        this.setVisible(false);
-    }//GEN-LAST:event_btnCloseActionPerformed
+        if (Global.group == UserGroup.Adult) {
+            Global.container.setDisplay(new AdultHome());
+        } else {
+            Global.container.setDisplay(new ChildHome());
+        }
+    }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
         // TODO add your handling code here:
@@ -307,13 +320,14 @@ public class ReadStory extends javax.swing.JPanel {
         pageIndexChanged();
     }//GEN-LAST:event_btnPrevActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnClose;
+    private javax.swing.JButton btnHome;
     private javax.swing.JButton btnNext;
     private javax.swing.JButton btnPrev;
     private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnReplay;
     private javax.swing.JPanel buttonPanel;
     private javax.swing.JPanel imagePanel;
+    private javax.swing.JLabel lblPageCount;
     private javax.swing.JTextArea pageText;
     private javax.swing.JScrollPane pageTextScroll;
     private javax.swing.JLabel storyName;

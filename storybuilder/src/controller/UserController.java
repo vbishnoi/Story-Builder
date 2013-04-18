@@ -157,6 +157,7 @@ public class UserController {
 
             Global.loggedIn = true;
             Global.loggedInUser = name;
+            Global.group = u.getGroup();
             success = true;
         }
         return success;
