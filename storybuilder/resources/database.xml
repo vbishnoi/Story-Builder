@@ -81,7 +81,7 @@
         </page>
       </pages>
     </story>
-    <story id="3" createdby="tuanva" feedback_require="TRUE">
+    <story id="3" createdby="tuanva" feedback_require="true">
       <title>another story (2 pages)</title>
       <bgcolor>WHITE</bgcolor>
       <fontsize>10</fontsize>
@@ -95,7 +95,7 @@
         </page>
         <page>
           <content>page 1111</content>
-          <sound />
+          <sound>/Users/tuanva/Downloads/goat.wav</sound>
           <images />
         </page>
       </pages>
@@ -137,10 +137,7 @@
         <page>
           <content>222</content>
           <sound />
-          <images>
-            <image />
-            <image />
-          </images>
+          <images />
         </page>
       </pages>
     </story>
@@ -164,15 +161,15 @@
       <done>TRUE</done>
       <feedback />
     </item>
-    <item story="3" user="Helen">
-      <done>FALSE</done>
-      <feedback />
-    </item>
     <item story="1" user="Anna">
       <done>FALSE</done>
       <feedback />
     </item>
     <item story="4" user="Helen">
+      <done>FALSE</done>
+      <feedback />
+    </item>
+    <item story="3" user="Helen">
       <done>FALSE</done>
       <feedback />
     </item>

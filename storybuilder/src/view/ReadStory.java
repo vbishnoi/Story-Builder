@@ -20,10 +20,16 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import model.Page;
 import model.Story;
 import model.UserGroup;
@@ -104,6 +110,7 @@ public class ReadStory extends javax.swing.JPanel {
         if (storyPages != null) {
             Page p = storyPages.get(_pageIndex);
             pageText.setText(p.getText());
+            lblPageCount.setText("Page " + (_pageIndex + 1) + "/" + storyPages.size());
 
             List<String> images = p.getImages();
             imagePanel.removeAll();
@@ -115,7 +122,7 @@ public class ReadStory extends javax.swing.JPanel {
                     try {
                         image = ImageIO.read(new File(images.get(i)));
                     } catch (IOException ex) {
-                        Logger.getLogger(AdultHome.class.getName()).log(Level.SEVERE, null, ex);
+                        JOptionPane.showMessageDialog(null, "Cannot read input image");
                     }
 
                     JLabel lblimage = new JLabel(new ImageIcon(image.getScaledInstance(200, -1, Image.SCALE_DEFAULT)));
@@ -217,6 +224,11 @@ public class ReadStory extends javax.swing.JPanel {
 
         btnReplay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/storybuilder/resources/play.png"))); // NOI18N
         btnReplay.setText("Play Sound");
+        btnReplay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReplayActionPerformed(evt);
+            }
+        });
 
         btnPrint.setText("Print");
 
@@ -319,6 +331,30 @@ public class ReadStory extends javax.swing.JPanel {
         _pageIndex = (_pageIndex == 0) ? 0 : _pageIndex - 1;
         pageIndexChanged();
     }//GEN-LAST:event_btnPrevActionPerformed
+
+    private void btnReplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReplayActionPerformed
+        if (storyPages != null) {
+            Page p = storyPages.get(_pageIndex);
+            if (p != null && !p.getSound().equals("")) {
+                AudioInputStream audio;
+                try {
+                    audio = AudioSystem.getAudioInputStream(new File(p.getSound()));
+
+                    Clip clip = AudioSystem.getClip();
+                    clip.open(audio);
+                    clip.start();
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(null, "Sound couldn't be played.");
+                } catch (LineUnavailableException ex) {
+                    JOptionPane.showMessageDialog(null, "Sound couldn't be played");
+                } catch (UnsupportedAudioFileException ex) {
+                    JOptionPane.showMessageDialog(null, "Sound couldn't be played");
+                }
+            }
+            else
+                JOptionPane.showMessageDialog(null, "No sound on this page");
+        }
+    }//GEN-LAST:event_btnReplayActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnNext;
