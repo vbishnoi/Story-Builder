@@ -12,6 +12,7 @@ public class Story {
     private String _textColor;
     private LinkedList<Page> _pages;
     private String _createdBy;
+    private boolean _feedbackRequired = Boolean.FALSE;
 
     /**
      * @return the _id
@@ -143,6 +144,20 @@ public class Story {
         this._textColor = textColor;
         this._font = font;
         this._fontSize = fontSize;
+    }
+
+    /**
+     * @return the _feedbackRequired
+     */
+    public boolean isFeedbackRequired() {
+        return _feedbackRequired;
+    }
+
+    /**
+     * @param feedbackRequired the _feedbackRequired to set
+     */
+    public void setFeedbackRequired(boolean feedbackRequired) {
+        this._feedbackRequired = feedbackRequired;
     }
 
     

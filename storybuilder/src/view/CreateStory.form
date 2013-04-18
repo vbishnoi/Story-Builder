@@ -338,9 +338,9 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="235" max="-2" attributes="0"/>
-                  <Component id="feedback" pref="122" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace pref="176" max="32767" attributes="0"/>
+                  <Component id="chkFbRequire" min="-2" pref="181" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="saveStory" linkSize="1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -358,7 +358,7 @@
                           <Component id="saveStory" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cancel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="feedback" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="chkFbRequire" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="33" max="32767" attributes="0"/>
               </Group>
@@ -374,7 +374,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveStoryActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="feedback">
+        <Component class="javax.swing.JCheckBox" name="chkFbRequire">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ask for feedback?"/>
           </Properties>

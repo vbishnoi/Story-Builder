@@ -23,7 +23,7 @@
     </user>
   </users>
   <stories>
-    <story id="1" createdby="tuanva" url="http://www.magickeys.com/books/bee/index.html">
+    <story id="1" createdby="tuanva" feedback_require="true" url="http://www.magickeys.com/books/bee/index.html">
       <title>Buzzy Bee</title>
       <bgcolor>WHITE</bgcolor>
       <fontsize>10</fontsize>
@@ -67,7 +67,7 @@
         </page>
       </pages>
     </story>
-    <story id="2">
+    <story id="2" feedback_require="TRUE" createdby="vijay">
       <title>Buzzy Bee 1</title>
       <bgcolor />
       <fontsize>14</fontsize>
@@ -81,7 +81,7 @@
         </page>
       </pages>
     </story>
-    <story id="3" createdby="tuanva">
+    <story id="3" createdby="tuanva" feedback_require="TRUE">
       <title>another story (2 pages)</title>
       <bgcolor>WHITE</bgcolor>
       <fontsize>10</fontsize>
@@ -100,7 +100,7 @@
         </page>
       </pages>
     </story>
-    <story id="4" createdby="tuanva">
+    <story id="4" createdby="tuanva" feedback_require="TRUE">
       <title>new story</title>
       <bgcolor>WHITE</bgcolor>
       <fontsize>10</fontsize>
@@ -122,7 +122,7 @@
         </page>
       </pages>
     </story>
-    <story id="5" createdby="tuanva">
+    <story id="5" createdby="tuanva" feedback_require="false">
       <title>updateeeee</title>
       <bgcolor>WHITE</bgcolor>
       <fontsize>10</fontsize>
@@ -144,7 +144,7 @@
         </page>
       </pages>
     </story>
-    <story id="6" createdby="tuanva">
+    <story id="6" createdby="tuanva" feedback_require="TRUE">
       <title>1111111</title>
       <bgcolor>WHITE</bgcolor>
       <fontsize>10</fontsize>
@@ -189,6 +189,14 @@
       <feedback />
     </item>
     <item story="4" user="Helen">
+      <done>FALSE</done>
+      <feedback />
+    </item>
+    <item story="1" user="Anna">
+      <done>FALSE</done>
+      <feedback />
+    </item>
+    <item story="1" user="Anna">
       <done>FALSE</done>
       <feedback />
     </item>

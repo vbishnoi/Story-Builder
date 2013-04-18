@@ -84,6 +84,7 @@ public class StoryController {
 
         story.setAttribute(new Attribute(Common.Variables.STORY_ID, String.valueOf(sId)));
         story.setAttribute(new Attribute(Common.Variables.STORY_CREATED_BY, s.getCreatedBy()));
+        story.setAttribute(new Attribute(Common.Variables.STORY_REQUIRE_FEEDBACK, String.valueOf(s.isFeedbackRequired())));
         story.addContent(new Element(Common.Variables.STORY_TITLE).setText(s.getTitle()));
         story.addContent(new Element(Common.Variables.STORY_BG_COLOR).setText(s.getBackgroundColor()));
         story.addContent(new Element(Common.Variables.STORY_FONT_SIZE).setText(String.valueOf(s.getFontSize())));
@@ -193,6 +194,7 @@ public class StoryController {
             story.getChild(Common.Variables.STORY_FONT).setText(storyToUpdate.getFont());
             story.getChild(Common.Variables.STORY_FONT_SIZE).setText(String.valueOf(storyToUpdate.getFontSize()));
             story.getChild(Common.Variables.STORY_TEXT_COLOR).setText(storyToUpdate.getTextColor());
+            story.getAttribute(Common.Variables.STORY_REQUIRE_FEEDBACK).setValue(String.valueOf(storyToUpdate.isFeedbackRequired()));
 
             // update pages
             Element pagesContainer = story.getChild(Common.Variables.PAGES_NODE);
@@ -280,7 +282,8 @@ public class StoryController {
             story.setTextColor(storyElm.getChildText(Common.Variables.STORY_TEXT_COLOR));
             story.setCreatedBy(storyElm.getAttributeValue(Common.Variables.STORY_CREATED_BY));
             story.setId(Integer.parseInt(storyElm.getAttributeValue(Common.Variables.STORY_ID)));
-
+            story.setFeedbackRequired(Boolean.parseBoolean(storyElm.getAttributeValue(Common.Variables.STORY_REQUIRE_FEEDBACK)));
+            
             Element pagesContainer = storyElm.getChild(Common.Variables.PAGES_NODE);
 
             /*

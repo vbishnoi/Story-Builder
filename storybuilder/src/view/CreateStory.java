@@ -128,6 +128,7 @@ public final class CreateStory extends javax.swing.JPanel {
         if (story != null) {
             model = new DefaultListModel();
             txtTitle.setText(story.getTitle());
+            chkFbRequire.setSelected(story.isFeedbackRequired());
             _pages = story.getPages();
 
             for (Page p : getPages()) {
@@ -225,7 +226,7 @@ public final class CreateStory extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         buttonPanel = new javax.swing.JPanel();
         saveStory = new javax.swing.JButton();
-        feedback = new javax.swing.JCheckBox();
+        chkFbRequire = new javax.swing.JCheckBox();
         cancel = new javax.swing.JButton();
         storyNamePanel = new javax.swing.JPanel();
         txtTitle = new javax.swing.JTextField();
@@ -397,7 +398,7 @@ public final class CreateStory extends javax.swing.JPanel {
             }
         });
 
-        feedback.setText("Ask for feedback?");
+        chkFbRequire.setText("Ask for feedback?");
 
         cancel.setText("Cancel");
         cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -411,8 +412,8 @@ public final class CreateStory extends javax.swing.JPanel {
         buttonPanelLayout.setHorizontalGroup(
             buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(buttonPanelLayout.createSequentialGroup()
-                .addGap(235, 235, 235)
-                .addComponent(feedback, javax.swing.GroupLayout.PREFERRED_SIZE, 122, Short.MAX_VALUE)
+                .addContainerGap(176, Short.MAX_VALUE)
+                .addComponent(chkFbRequire, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(saveStory)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -430,7 +431,7 @@ public final class CreateStory extends javax.swing.JPanel {
                     .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(saveStory)
                         .addComponent(cancel))
-                    .addComponent(feedback, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(chkFbRequire, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
@@ -539,6 +540,7 @@ public final class CreateStory extends javax.swing.JPanel {
                 story.setTextColor(jcbTextColor.getSelectedItem().toString());
                 story.setBackgroundColor(jcbBgColor.getSelectedItem().toString());
                 story.setCreatedBy(Global.loggedInUser);
+                story.setFeedbackRequired(chkFbRequire.isSelected());
 
                 // insert story into database
                 int sID = sc.createNewStory(story);
@@ -572,7 +574,8 @@ public final class CreateStory extends javax.swing.JPanel {
                 story.setFontSize(Integer.parseInt(jcbFontSize.getSelectedItem().toString()));
                 story.setTextColor(jcbTextColor.getSelectedItem().toString());
                 story.setBackgroundColor(jcbBgColor.getSelectedItem().toString());
-
+                story.setFeedbackRequired(chkFbRequire.isSelected());
+                
                 // update
                 sc.updateStory(story);
 
@@ -617,10 +620,10 @@ public final class CreateStory extends javax.swing.JPanel {
     private javax.swing.JPanel assignstoryPanel;
     private javax.swing.JPanel buttonPanel;
     private javax.swing.JButton cancel;
+    private javax.swing.JCheckBox chkFbRequire;
     private javax.swing.JPanel colorPanel;
     private javax.swing.JButton deletePage;
     private javax.swing.JButton editPage;
-    private javax.swing.JCheckBox feedback;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
