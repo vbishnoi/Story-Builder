@@ -132,19 +132,7 @@ public class StoryController {
         Element parent = parser.getElement("//stories");
         parent.addContent(story);
 
-        // create new output writer to update back to file
-        XMLOutputter xmlOutput = new XMLOutputter();
-
-        // display nice nice
-        xmlOutput.setFormat(Format.getPrettyFormat());
-        try {
-            xmlOutput.output(objDoc, new FileWriter(Common.Variables.DATABASE_NAME));
-
-            // print out
-//                xmlOutput.output(objDoc, System.out);
-        } catch (IOException ex) {
-            Logger.getLogger(StoryController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        saveXML(objDoc);
 
         System.out.println("Story created!");
 
@@ -162,19 +150,7 @@ public class StoryController {
             elm.detach();
         }
 
-        // create new output writer to update back to file
-        XMLOutputter xmlOutput = new XMLOutputter();
-
-        // display nice nice
-        xmlOutput.setFormat(Format.getPrettyFormat());
-        try {
-            xmlOutput.output(doc, new FileWriter(Common.Variables.DATABASE_NAME));
-
-            // print out
-//                xmlOutput.output(objDoc, System.out);
-        } catch (IOException ex) {
-            Logger.getLogger(StoryController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        saveXML(doc);
     }
 
     /*
@@ -234,19 +210,7 @@ public class StoryController {
                 }
             }
 
-            // create new output writer to update back to file
-            XMLOutputter xmlOutput = new XMLOutputter();
-
-            // display nice nice
-            xmlOutput.setFormat(Format.getPrettyFormat());
-            try {
-                xmlOutput.output(objDoc, new FileWriter(Common.Variables.DATABASE_NAME));
-
-                // print out
-//                xmlOutput.output(objDoc, System.out);
-            } catch (IOException ex) {
-                Logger.getLogger(StoryController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            saveXML(objDoc);
 
             System.out.println("Story updated!");
         }
@@ -332,5 +296,21 @@ public class StoryController {
         Element e = getStoryElement(storyID);
 
         return getStory(e);
+    }
+    
+    private void saveXML(Document doc) {
+        // create new output writer to update back to file
+        XMLOutputter xmlOutput = new XMLOutputter();
+
+        // display nice nice
+        xmlOutput.setFormat(Format.getPrettyFormat());
+        try {
+            xmlOutput.output(doc, new FileWriter(Common.Variables.DATABASE_NAME));
+
+            // print out
+            // xmlOutput.output(objDoc, System.out);
+        } catch (IOException ex) {
+            Logger.getLogger(StoryController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

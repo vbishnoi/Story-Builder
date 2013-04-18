@@ -30,6 +30,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import model.Page;
 import model.Story;
 import model.UserGroup;
@@ -47,6 +48,7 @@ public class ReadStory extends javax.swing.JPanel {
     private Story story;
     private JLabel lblImage;
     private Image image = null;
+    private boolean _finish = false;
 
     /**
      * @return the _storyID
@@ -135,8 +137,14 @@ public class ReadStory extends javax.swing.JPanel {
                 imagePanel.setBorder(null);
             }
 
-            this.revalidate();
-            this.repaint();
+//            this.revalidate();
+//            this.repaint();
+
+            if (_pageIndex == storyPages.size() - 1) {
+                btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/storybuilder/resources/ok3.png"))); // NOI18N
+                btnNext.setText("Finish");
+                _finish = true;
+            }
         }
     }
 
@@ -321,9 +329,14 @@ public class ReadStory extends javax.swing.JPanel {
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
-        // TODO add your handling code here:
+
+        if(_finish) {
+            GiveFeedback fb = new GiveFeedback();
+        }
+        
         _pageIndex = (_pageIndex < storyPages.size() - 1) ? _pageIndex + 1 : storyPages.size() - 1;
         pageIndexChanged();
+        
     }//GEN-LAST:event_btnNextActionPerformed
 
     private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
@@ -341,7 +354,7 @@ public class ReadStory extends javax.swing.JPanel {
                     audio = AudioSystem.getAudioInputStream(new File(p.getSound()));
 
                     Clip clip = AudioSystem.getClip();
-                    clip.open(audio); 
+                    clip.open(audio);
                     clip.start();
                 } catch (IOException ex) {
                     JOptionPane.showMessageDialog(null, "Sound couldn't be played.");
@@ -350,9 +363,9 @@ public class ReadStory extends javax.swing.JPanel {
                 } catch (UnsupportedAudioFileException ex) {
                     JOptionPane.showMessageDialog(null, "Sound couldn't be played");
                 }
-            }
-            else
+            } else {
                 JOptionPane.showMessageDialog(null, "No sound on this page");
+            }
         }
     }//GEN-LAST:event_btnReplayActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables

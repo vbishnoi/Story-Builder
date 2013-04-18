@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.AssignedStory;
+import model.Feedback;
 import model.Story;
 import model.User;
 import org.jdom2.Attribute;
@@ -72,19 +73,20 @@ public class UserStoryController {
             }
         }
 
-        // create new output writer to update back to file
-        XMLOutputter xmlOutput = new XMLOutputter();
+        saveXML(doc);
+    }
 
-        // display nice nice
-        xmlOutput.setFormat(Format.getPrettyFormat());
-        try {
-            xmlOutput.output(doc, new FileWriter(Common.Variables.DATABASE_NAME));
+    public void updateFeedback(int storyID, String user, String feedback) {
+        Document doc = parser.getDocument();
 
-            // print out
-//                xmlOutput.output(objDoc, System.out);
-        } catch (IOException ex) {
-            Logger.getLogger(StoryController.class.getName()).log(Level.SEVERE, null, ex);
+        String query = "//assigned/item[@story='" + storyID + "' and @user='" + user + "']";
+        Element item = parser.getElement(query);
+
+        if (item != null) {
+            item.getChild(query).getAttribute(Common.Variables.STORY_REQUIRE_FEEDBACK).setValue(feedback.toUpperCase());
         }
+
+        saveXML(doc);
     }
 
     public void assignStory(Story story, List<String> children) throws Exception {
@@ -119,12 +121,7 @@ public class UserStoryController {
             }
         }
 
-        XMLOutputter xmlOutputter = new XMLOutputter(Format.getPrettyFormat());
-
-        //output xml to console for debugging
-        //xmlOutputter.output(doc, System.out);
-
-        xmlOutputter.output(doc, new FileOutputStream(Common.Variables.DATABASE_NAME));
+        saveXML(doc);
 
         System.out.println("story assigned");
 
@@ -174,5 +171,21 @@ public class UserStoryController {
         }
 
         return result;
+    }
+
+    private void saveXML(Document doc) {
+        // create new output writer to update back to file
+        XMLOutputter xmlOutput = new XMLOutputter();
+
+        // display nice nice
+        xmlOutput.setFormat(Format.getPrettyFormat());
+        try {
+            xmlOutput.output(doc, new FileWriter(Common.Variables.DATABASE_NAME));
+
+            // print out
+            // xmlOutput.output(objDoc, System.out);
+        } catch (IOException ex) {
+            Logger.getLogger(StoryController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
