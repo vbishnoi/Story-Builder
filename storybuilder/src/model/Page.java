@@ -1,21 +1,16 @@
 package model;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Page {
 
     private String text;
-    private List<String> _images = new ArrayList<>();
+    private List<String> _images = null;
     private String sound;
 
     public Page() {
-    }
-
-    public Page(String text) {
-        this.text = text;
-        this.sound = "";
+        _images = new ArrayList<>();
     }
 
     public void setSound(String url) {
@@ -57,6 +52,9 @@ public class Page {
 
     public void addImage(String image) {
         if (this._images != null) {
+            this._images.add(image);
+        } else {
+            this._images = new ArrayList<>();
             this._images.add(image);
         }
     }

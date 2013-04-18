@@ -62,7 +62,7 @@ public class StoryController {
 
         return stories;
     }
-    
+
     /*
      * Create a new story and save to the database
      */
@@ -173,44 +173,76 @@ public class StoryController {
             List<Element> pageElements = pagesContainer.getChildren(Common.Variables.PAGE_SINGLE_NODE);
             LinkedList<Page> pages = storyToUpdate.getPages();
 
-            if (pageElements.size() == pages.size()) {
-                Element e = null;
-                Page p = null;
-
-                for (int i = 0; i < pageElements.size(); i++) {
-                    e = pageElements.get(i);
-                    p = pages.get(i);
-
-                    e.getChild(Common.Variables.PAGE_CONTENT).setText(p.getText());
-//                    e.getChild(Common.Variables.PAGE_CONTENT).setText("123244");
-
-                    Element images_elm = e.getChild(Common.Variables.PAGE_IMAGES);
-
-                    if (images_elm != null) {
-                        List<Element> images = images_elm.getChildren(Common.Variables.PAGE_IMAGE);
-
-                        // detach (delete) all current images
-                        if (images != null && images.size() > 0) {
-                            for (Element img : images) {
-                                if (img != null) {
-                                    img.detach();
-                                }
-                            }
-                        }
-
-                        // then add new images again
-                        if (p.getImages() != null && p.getImages().size() > 0) {
-                            for (String img : p.getImages()) {
-                                images_elm.addContent(new Element(Common.Variables.PAGE_IMAGE).setText(img));
-                            }
-                        }
-                    }
-
-                    e.getChild(Common.Variables.PAGE_SOUND).setText(p.getSound());
-
-//                    pageElements.set(i, e);
+            // delete all current pages
+            if (pageElements != null && !pageElements.isEmpty()) {
+                for (Element oldPage : pageElements) {
+                    oldPage.detach();
                 }
             }
+
+            // re-insert
+            if (pages != null && !pages.isEmpty()) {
+                Element pe = null;
+                for (Page page : pages) {
+                    pe = new Element(Common.Variables.PAGE_SINGLE_NODE);
+
+                    pe.addContent(new Element(Common.Variables.PAGE_CONTENT).setText(page.getText()));
+                    pe.addContent(new Element(Common.Variables.PAGE_SOUND).setText(page.getSound()));
+                    Element imagesElm = new Element(Common.Variables.PAGE_IMAGES);
+                    pe.addContent(imagesElm);
+
+                    List<String> images = page.getImages();
+
+                    if (images != null && !images.isEmpty()) {
+                        for (String img : images) {
+                            imagesElm.addContent(new Element(Common.Variables.PAGE_IMAGE).setText(img));
+                        }
+                    }
+                    
+                    pagesContainer.addContent(pe);
+                }
+            }
+            
+//            story.addContent(pagesContainer);
+
+//            if (pageElements.size() == pages.size()) {
+//                Element e = null;
+//                Page p = null;
+//
+//                for (int i = 0; i < pageElements.size(); i++) {
+//                    e = pageElements.get(i);
+//                    p = pages.get(i);
+//
+//                    e.getChild(Common.Variables.PAGE_CONTENT).setText(p.getText());
+////                    e.getChild(Common.Variables.PAGE_CONTENT).setText("123244");
+//
+//                    Element images_elm = e.getChild(Common.Variables.PAGE_IMAGES);
+//
+//                    if (images_elm != null) {
+//                        List<Element> images = images_elm.getChildren(Common.Variables.PAGE_IMAGE);
+//
+//                        // detach (delete) all current images
+//                        if (images != null && images.size() > 0) {
+//                            for (Element img : images) {
+//                                if (img != null) {
+//                                    img.detach();
+//                                }
+//                            }
+//                        }
+//
+//                        // then add new images again
+//                        if (p.getImages() != null && p.getImages().size() > 0) {
+//                            for (String img : p.getImages()) {
+//                                images_elm.addContent(new Element(Common.Variables.PAGE_IMAGE).setText(img));
+//                            }
+//                        }
+//                    }
+//
+//                    e.getChild(Common.Variables.PAGE_SOUND).setText(p.getSound());
+//
+////                    pageElements.set(i, e);
+//                }
+//            }
 
             // create new output writer to update back to file
             XMLOutputter xmlOutput = new XMLOutputter();
@@ -274,13 +306,13 @@ public class StoryController {
 
                         page.setText(e.getChildText(Common.Variables.PAGE_CONTENT));
                         page.setSound(e.getChildText(Common.Variables.PAGE_SOUND));
-                        
+
                         Element images = pagesContainer.getChild(Common.Variables.PAGE_IMAGES);
-                        if(images != null) {
+                        if (images != null) {
                             List<Element> imageList = images.getChildren(Common.Variables.PAGE_IMAGE);
-                            
-                            if(imageList != null && imageList.size() > 0) {
-                                for(Element img : imageList) {
+
+                            if (imageList != null && imageList.size() > 0) {
+                                for (Element img : imageList) {
                                     page.addImage(img.getText());
                                 }
                             }

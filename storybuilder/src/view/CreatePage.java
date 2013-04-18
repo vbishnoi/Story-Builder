@@ -79,7 +79,8 @@ public class CreatePage extends javax.swing.JPanel {
                     txtImage1.setText(images.get(0));
                 }
                 if (images.size() == 2) {
-                    txtImage1.setText(images.get(1));
+                    txtImage1.setText(images.get(0));
+                    txtImage2.setText(images.get(1));
                 }
 
             }
@@ -123,13 +124,12 @@ public class CreatePage extends javax.swing.JPanel {
 
 //        page.setBackgroundImage(txtImage1.getText());
 
-        if (!txtImage1.equals("")) {
+        if (!txtImage1.getText().equals("")) {
             page.addImage(txtImage1.getText());
         }
-        if (!txtImage2.equals("")) {
+        if (!txtImage2.getText().equals("")) {
             page.addImage(txtImage2.getText());
         }
-
 
         page.setSound(txtSound.getText());
         page.setText(txtContent.getText());
@@ -402,7 +402,7 @@ public class CreatePage extends javax.swing.JPanel {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = fc.getSelectedFile();
 
-            txtImage1.setText(file.getAbsolutePath());
+            txtImage2.setText(file.getAbsolutePath());
         } else {
 //            log.append("Open command cancelled by user." + newline);
         }

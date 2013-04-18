@@ -83,21 +83,54 @@
       </pages>
     </story>
     <story id="3" createdby="tuanva">
-      <title>44444</title>
+      <title>another story (2 pages)</title>
       <bgcolor>WHITE</bgcolor>
       <fontsize>10</fontsize>
-      <font>Abadi MT Condensed Extra Bold</font>
+      <font>Arial</font>
       <textcolor>BLACK</textcolor>
       <pages>
         <page>
-          <content>dddd</content>
+          <content>page 2</content>
+          <sound />
+          <images>
+            <image />
+            <image />
+          </images>
+        </page>
+        <page>
+          <content>page 1111</content>
+          <sound />
+          <images>
+            <image />
+            <image />
+          </images>
+        </page>
+        <page>
+          <content>page 2</content>
           <sound />
           <images />
         </page>
       </pages>
     </story>
     <story id="4" createdby="tuanva">
-      <title>666</title>
+      <title>new story</title>
+      <bgcolor>WHITE</bgcolor>
+      <fontsize>10</fontsize>
+      <font>Arial</font>
+      <textcolor>BLACK</textcolor>
+      <pages>
+        <page>
+          <content>gg</content>
+          <sound />
+          <images>
+            <image>/Users/tuanva/Pictures/IMAG0025.jpg</image>
+            <image>/Users/tuanva/Pictures/IMAG0022.jpg</image>
+          </images>
+        </page>
+      </pages>
+    </story>
+    <story id="5" createdby="tuanva">
+      <title>updateeeee</title>
       <bgcolor>WHITE</bgcolor>
       <fontsize>10</fontsize>
       <font>Arial</font>
@@ -108,19 +141,13 @@
           <sound />
           <images />
         </page>
-      </pages>
-    </story>
-    <story id="5" createdby="tuanva">
-      <title>999</title>
-      <bgcolor>WHITE</bgcolor>
-      <fontsize>10</fontsize>
-      <font>Abadi MT Condensed Extra Bold</font>
-      <textcolor>BLACK</textcolor>
-      <pages>
         <page>
-          <content>gg</content>
+          <content>222</content>
           <sound />
-          <images />
+          <images>
+            <image />
+            <image />
+          </images>
         </page>
       </pages>
     </story>
@@ -128,7 +155,7 @@
       <title>1111111</title>
       <bgcolor>WHITE</bgcolor>
       <fontsize>10</fontsize>
-      <font>Abadi MT Condensed Extra Bold</font>
+      <font>Arial</font>
       <textcolor>BLACK</textcolor>
       <pages>
         <page>
@@ -185,6 +212,10 @@
       <feedback />
     </item>
     <item story="8" user="Helen">
+      <done>0</done>
+      <feedback />
+    </item>
+    <item story="3" user="Helen">
       <done>0</done>
       <feedback />
     </item>

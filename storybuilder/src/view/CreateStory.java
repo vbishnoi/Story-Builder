@@ -44,6 +44,61 @@ public class CreateStory extends javax.swing.JPanel {
     private Story story = null;
 
     /**
+     * @return the _pages
+     */
+    public LinkedList<Page> getPages() {
+        return _pages;
+    }
+
+    /*
+     * Add a new page to the current pages list of the story
+     */
+    public void addPage(Page page) {
+        this._pages.add(page);
+
+        if (model == null) {
+            model = new DefaultListModel();
+        }
+
+        model.clear();
+
+        for (Page p : getPages()) {
+            model.addElement(p.getText());
+        }
+
+        pageList.setModel(model);
+    }
+
+    /*
+     * Edit the page at the position @param index with the new value @param page
+     */
+    public void updatePage(int index, Page page) {
+        this._pages.set(index, page);
+        model.clear();
+
+        for (Page p : getPages()) {
+            model.addElement(p.getText());
+        }
+
+        pageList.setModel(model);
+    }
+
+    /**
+     * @return the _storyID
+     */
+    public int getStoryID() {
+        return _storyID;
+    }
+
+    /**
+     * @param storyID the _storyID to set
+     */
+    public void setStoryID(int storyID) {
+        this._storyID = storyID;
+    }
+
+
+    /**
      * Creates new form CreateStory
      */
     public CreateStory() {
@@ -242,7 +297,7 @@ public class CreateStory extends javax.swing.JPanel {
                     .addComponent(jLabel5))
                 .addGap(27, 27, 27)
                 .addGroup(colorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jcbBgColor, 0, 91, Short.MAX_VALUE)
+                    .addComponent(jcbBgColor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jcbTextColor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(26, 26, 26)
                 .addGroup(colorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -298,7 +353,7 @@ public class CreateStory extends javax.swing.JPanel {
                         .addGroup(assignstoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(AssignStory)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 90, Short.MAX_VALUE)))
+                        .addGap(0, 92, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         assignstoryPanelLayout.setVerticalGroup(
@@ -323,6 +378,11 @@ public class CreateStory extends javax.swing.JPanel {
         feedback.setText("Ask for feedback?");
 
         cancel.setText("Cancel");
+        cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout buttonPanelLayout = new javax.swing.GroupLayout(buttonPanel);
         buttonPanel.setLayout(buttonPanelLayout);
@@ -330,7 +390,7 @@ public class CreateStory extends javax.swing.JPanel {
             buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(buttonPanelLayout.createSequentialGroup()
                 .addGap(235, 235, 235)
-                .addComponent(feedback, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                .addComponent(feedback, javax.swing.GroupLayout.PREFERRED_SIZE, 122, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(saveStory)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -364,7 +424,7 @@ public class CreateStory extends javax.swing.JPanel {
                 .addComponent(storyTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(201, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         storyNamePanelLayout.setVerticalGroup(
             storyNamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -389,7 +449,7 @@ public class CreateStory extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(colorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(pagePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {assignstoryPanel, storyNamePanel});
@@ -407,7 +467,7 @@ public class CreateStory extends javax.swing.JPanel {
                 .addComponent(assignstoryPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -472,13 +532,18 @@ public class CreateStory extends javax.swing.JPanel {
 
                     if (selectedChildren != null && selectedChildren.size() > 0) {
                         usc.assignStory(story, selectedChildren);
+
+
                     } else {
-                        System.out.println("No children selected");
+                        System.err.println("No children selected");
                     }
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(this, ex.getMessage());
                     Logger.getLogger(CreateStory.class.getName()).log(Level.SEVERE, null, ex);
                 }
+
+                // close the form
+                closeForm();
             } // update story
             else {
                 story.setTitle(txtTitle.getText());
@@ -499,18 +564,35 @@ public class CreateStory extends javax.swing.JPanel {
 
                     if (selectedChildren != null && selectedChildren.size() > 0) {
                         usc.assignStory(story, selectedChildren);
+
                     } else {
-                        // 
+                        System.err.println("No chidren selected");
                     }
+
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(this, ex.getMessage());
                     Logger.getLogger(CreateStory.class.getName()).log(Level.SEVERE, null, ex);
                 }
+
+                // close the form
+                closeForm();
             }
         } else {
             JOptionPane.showMessageDialog(this, "Please enter the story title!");
         }
     }//GEN-LAST:event_saveStoryActionPerformed
+
+    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
+        closeForm();
+    }//GEN-LAST:event_cancelActionPerformed
+
+    /*
+     * Close this form and show the Adult home
+     */
+    private void closeForm() {
+        Global.container.setDisplay(new AdultHome());
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AssignStory;
     private javax.swing.JPanel assignstoryPanel;
@@ -541,61 +623,6 @@ public class CreateStory extends javax.swing.JPanel {
     private javax.swing.JLabel storyTitleLabel;
     private javax.swing.JTextField txtTitle;
     // End of variables declaration//GEN-END:variables
-
-    /**
-     * @return the _pages
-     */
-    public LinkedList<Page> getPages() {
-        return _pages;
-    }
-
-    /*
-     * Add a new page to the current pages list of the story
-     */
-    public void addPage(Page page) {
-        this._pages.add(page);
-
-        if (model == null) {
-            model = new DefaultListModel();
-        }
-
-        pageList.removeAll();
-        model.clear();
-
-        for (Page p : getPages()) {
-            model.addElement(p.getText());
-        }
-
-        pageList.setModel(model);
-    }
-
-    /*
-     * Edit the page at the position @param index with the new value @param page
-     */
-    public void updatePage(int index, Page page) {
-        this._pages.set(index, page);
-        model.clear();
-
-        for (Page p : getPages()) {
-            model.addElement(p.getText());
-        }
-
-        pageList.setModel(model);
-    }
-
-    /**
-     * @return the _storyID
-     */
-    public int getStoryID() {
-        return _storyID;
-    }
-
-    /**
-     * @param storyID the _storyID to set
-     */
-    public void setStoryID(int storyID) {
-        this._storyID = storyID;
-    }
 
     class PageListMouseListener implements MouseListener {
 
