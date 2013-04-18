@@ -4,6 +4,9 @@
  */
 package view;
 
+import com.uoy.sb.Global;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Y0239881
@@ -60,6 +63,11 @@ public class ChildHome extends javax.swing.JPanel {
         btnPrint.setText("Print");
 
         jButton1.setText("Exit");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout buttonPanelLayout = new org.jdesktop.layout.GroupLayout(buttonPanel);
         buttonPanel.setLayout(buttonPanelLayout);
@@ -70,7 +78,7 @@ public class ChildHome extends javax.swing.JPanel {
                     .add(btnRead, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(btnPrint, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(jButton1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
         buttonPanelLayout.setVerticalGroup(
             buttonPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -105,7 +113,7 @@ public class ChildHome extends javax.swing.JPanel {
             storyPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(storyPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -141,6 +149,13 @@ public class ChildHome extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (JOptionPane.showConfirmDialog(null, "Do you want to quit?", "Quit program", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            Global.container.setVisible(false);
+            System.exit(0);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnRead;

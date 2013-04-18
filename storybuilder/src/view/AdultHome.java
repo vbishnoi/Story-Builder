@@ -135,6 +135,7 @@ public class AdultHome extends javax.swing.JPanel {
         buttonViewFeedback = new javax.swing.JButton();
         buttonPrintStory = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        btnExit = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(650, 650));
 
@@ -291,6 +292,13 @@ public class AdultHome extends javax.swing.JPanel {
                     .addContainerGap(232, Short.MAX_VALUE)))
         );
 
+        btnExit.setText("Exit");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -305,7 +313,11 @@ public class AdultHome extends javax.swing.JPanel {
                     .add(layout.createSequentialGroup()
                         .add(tabsPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(buttonPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(layout.createSequentialGroup()
+                                .add(6, 6, 6)
+                                .add(btnExit))
+                            .add(buttonPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -318,7 +330,10 @@ public class AdultHome extends javax.swing.JPanel {
                 .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(tabsPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(buttonPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(layout.createSequentialGroup()
+                        .add(buttonPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(btnExit)))
                 .addContainerGap(84, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -399,8 +414,17 @@ public class AdultHome extends javax.swing.JPanel {
     private void buttonPrintStoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPrintStoryActionPerformed
         Global.container.showModalDialog(new printPanel(), "Print story");
     }//GEN-LAST:event_buttonPrintStoryActionPerformed
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        if (JOptionPane.showConfirmDialog(null, "Do you want to quit?", "Quit program", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            Global.container.setVisible(false);
+            System.exit(0);
+        }
+    }//GEN-LAST:event_btnExitActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList allStoryList;
+    private javax.swing.JButton btnExit;
     private javax.swing.JButton btnManageChildren;
     private javax.swing.JButton btnNewStory;
     private javax.swing.JButton buttonDeleteStory;
