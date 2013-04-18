@@ -11,7 +11,7 @@ import java.awt.print.*;
 
 /**
  *
- * @author 
+ * @author
  */
 public class printPanel extends javax.swing.JPanel {
 
@@ -21,35 +21,36 @@ public class printPanel extends javax.swing.JPanel {
     public printPanel() {
         initComponents();
     }
-    
-  public void printStory(){
 
-  PrinterJob pj = PrinterJob.getPrinterJob();
-  // add the title to the print
-  pj.setJobName(" Story Name ");
+    public void printStory() {
 
-  pj.setPrintable (new Printable() {    
-    public int print(Graphics pg, PageFormat pf, int pageNum){
-      if (pageNum > 0){
-      return Printable.NO_SUCH_PAGE;
-      }
+        PrinterJob pj = PrinterJob.getPrinterJob();
+        // add the title to the print
+        pj.setJobName(" Story Name ");
 
-      Graphics2D g2 = (Graphics2D) pg;
-      g2.translate(pf.getImageableX(), pf.getImageableY());
-      printPanel.paint(g2);
-      return Printable.PAGE_EXISTS;
+        pj.setPrintable(new Printable() {
+            public int print(Graphics pg, PageFormat pf, int pageNum) {
+                if (pageNum > 0) {
+                    return Printable.NO_SUCH_PAGE;
+                }
+
+                Graphics2D g2 = (Graphics2D) pg;
+                g2.translate(pf.getImageableX(), pf.getImageableY());
+                printPanel.paint(g2);
+                return Printable.PAGE_EXISTS;
+            }
+        });
+        if (pj.printDialog() == false) {
+            return;
+        }
+
+        try {
+            pj.print();
+        } catch (PrinterException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
     }
-  });
-  if (pj.printDialog() == false)
-  return;
 
-  try {
-        pj.print();
-  } catch (PrinterException ex) {
-        
-  }
-}
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -141,7 +142,6 @@ public class printPanel extends javax.swing.JPanel {
     private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonActionPerformed
         printStory();
     }//GEN-LAST:event_printButtonActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel buttonPanel;
     private javax.swing.JButton cancelButton;

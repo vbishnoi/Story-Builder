@@ -22,14 +22,10 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.BorderFactory;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import model.Page;
 import model.Story;
 import sun.audio.AudioPlayer;
@@ -82,7 +78,6 @@ public class CreatePage extends javax.swing.JPanel {
                     txtImage1.setText(images.get(0));
                     txtImage2.setText(images.get(1));
                 }
-
             }
 
             txtContent.setText(currentPage.getText());

@@ -244,6 +244,11 @@ public class AdultHome extends javax.swing.JPanel {
         buttonViewFeedback.setText("Vied Feedback");
 
         buttonPrintStory.setText("Print Story");
+        buttonPrintStory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonPrintStoryActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("View Story");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -378,6 +383,11 @@ public class AdultHome extends javax.swing.JPanel {
 
         Global.container.setDisplay(panel);
     }//GEN-LAST:event_buttonDeleteStoryActionPerformed
+
+    private void buttonPrintStoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPrintStoryActionPerformed
+        Global.container.showModalDialog(new printPanel(), "Print story");
+    }//GEN-LAST:event_buttonPrintStoryActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList allStoryList;
     private javax.swing.JButton btnManageChildren;
