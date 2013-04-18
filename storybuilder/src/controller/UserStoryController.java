@@ -121,16 +121,16 @@ public class UserStoryController {
                                 item.setUser(el.getAttributeValue(Common.Variables.ASSIGNED_STORY_USER));
 
                                 result.add(item);
-                            } else {
-                                item = new AssignedStory();
-
-                                item.setIsDone(b);
-                                item.setFeedback(el.getChildText(Common.Variables.ASSIGNED_STORY_FEEDBACK));
-                                item.setStory(el.getAttributeValue(Common.Variables.ASSIGNED_STORY_STORY));
-                                item.setUser(el.getAttributeValue(Common.Variables.ASSIGNED_STORY_USER));
-
-                                result.add(item);
                             }
+                        } else {
+                            item = new AssignedStory();
+
+                            item.setIsDone(b);
+                            item.setFeedback(el.getChildText(Common.Variables.ASSIGNED_STORY_FEEDBACK));
+                            item.setStory(el.getAttributeValue(Common.Variables.ASSIGNED_STORY_STORY));
+                            item.setUser(el.getAttributeValue(Common.Variables.ASSIGNED_STORY_USER));
+
+                            result.add(item);
                         }
                     } else {
                         throw new Exception("status of assigned story is empty");

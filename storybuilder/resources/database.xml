@@ -111,10 +111,7 @@
         <page>
           <content>gg</content>
           <sound />
-          <images>
-            <image>/Users/tuanva/Pictures/IMAG0025.jpg</image>
-            <image>/Users/tuanva/Pictures/IMAG0022.jpg</image>
-          </images>
+          <images />
         </page>
       </pages>
     </story>
@@ -188,7 +185,7 @@
       <done>1</done>
       <feedback />
     </item>
-    <item story="1" user="Helen">
+    <item story="1" user="Anna">
       <done>0</done>
       <feedback />
     </item>
@@ -205,6 +202,10 @@
       <feedback />
     </item>
     <item story="3" user="Helen">
+      <done>0</done>
+      <feedback />
+    </item>
+    <item story="4" user="Helen">
       <done>0</done>
       <feedback />
     </item>
