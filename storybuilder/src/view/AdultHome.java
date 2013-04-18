@@ -5,12 +5,22 @@
 package view;
 
 import com.uoy.sb.Global;
+import com.uoy.sb.ImageComponent;
 import controller.StoryController;
+import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import model.Story;
 
@@ -19,6 +29,7 @@ import model.Story;
  * @author Y0239881
  */
 public class AdultHome extends javax.swing.JPanel {
+
     private LinkedList<Story> allStories = null;
     private LinkedList<Story> createdByMe = null;
 
@@ -27,7 +38,7 @@ public class AdultHome extends javax.swing.JPanel {
      */
     public AdultHome() {
         initComponents();
-        
+
         StoryController sc = new StoryController();
         allStories = sc.getAllStories();
         createdByMe = sc.getStoriesByUser(Global.loggedInUser);
@@ -57,6 +68,7 @@ public class AdultHome extends javax.swing.JPanel {
     }
 
     class StoryListMouseListener implements MouseListener {
+
         @Override
         public void mouseClicked(MouseEvent e) {
             JList list = (JList) e.getSource();
@@ -67,7 +79,7 @@ public class AdultHome extends javax.swing.JPanel {
 
 //                CreatePage pe = null;
                 CreateStory story = null;
-                
+
                 if (jTabs.getSelectedIndex() == 0) {
                     story = new CreateStory(createdByMe.get(selectedIndex).getId());
                 } else {
@@ -98,14 +110,13 @@ public class AdultHome extends javax.swing.JPanel {
 //            throw new UnsupportedOperationException("Not supported yet.");
         }
     }
-    
+
 //    @Override
 //    public void addNotify() {
 //        getParent().revalidate();
 //        repaint();
 //        super.addNotify();
 //    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -162,15 +173,15 @@ public class AdultHome extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 473, Short.MAX_VALUE)
+            .add(0, 457, Short.MAX_VALUE)
             .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE))
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 415, Short.MAX_VALUE)
+            .add(0, 397, Short.MAX_VALUE)
             .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE))
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE))
         );
 
         jTabs.addTab("My Stories", jPanel1);
@@ -186,11 +197,11 @@ public class AdultHome extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE)
+            .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
+            .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
         );
 
         jTabs.addTab("All stories", jPanel2);
@@ -223,6 +234,11 @@ public class AdultHome extends javax.swing.JPanel {
         });
 
         buttonDeleteStory.setText("Delete Story");
+        buttonDeleteStory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonDeleteStoryActionPerformed(evt);
+            }
+        });
 
         buttonViewFeedback.setText("Vied Feedback");
 
@@ -306,7 +322,7 @@ public class AdultHome extends javax.swing.JPanel {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(tabsPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(buttonPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -316,14 +332,31 @@ public class AdultHome extends javax.swing.JPanel {
 
     private void btnManageChildrenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageChildrenActionPerformed
         Global.container.setDisplay(new ChildList());
-        
+
     }//GEN-LAST:event_btnManageChildrenActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Global.container.setDisplay(new ReadStory(1));
+        Global.container.setDisplay(new ReadStory(4));
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void buttonDeleteStoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteStoryActionPerformed
+        JPanel panel = new JPanel();
+//        panel.add(new ImageComponent("/Users/tuanva/Pictures/IMAG0020.jpg"));
+
+        Image image = null;
+        try {
+            image = ImageIO.read(new File("/Users/tuanva/Pictures/IMAG0020.jpg"));
+        } catch (IOException ex) {
+            Logger.getLogger(AdultHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        JLabel lblimage = new JLabel(new ImageIcon(image));
+        
+        panel.add(lblimage);
+        
+        Global.container.setDisplay(panel);
+    }//GEN-LAST:event_buttonDeleteStoryActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList allStoryList;
     private javax.swing.JButton btnManageChildren;

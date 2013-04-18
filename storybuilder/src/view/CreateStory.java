@@ -137,7 +137,8 @@ public final class CreateStory extends javax.swing.JPanel {
             pageList.setModel(model);
 
             try {
-                LinkedList<AssignedStory> assigned = usc.getAssignedChidrenByStory(getStoryID(), false);
+                // get all un-finished assigned stories
+                LinkedList<AssignedStory> assigned = usc.getAssignedChidrenToStory(getStoryID(), true);
 
                 if (assigned != null && !assigned.isEmpty()) {
 
@@ -190,6 +191,7 @@ public final class CreateStory extends javax.swing.JPanel {
         jcbBgColor.setModel(new DefaultComboBoxModel<>(colors));
         jcbBgColor.setSelectedIndex(colors.length - 2);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -529,7 +531,7 @@ public final class CreateStory extends javax.swing.JPanel {
         if (!txtTitle.getText().equals("")) {
             // new story
             if (getStoryID() == 0) {
-                Story story = new Story();
+                story = new Story();
                 story.setTitle(txtTitle.getText());
                 story.setPages(this.getPages());
                 story.setFont(jcbFonts.getSelectedItem().toString());
@@ -552,8 +554,6 @@ public final class CreateStory extends javax.swing.JPanel {
 
                     if (selectedChildren != null && selectedChildren.size() > 0) {
                         usc.assignStory(story, selectedChildren);
-
-
                     } else {
                         System.err.println("No children selected");
                     }

@@ -121,7 +121,6 @@ public class CreatePage extends javax.swing.JPanel {
         }
 
         Page page = new Page();
-
 //        page.setBackgroundImage(txtImage1.getText());
 
         if (!txtImage1.getText().equals("")) {

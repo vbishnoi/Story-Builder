@@ -269,7 +269,7 @@ public class StoryController {
                         page.setText(e.getChildText(Common.Variables.PAGE_CONTENT));
                         page.setSound(e.getChildText(Common.Variables.PAGE_SOUND));
 
-                        Element images = pagesContainer.getChild(Common.Variables.PAGE_IMAGES);
+                        Element images = e.getChild(Common.Variables.PAGE_IMAGES);
                         if (images != null) {
                             List<Element> imageList = images.getChildren(Common.Variables.PAGE_IMAGE);
 

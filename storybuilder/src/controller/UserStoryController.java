@@ -46,7 +46,7 @@ public class UserStoryController {
      * @param storyID the story to get the assigned children
      * @param notDone If true return the un-finished stories otherwise return all.
      */
-    public LinkedList<AssignedStory> getAssignedChidrenByStory(int storyID, boolean notDone) throws Exception {
+    public LinkedList<AssignedStory> getAssignedChidrenToStory(int storyID, boolean notDone) throws Exception {
         String query = XpathBuilder.GetElementsByAttrNameAndValue(Common.Variables.ASSIGNED_STORY, Common.Variables.ASSIGNED_STORY_STORY, String.valueOf(storyID));
 
         return getAssignedList(query, notDone);
@@ -56,7 +56,7 @@ public class UserStoryController {
         Document doc = parser.getDocument();
         Element parent = parser.getElement("//assigned");
 
-        LinkedList<AssignedStory> assigned = getAssignedChidrenByStory(story.getId(), false);
+        LinkedList<AssignedStory> assigned = getAssignedChidrenToStory(story.getId(), false);
 
         // delete all un-finished story first
         if (elements != null && elements.size() > 0) {
@@ -66,7 +66,6 @@ public class UserStoryController {
                         e.detach();
                     }
                 }
-
             }
         }
 
@@ -77,7 +76,7 @@ public class UserStoryController {
             ne.setAttribute(new Attribute(Common.Variables.ASSIGNED_STORY_STORY, String.valueOf(story.getId())));
             ne.setAttribute(new Attribute(Common.Variables.ASSIGNED_STORY_USER, username));
 
-            ne.addContent(new Element(Common.Variables.ASSIGNED_STORY_DONE).setText("0"));
+            ne.addContent(new Element(Common.Variables.ASSIGNED_STORY_DONE).setText("FALSE"));
             ne.addContent(new Element(Common.Variables.ASSIGNED_STORY_FEEDBACK).setText(""));
 
             if (parent != null) {

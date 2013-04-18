@@ -27,7 +27,7 @@
       <title>Buzzy Bee</title>
       <bgcolor>WHITE</bgcolor>
       <fontsize>10</fontsize>
-      <font>Abadi MT Condensed Extra Bold</font>
+      <font>Arial</font>
       <textcolor>BLACK</textcolor>
       <pages>
         <page>
@@ -63,7 +63,6 @@
         <page>
           <content>Rescued again.</content>
           <sound />
-          <image />
           <images />
         </page>
       </pages>
@@ -112,6 +111,14 @@
           <content>gg</content>
           <sound />
           <images />
+        </page>
+        <page>
+          <content>123</content>
+          <sound />
+          <images>
+            <image>/Users/tuanva/Pictures/IMAG0020.jpg</image>
+            <image>/Users/tuanva/Pictures/IMAG0026.jpg</image>
+          </images>
         </page>
       </pages>
     </story>
@@ -182,31 +189,43 @@
   </stories>
   <assigned>
     <item story="1" user="Helen">
-      <done>1</done>
-      <feedback />
-    </item>
-    <item story="1" user="Anna">
-      <done>0</done>
+      <done>TRUE</done>
       <feedback />
     </item>
     <item story="0" user="Helen">
-      <done>0</done>
+      <done>FALSE</done>
       <feedback />
     </item>
     <item story="8" user="Anna">
-      <done>0</done>
+      <done>FALSE</done>
       <feedback />
     </item>
     <item story="8" user="Helen">
-      <done>0</done>
+      <done>FALSE</done>
       <feedback />
     </item>
     <item story="3" user="Helen">
-      <done>0</done>
+      <done>FALSE</done>
       <feedback />
     </item>
     <item story="4" user="Helen">
-      <done>0</done>
+      <done>FALSE</done>
+      <feedback />
+    </item>
+    <item story="1" user="Anna">
+      <done>FALSE</done>
+      <feedback />
+    </item>
+    <item story="4" user="Helen">
+      <done>FALSE</done>
+      <feedback />
+    </item>
+    <item story="4" user="Helen">
+      <done>FALSE</done>
+      <feedback />
+    </item>
+    <item story="4" user="Helen">
+      <done>FALSE</done>
       <feedback />
     </item>
   </assigned>
