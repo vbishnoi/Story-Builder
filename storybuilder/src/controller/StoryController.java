@@ -7,6 +7,7 @@ package controller;
 import com.uoy.sb.Common;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
@@ -175,8 +176,10 @@ public class StoryController {
 
             // delete all current pages
             if (pageElements != null && !pageElements.isEmpty()) {
-                for (Element oldPage : pageElements) {
-                    oldPage.detach();
+                Iterator itr = pageElements.iterator();
+                while (itr.hasNext()) {
+                    Element child = (Element) itr.next();
+                    itr.remove();
                 }
             }
 
@@ -198,51 +201,10 @@ public class StoryController {
                             imagesElm.addContent(new Element(Common.Variables.PAGE_IMAGE).setText(img));
                         }
                     }
-                    
+
                     pagesContainer.addContent(pe);
                 }
             }
-            
-//            story.addContent(pagesContainer);
-
-//            if (pageElements.size() == pages.size()) {
-//                Element e = null;
-//                Page p = null;
-//
-//                for (int i = 0; i < pageElements.size(); i++) {
-//                    e = pageElements.get(i);
-//                    p = pages.get(i);
-//
-//                    e.getChild(Common.Variables.PAGE_CONTENT).setText(p.getText());
-////                    e.getChild(Common.Variables.PAGE_CONTENT).setText("123244");
-//
-//                    Element images_elm = e.getChild(Common.Variables.PAGE_IMAGES);
-//
-//                    if (images_elm != null) {
-//                        List<Element> images = images_elm.getChildren(Common.Variables.PAGE_IMAGE);
-//
-//                        // detach (delete) all current images
-//                        if (images != null && images.size() > 0) {
-//                            for (Element img : images) {
-//                                if (img != null) {
-//                                    img.detach();
-//                                }
-//                            }
-//                        }
-//
-//                        // then add new images again
-//                        if (p.getImages() != null && p.getImages().size() > 0) {
-//                            for (String img : p.getImages()) {
-//                                images_elm.addContent(new Element(Common.Variables.PAGE_IMAGE).setText(img));
-//                            }
-//                        }
-//                    }
-//
-//                    e.getChild(Common.Variables.PAGE_SOUND).setText(p.getSound());
-//
-////                    pageElements.set(i, e);
-//                }
-//            }
 
             // create new output writer to update back to file
             XMLOutputter xmlOutput = new XMLOutputter();

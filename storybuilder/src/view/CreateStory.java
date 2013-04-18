@@ -26,6 +26,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.colorchooser.AbstractColorChooserPanel;
+import model.AssignedStory;
 import model.Page;
 import model.Story;
 
@@ -36,8 +37,9 @@ import model.User;
  * @author Y0199223
  */
 public class CreateStory extends javax.swing.JPanel {
-
+    
     private StoryController sc = null;
+    private UserStoryController usc = null;
     private int _storyID = 0;
     private DefaultListModel model;
     private LinkedList<Page> _pages;
@@ -55,17 +57,17 @@ public class CreateStory extends javax.swing.JPanel {
      */
     public void addPage(Page page) {
         this._pages.add(page);
-
+        
         if (model == null) {
             model = new DefaultListModel();
         }
-
+        
         model.clear();
-
+        
         for (Page p : getPages()) {
             model.addElement(p.getText());
         }
-
+        
         pageList.setModel(model);
     }
 
@@ -75,11 +77,11 @@ public class CreateStory extends javax.swing.JPanel {
     public void updatePage(int index, Page page) {
         this._pages.set(index, page);
         model.clear();
-
+        
         for (Page p : getPages()) {
             model.addElement(p.getText());
         }
-
+        
         pageList.setModel(model);
     }
 
@@ -97,7 +99,6 @@ public class CreateStory extends javax.swing.JPanel {
         this._storyID = storyID;
     }
 
-
     /**
      * Creates new form CreateStory
      */
@@ -113,59 +114,73 @@ public class CreateStory extends javax.swing.JPanel {
     public CreateStory(int StoryID) {
         initComponents();
         init();
-
+        
         this.setStoryID(StoryID);
-
+        
         sc = new StoryController();
+        usc = new UserStoryController();
         _pages = new LinkedList<>();
 
         // load story data
         story = sc.getStory(getStoryID());
-
+        
         if (story != null) {
             model = new DefaultListModel();
             txtTitle.setText(story.getTitle());
             _pages = story.getPages();
-
+            
             for (Page p : getPages()) {
                 model.addElement(p.getText());
             }
-
+            
             pageList.setModel(model);
+            
+            try {
+                LinkedList<AssignedStory> assigned = usc.getAssignedChidrenByStory(getStoryID(), false);
+                
+                if(assigned != null && !assigned.isEmpty()) {
+                    for(AssignedStory as : assigned) {
+                        lstChildren.setSelectedValue(as.getUser(), true);
+                    }
+                }
+                
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage());
+            }
         }
     }
-
+    
     private void init() {
         _pages = new LinkedList<>();
         pageList.addMouseListener(new PageListMouseListener());
-
+        
         DefaultComboBoxModel fontSize = new DefaultComboBoxModel();
         for (int i = 10; i < 32; i++) {
             fontSize.addElement(i);
         }
-
+        
         jcbFontSize.setModel(fontSize);
-
+        
         GraphicsEnvironment e = GraphicsEnvironment.getLocalGraphicsEnvironment();
         String[] fonts = e.getAvailableFontFamilyNames(); // Get the fonts
         jcbFonts.setModel(new DefaultComboBoxModel(fonts));
         jcbFonts.setSelectedItem("Arial");
-
+        
         UserController uc = new UserController();
         LinkedList<User> children = uc.getAllChildren();
-
+        
         DefaultListModel childrenModel = new DefaultListModel();
         for (User u : children) {
             childrenModel.addElement(u.getName());
         }
-
+        
         lstChildren.setModel(childrenModel);
-
+        
         String[] colors = {"RED", "CYAN", "BLUE", "GREEN", "YELLOW", "DARK_GRAY", "LIGHT_GRAY", "MAGENTA", "ORANGE", "PINK", "WHITE", "BLACK"};
         jcbTextColor.setRenderer(new ColorListCellRenderer());
         jcbTextColor.setModel(new DefaultComboBoxModel<>(colors));
         jcbTextColor.setSelectedIndex(colors.length - 1);
-
+        
         jcbBgColor.setRenderer(new ColorListCellRenderer());
         jcbBgColor.setModel(new DefaultComboBoxModel<>(colors));
         jcbBgColor.setSelectedIndex(colors.length - 2);
@@ -476,36 +491,36 @@ public class CreateStory extends javax.swing.JPanel {
         page.setParentPanel(this);
         Global.container.showModalDialog(page, "Create new page");
     }//GEN-LAST:event_newPageActionPerformed
-
+    
     private void editPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPageActionPerformed
         if (pageList.getSelectedIndex() >= 0) {
             CreatePage page = new CreatePage();
             page.setParentPanel(this);
             page.setPage(this.getPages().get(pageList.getSelectedIndex()));
             page.setPageIndex(pageList.getSelectedIndex());
-
+            
             Global.container.showModalDialog(page, "Edit page");
         } else {
             JOptionPane.showMessageDialog(SwingUtilities.getWindowAncestor(this), "Please select a page to edit");
         }
     }//GEN-LAST:event_editPageActionPerformed
-
+    
     private void deletePageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePageActionPerformed
         DefaultListModel dataModel = new DefaultListModel();
         int selectedIndex = pageList.getSelectedIndex();
-
+        
         if (pageList.getSelectedIndex() >= 0) {
             dataModel = (DefaultListModel) pageList.getModel();
             dataModel.remove(selectedIndex);
-
+            
             _pages.remove(selectedIndex);
         }
     }//GEN-LAST:event_deletePageActionPerformed
-
+    
     private void saveStoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveStoryActionPerformed
         sc = new StoryController();
         UserStoryController usc = null;
-
+        
         if (!txtTitle.getText().equals("")) {
             // new story
             if (getStoryID() == 0) {
@@ -521,19 +536,19 @@ public class CreateStory extends javax.swing.JPanel {
                 // insert story into database
                 int sID = sc.createNewStory(story);
                 story.setId(sID);
-
+                
                 System.out.println("after story created");
-
+                
                 usc = new UserStoryController();
 
                 // assign to chidren
                 try {
                     List<String> selectedChildren = lstChildren.getSelectedValuesList();
-
+                    
                     if (selectedChildren != null && selectedChildren.size() > 0) {
                         usc.assignStory(story, selectedChildren);
-
-
+                        
+                        
                     } else {
                         System.err.println("No children selected");
                     }
@@ -555,20 +570,20 @@ public class CreateStory extends javax.swing.JPanel {
 
                 // update
                 sc.updateStory(story);
-
+                
                 usc = new UserStoryController();
 
                 // re-assign to chidren
                 try {
                     List<String> selectedChildren = lstChildren.getSelectedValuesList();
-
+                    
                     if (selectedChildren != null && selectedChildren.size() > 0) {
                         usc.assignStory(story, selectedChildren);
-
+                        
                     } else {
                         System.err.println("No chidren selected");
                     }
-
+                    
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(this, ex.getMessage());
                     Logger.getLogger(CreateStory.class.getName()).log(Level.SEVERE, null, ex);
@@ -581,7 +596,7 @@ public class CreateStory extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please enter the story title!");
         }
     }//GEN-LAST:event_saveStoryActionPerformed
-
+    
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         closeForm();
     }//GEN-LAST:event_cancelActionPerformed
@@ -592,7 +607,6 @@ public class CreateStory extends javax.swing.JPanel {
     private void closeForm() {
         Global.container.setDisplay(new AdultHome());
     }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AssignStory;
     private javax.swing.JPanel assignstoryPanel;
@@ -625,7 +639,7 @@ public class CreateStory extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     class PageListMouseListener implements MouseListener {
-
+        
         @Override
         public void mouseClicked(MouseEvent e) {
             JList list = (JList) e.getSource();
@@ -633,31 +647,31 @@ public class CreateStory extends javax.swing.JPanel {
             // double click
             if (e.getClickCount() == 2) {
                 int selectedIndex = list.getSelectedIndex();
-
+                
                 CreatePage page = new CreatePage();
                 page.setParentPanel(CreateStory.this);
                 page.setPage(getPages().get(selectedIndex));
                 page.setPageIndex(selectedIndex);
-
+                
                 Global.container.showModalDialog(page, "Edit page");
             }
         }
-
+        
         @Override
         public void mousePressed(MouseEvent e) {
 //            throw new UnsupportedOperationException("Not supported yet.");
         }
-
+        
         @Override
         public void mouseReleased(MouseEvent e) {
 //            throw new UnsupportedOperationException("Not supported yet.");
         }
-
+        
         @Override
         public void mouseEntered(MouseEvent e) {
 //            throw new UnsupportedOperationException("Not supported yet.");
         }
-
+        
         @Override
         public void mouseExited(MouseEvent e) {
 //            throw new UnsupportedOperationException("Not supported yet.");

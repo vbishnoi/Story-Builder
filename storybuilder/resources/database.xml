@@ -92,21 +92,10 @@
         <page>
           <content>page 2</content>
           <sound />
-          <images>
-            <image />
-            <image />
-          </images>
+          <images />
         </page>
         <page>
           <content>page 1111</content>
-          <sound />
-          <images>
-            <image />
-            <image />
-          </images>
-        </page>
-        <page>
-          <content>page 2</content>
           <sound />
           <images />
         </page>

@@ -33,22 +33,23 @@ public class UserStoryController {
     /*
      * Return a list of story that assigned to the @param username
      * @param username name of the user (child) to get data
-     * @param isDone wherether the assigned stories is read or not
+     * @param notDone If true return the un-finished stories otherwise return all.
      */
-    public LinkedList<AssignedStory> getAssignedStoriesByUser(String username, boolean isDone) throws Exception {
+    public LinkedList<AssignedStory> getAssignedStoriesByUser(String username, boolean notDone) throws Exception {
         String query = XpathBuilder.GetElementsByAttrNameAndValue(Common.Variables.ASSIGNED_STORY, Common.Variables.ASSIGNED_STORY_USER, username);
 
-        return getAssignedList(query, isDone);
+        return getAssignedList(query, notDone);
     }
 
     /*
      * Return the list of assigned children to a specific story
      * @param storyID the story to get the assigned children
+     * @param notDone If true return the un-finished stories otherwise return all.
      */
-    public LinkedList<AssignedStory> getAssignedChidrenByStory(int storyID, boolean isDone) throws Exception {
+    public LinkedList<AssignedStory> getAssignedChidrenByStory(int storyID, boolean notDone) throws Exception {
         String query = XpathBuilder.GetElementsByAttrNameAndValue(Common.Variables.ASSIGNED_STORY, Common.Variables.ASSIGNED_STORY_STORY, String.valueOf(storyID));
 
-        return getAssignedList(query, isDone);
+        return getAssignedList(query, notDone);
     }
 
     public void assignStory(Story story, List<String> children) throws Exception {
@@ -68,7 +69,7 @@ public class UserStoryController {
 
             }
         }
-        
+
         // then re-insert
         for (String username : children) {
             Element ne = new Element(Common.Variables.ASSIGNED_STORY);
@@ -95,7 +96,7 @@ public class UserStoryController {
 
     }
 
-    private LinkedList<AssignedStory> getAssignedList(String query, boolean isDone) throws Exception {
+    private LinkedList<AssignedStory> getAssignedList(String query, boolean notDone) throws Exception {
         LinkedList<AssignedStory> result = null;
 
         elements = (List<Element>) parser.getElements(query);
@@ -110,17 +111,27 @@ public class UserStoryController {
                     if (!strDone.equals("")) {
                         boolean b = Boolean.parseBoolean(strDone);
 
-                        if (Boolean.compare(b, isDone) == 0) {
-                            item = new AssignedStory();
+                        if (notDone) {
+                            if (Boolean.compare(b, false) == 0) {
+                                item = new AssignedStory();
 
-                            item.setIsDone(b);
-                            item.setFeedback(el.getChildText(Common.Variables.ASSIGNED_STORY_FEEDBACK));
-                            item.setStory(el.getAttributeValue(Common.Variables.ASSIGNED_STORY_STORY));
-                            item.setUser(el.getAttributeValue(Common.Variables.ASSIGNED_STORY_USER));
+                                item.setIsDone(b);
+                                item.setFeedback(el.getChildText(Common.Variables.ASSIGNED_STORY_FEEDBACK));
+                                item.setStory(el.getAttributeValue(Common.Variables.ASSIGNED_STORY_STORY));
+                                item.setUser(el.getAttributeValue(Common.Variables.ASSIGNED_STORY_USER));
 
-                            result.add(item);
+                                result.add(item);
+                            } else {
+                                item = new AssignedStory();
+
+                                item.setIsDone(b);
+                                item.setFeedback(el.getChildText(Common.Variables.ASSIGNED_STORY_FEEDBACK));
+                                item.setStory(el.getAttributeValue(Common.Variables.ASSIGNED_STORY_STORY));
+                                item.setUser(el.getAttributeValue(Common.Variables.ASSIGNED_STORY_USER));
+
+                                result.add(item);
+                            }
                         }
-
                     } else {
                         throw new Exception("status of assigned story is empty");
                     }
