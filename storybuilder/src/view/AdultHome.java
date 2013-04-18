@@ -367,21 +367,9 @@ public class AdultHome extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void buttonDeleteStoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteStoryActionPerformed
-        JPanel panel = new JPanel();
-//        panel.add(new ImageComponent("/Users/tuanva/Pictures/IMAG0020.jpg"));
-
-        Image image = null;
-        try {
-            image = ImageIO.read(new File("/Users/tuanva/Pictures/IMAG0020.jpg"));
-        } catch (IOException ex) {
-            Logger.getLogger(AdultHome.class.getName()).log(Level.SEVERE, null, ex);
+        if(JOptionPane.showConfirmDialog(null, "Do you want to delete this story?", "Delete story?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            
         }
-
-        JLabel lblimage = new JLabel(new ImageIcon(image));
-
-        panel.add(lblimage);
-
-        Global.container.setDisplay(panel);
     }//GEN-LAST:event_buttonDeleteStoryActionPerformed
 
     private void buttonPrintStoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPrintStoryActionPerformed
