@@ -330,8 +330,9 @@ public class ReadStory extends javax.swing.JPanel {
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
 
-        if(_finish) {
+        if(_finish && Global.group.equals(UserGroup.Child)) {
             GiveFeedback fb = new GiveFeedback();
+            Global.container.showModalDialog(fb, "Feedback");
         }
         
         _pageIndex = (_pageIndex < storyPages.size() - 1) ? _pageIndex + 1 : storyPages.size() - 1;

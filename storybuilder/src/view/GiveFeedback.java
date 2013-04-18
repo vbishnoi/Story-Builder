@@ -4,6 +4,13 @@
  */
 package view;
 
+import com.uoy.sb.Global;
+import controller.UserStoryController;
+import javax.swing.ButtonGroup;
+import javax.swing.JDialog;
+import javax.swing.SwingUtilities;
+import model.UserGroup;
+
 /**
  *
  * @author Radical
@@ -31,6 +38,13 @@ public class GiveFeedback extends javax.swing.JPanel {
      */
     public GiveFeedback() {
         initComponents();
+        
+        btnGroup = new ButtonGroup();
+        
+        btnGroup.add(rdMad);
+        btnGroup.add(rdConfused);
+        btnGroup.add(rdHappy);
+        btnGroup.add(rdSad);
     }
 
     /**
@@ -42,11 +56,12 @@ public class GiveFeedback extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnGroup = new javax.swing.ButtonGroup();
         btnFinish = new javax.swing.JButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        rdConfused = new javax.swing.JRadioButton();
+        rdMad = new javax.swing.JRadioButton();
+        rdSad = new javax.swing.JRadioButton();
+        rdHappy = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
 
         btnFinish.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -58,17 +73,17 @@ public class GiveFeedback extends javax.swing.JPanel {
             }
         });
 
-        jRadioButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jRadioButton4.setText("Confused");
+        rdConfused.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rdConfused.setText("Confused");
 
-        jRadioButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jRadioButton3.setText("Mad");
+        rdMad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rdMad.setText("Mad");
 
-        jRadioButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jRadioButton2.setText("Sad");
+        rdSad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rdSad.setText("Sad");
 
-        jRadioButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jRadioButton1.setText("Happy");
+        rdHappy.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rdHappy.setText("Happy");
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel1.setText("How do you feel after reading the story?");
@@ -82,10 +97,10 @@ public class GiveFeedback extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton4)
-                            .addComponent(jRadioButton2)
-                            .addComponent(jRadioButton1)
-                            .addComponent(jRadioButton3)))
+                            .addComponent(rdConfused)
+                            .addComponent(rdSad)
+                            .addComponent(rdHappy)
+                            .addComponent(rdMad)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(jLabel1)))
@@ -101,13 +116,13 @@ public class GiveFeedback extends javax.swing.JPanel {
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jRadioButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                .addComponent(rdHappy, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                .addComponent(rdSad, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                .addComponent(rdMad, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                .addComponent(rdConfused, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(btnFinish)
                 .addContainerGap())
@@ -115,16 +130,29 @@ public class GiveFeedback extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFinishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinishActionPerformed
+        new UserStoryController().updateFeedback(this._storyID, Global.loggedInUser, "");
         
+        this.close();
     }//GEN-LAST:event_btnFinishActionPerformed
 
+    private void close() {
+        JDialog dialog = (JDialog) SwingUtilities.getWindowAncestor(this);
+        dialog.dispose();
+        dialog.setVisible(false);
+        
+        if(Global.group.equals(UserGroup.Child)) {
+            Global.container.setDisplay(new ChildHome());
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFinish;
+    private javax.swing.ButtonGroup btnGroup;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JRadioButton rdConfused;
+    private javax.swing.JRadioButton rdHappy;
+    private javax.swing.JRadioButton rdMad;
+    private javax.swing.JRadioButton rdSad;
     // End of variables declaration//GEN-END:variables
 
     

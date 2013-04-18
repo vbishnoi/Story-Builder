@@ -7,12 +7,16 @@ package view;
 import com.uoy.sb.Global;
 import controller.StoryController;
 import controller.UserStoryController;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import model.AssignedStory;
+import model.Story;
 
 /**
  *
@@ -20,31 +24,34 @@ import model.AssignedStory;
  */
 public class ChildHome extends javax.swing.JPanel {
 
+    private LinkedList<AssignedStory> assigned;
+
     /**
      * Creates new form ChildHome
      */
     public ChildHome() {
         initComponents();
 
-        LinkedList<AssignedStory> assigned;
+
         StoryController sc = new StoryController();
-        
+
         try {
             assigned = new UserStoryController().getAssignedStoriesByUser(Global.loggedInUser, false);
 
             if (assigned != null && !assigned.isEmpty()) {
                 DefaultListModel model = new DefaultListModel();
-                
-                for(AssignedStory as : assigned) {
+
+                for (AssignedStory as : assigned) {
                     model.addElement(sc.getStory(Integer.parseInt(as.getStory())).getTitle());
                 }
-                
+
                 lstStory.setModel(model);
             }
         } catch (Exception ex) {
             Logger.getLogger(ChildHome.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        lstStory.addMouseListener(new StoryListMouseListener());
     }
 
     /**
@@ -176,6 +183,48 @@ public class ChildHome extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private class StoryListMouseListener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            JList list = (JList) e.getSource();
+
+            // double click
+            if (e.getClickCount() == 2) {
+                int selectedIndex = list.getSelectedIndex();
+
+                if (selectedIndex >= 0) {
+                    AssignedStory as = assigned.get(selectedIndex);
+                    if (as != null) {
+                        Global.container.setDisplay(new ReadStory(Integer.parseInt(as.getStory())));
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Please select a story to read!");
+                }
+            }
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+//            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+//            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+//            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+//            throw new UnsupportedOperationException("Not supported yet.");
+        }
+    }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (JOptionPane.showConfirmDialog(null, "Do you want to quit?", "Quit program", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {

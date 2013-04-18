@@ -65,7 +65,7 @@ public class AdultHome extends javax.swing.JPanel {
         createdByMeList.addMouseListener(new StoryListMouseListener());
     }
 
-    class StoryListMouseListener implements MouseListener {
+    private class StoryListMouseListener implements MouseListener {
 
         @Override
         public void mouseClicked(MouseEvent e) {
