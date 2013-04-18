@@ -6,8 +6,13 @@ package controller;
 
 import com.uoy.sb.Common;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.AssignedStory;
 import model.Story;
 import model.User;
@@ -50,6 +55,36 @@ public class UserStoryController {
         String query = XpathBuilder.GetElementsByAttrNameAndValue(Common.Variables.ASSIGNED_STORY, Common.Variables.ASSIGNED_STORY_STORY, String.valueOf(storyID));
 
         return getAssignedList(query, notDone);
+    }
+
+    public void deleteAssignedChildren(int storyID) {
+        Document doc = parser.getDocument();
+        String query = XpathBuilder.GetElementsByAttrNameAndValue(Common.Variables.ASSIGNED_STORY, Common.Variables.ASSIGNED_STORY_STORY, String.valueOf(storyID));
+
+        elements = (List<Element>) parser.getElements(query);
+
+        if (elements != null && !elements.isEmpty()) {
+            Iterator itr = elements.iterator();
+            while (itr.hasNext()) {
+                Element child = (Element) itr.next();
+//                itr.remove();
+                child.detach();
+            }
+        }
+
+        // create new output writer to update back to file
+        XMLOutputter xmlOutput = new XMLOutputter();
+
+        // display nice nice
+        xmlOutput.setFormat(Format.getPrettyFormat());
+        try {
+            xmlOutput.output(doc, new FileWriter(Common.Variables.DATABASE_NAME));
+
+            // print out
+//                xmlOutput.output(objDoc, System.out);
+        } catch (IOException ex) {
+            Logger.getLogger(StoryController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void assignStory(Story story, List<String> children) throws Exception {

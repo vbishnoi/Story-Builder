@@ -151,6 +151,32 @@ public class StoryController {
     }
 
     /*
+     * Delete the story from database
+     */
+    public void deleteStory(Story story) {
+        Document doc = parser.getDocument();
+        Element elm = getStoryElement(story.getId());
+
+        if (elm != null) {
+            elm.detach();
+        }
+
+        // create new output writer to update back to file
+        XMLOutputter xmlOutput = new XMLOutputter();
+
+        // display nice nice
+        xmlOutput.setFormat(Format.getPrettyFormat());
+        try {
+            xmlOutput.output(doc, new FileWriter(Common.Variables.DATABASE_NAME));
+
+            // print out
+//                xmlOutput.output(objDoc, System.out);
+        } catch (IOException ex) {
+            Logger.getLogger(StoryController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    /*
      * update the xml file with the updated content
      * 
      */

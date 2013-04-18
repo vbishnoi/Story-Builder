@@ -46,7 +46,7 @@
           <images />
         </page>
         <page>
-          <content>Mmm... Hyacinths are sweeter.</content>
+          <content>Mmm... Hyacinths are sweeter...</content>
           <sound />
           <images />
         </page>
@@ -158,34 +158,6 @@
         </page>
       </pages>
     </story>
-    <story id="7" createdby="tuanva">
-      <title>newwwwww</title>
-      <bgcolor>WHITE</bgcolor>
-      <fontsize>10</fontsize>
-      <font>Abadi MT Condensed Extra Bold</font>
-      <textcolor>BLACK</textcolor>
-      <pages>
-        <page>
-          <content>vvvvv</content>
-          <sound />
-          <images />
-        </page>
-      </pages>
-    </story>
-    <story id="8" createdby="tuanva">
-      <title>ffff</title>
-      <bgcolor>WHITE</bgcolor>
-      <fontsize>10</fontsize>
-      <font>Abadi MT Condensed Extra Bold</font>
-      <textcolor>BLACK</textcolor>
-      <pages>
-        <page>
-          <content>ggg</content>
-          <sound />
-          <images />
-        </page>
-      </pages>
-    </story>
   </stories>
   <assigned>
     <item story="1" user="Helen">
@@ -193,14 +165,6 @@
       <feedback />
     </item>
     <item story="0" user="Helen">
-      <done>FALSE</done>
-      <feedback />
-    </item>
-    <item story="8" user="Anna">
-      <done>FALSE</done>
-      <feedback />
-    </item>
-    <item story="8" user="Helen">
       <done>FALSE</done>
       <feedback />
     </item>
@@ -225,6 +189,10 @@
       <feedback />
     </item>
     <item story="4" user="Helen">
+      <done>FALSE</done>
+      <feedback />
+    </item>
+    <item story="1" user="Anna">
       <done>FALSE</done>
       <feedback />
     </item>

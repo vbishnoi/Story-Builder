@@ -5,24 +5,17 @@
 package view;
 
 import com.uoy.sb.Global;
-import com.uoy.sb.ImageComponent;
 import controller.StoryController;
-import java.awt.Image;
+import controller.UserStoryController;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
-import java.io.IOException;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
+import model.AssignedStory;
 import model.Story;
 
 /**
@@ -40,7 +33,11 @@ public class AdultHome extends javax.swing.JPanel {
     public AdultHome() {
         initComponents();
 
-        StoryController sc = new StoryController();
+        populateList();
+    }
+
+    private void populateList() {
+        final StoryController sc = new StoryController();
         allStories = sc.getAllStories();
         createdByMe = sc.getStoriesByUser(Global.loggedInUser);
 
@@ -112,12 +109,6 @@ public class AdultHome extends javax.swing.JPanel {
         }
     }
 
-//    @Override
-//    public void addNotify() {
-//        getParent().revalidate();
-//        repaint();
-//        super.addNotify();
-//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -367,15 +358,47 @@ public class AdultHome extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void buttonDeleteStoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteStoryActionPerformed
-        if(JOptionPane.showConfirmDialog(null, "Do you want to delete this story?", "Delete story?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            
+        if (jTabs.getSelectedIndex() == 0) {
+            int selectedIndex = createdByMeList.getSelectedIndex();
+            if (selectedIndex >= 0) {
+
+                if (JOptionPane.showConfirmDialog(null, "Do you want to delete this story?", "Delete story?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    try {
+                        Story s = createdByMe.get(selectedIndex);
+                        if (s != null) {
+                            LinkedList<AssignedStory> assigned = new UserStoryController().getAssignedChidrenToStory(s.getId(), false);
+
+                            if (assigned != null && !assigned.isEmpty()) {
+                                if (JOptionPane.showConfirmDialog(null, "This story is associated with some children. \n Do you want to delete it?", "Delete story?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                                    // delete 
+                                    new UserStoryController().deleteAssignedChildren(s.getId());
+                                    new StoryController().deleteStory(s);
+                                    
+                                    populateList();
+                                }
+                            } else {
+                                // delete without confirmation
+                                new UserStoryController().deleteAssignedChildren(s.getId());
+                                new StoryController().deleteStory(s);
+                                
+                                populateList();
+                            }
+                        }
+                    } catch (Exception ex) {
+                        Logger.getLogger(AdultHome.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Please select a story to delete");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "You are not allowed to delete other people's story. \n Please select from \"My Stories\" tab.");
         }
     }//GEN-LAST:event_buttonDeleteStoryActionPerformed
 
     private void buttonPrintStoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPrintStoryActionPerformed
         Global.container.showModalDialog(new printPanel(), "Print story");
     }//GEN-LAST:event_buttonPrintStoryActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList allStoryList;
     private javax.swing.JButton btnManageChildren;
