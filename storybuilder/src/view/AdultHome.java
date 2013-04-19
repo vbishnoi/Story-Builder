@@ -428,7 +428,7 @@ public class AdultHome extends javax.swing.JPanel {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void buttonViewFeedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonViewFeedbackActionPerformed
-        int selectedIndex = 0;
+        int selectedIndex = -1;
         Story s = null;
         
         if (jTabs.getSelectedIndex() == 0) {
@@ -439,7 +439,7 @@ public class AdultHome extends javax.swing.JPanel {
             s = allStories.get(selectedIndex);
         }
         
-        if (selectedIndex != 0) {
+        if (selectedIndex != -1) {
             ViewFeedback vfb = new ViewFeedback(s);
             
             Global.container.showModalDialog(vfb, "View story feedback");

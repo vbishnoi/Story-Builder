@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.SwingUtilities;
 import model.AssignedStory;
+import model.Feedback;
 import model.Story;
 
 /**
@@ -31,7 +32,11 @@ public class ViewFeedback extends javax.swing.JPanel {
      */
     public ViewFeedback(Story story) {
         initComponents();
-        feedbacks = new Hashtable<String, Integer>();
+        feedbacks = new Hashtable<>();
+        feedbacks.put(Feedback.CONFUSED.toString(), 0);
+        feedbacks.put(Feedback.HAPPY.toString(), 0);
+        feedbacks.put(Feedback.SAD.toString(), 0);
+        feedbacks.put(Feedback.MAD.toString(), 0);
 
         if (story != null) {
             lblStoryName.setText(lblStoryName.getText() + story.getTitle());
@@ -45,22 +50,27 @@ public class ViewFeedback extends javax.swing.JPanel {
                         int fbCount = 0;
 
                         if (as.isDone()) {
-                            if (as.getFeedback() != null && as.getFeedback() != "") {
-                                if (feedbacks.containsKey(as.getFeedback())) {
-                                    fbCount = feedbacks.get(as.getFeedback());
-
-                                    fbCount++;
-                                }
-
+                            if ((as.getFeedback() != null) && (!as.getFeedback().equals(""))) {
+                                fbCount = feedbacks.get(as.getFeedback());
+                                fbCount = fbCount + 1;
                             }
-
-                            feedbacks.put(as.getFeedback(), fbCount);
                         }
 
-                        System.out.println(as.getFeedback() + feedbacks.get(as.getFeedback()));
+                        feedbacks.put(as.getFeedback(), fbCount);
+                        System.out.println(as.getFeedback() + " " + feedbacks.get(as.getFeedback()));
                     }
 
-                    totalFeedbackLabel.setText(totalFeedbackLabel.getText() + feedbacks.size());
+                    madLabel.setText(madLabel.getText() + " " + feedbacks.get(Feedback.MAD.toString()));
+                    confusedLabel.setText(confusedLabel.getText() + " " + feedbacks.get(Feedback.CONFUSED.toString()));
+                    happyLabel.setText(happyLabel.getText() + " " + feedbacks.get(Feedback.HAPPY.toString()));
+                    sadLabel.setText(sadLabel.getText() + " " + feedbacks.get(Feedback.SAD.toString()));
+
+                    int total = 0;
+                    for(Integer f : feedbacks.values()) {
+                        total += f;
+                    }
+                    
+                    totalFeedbackLabel.setText(totalFeedbackLabel.getText() + total);
                 }
             } catch (Exception ex) {
                 Logger.getLogger(ViewFeedback.class.getName()).log(Level.SEVERE, null, ex);
