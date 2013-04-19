@@ -343,7 +343,7 @@ public class AdultHome extends javax.swing.JPanel {
     }//GEN-LAST:event_btnNewStoryActionPerformed
 
     private void btnManageChildrenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageChildrenActionPerformed
-        Global.container.setDisplay(new ChildList());
+        Global.container.setDisplay(new UserList());
 
     }//GEN-LAST:event_btnManageChildrenActionPerformed
 

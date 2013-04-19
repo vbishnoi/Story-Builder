@@ -15,12 +15,12 @@ import model.User;
  *
  * @author Y0239881
  */
-public class ChildList extends javax.swing.JPanel {
+public class UserList extends javax.swing.JPanel {
     private UserController uc = null;
     /**
-     * Creates new form ChildList
+     * Creates new form UserList
      */
-    public ChildList() {
+    public UserList() {
         initComponents();
         
         uc = new UserController();
