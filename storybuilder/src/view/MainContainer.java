@@ -10,6 +10,7 @@ import java.awt.Dialog;
 import java.awt.Dimension;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 import model.User;
 
 /**
@@ -55,7 +56,6 @@ public class MainContainer extends javax.swing.JFrame {
 
         pack();
 
-//          getContentPane().repaint();
         this.revalidate();
         this.repaint();
     }
@@ -63,6 +63,7 @@ public class MainContainer extends javax.swing.JFrame {
     public void showModalDialog(JPanel panel, String title) {
         JDialog dialog = new JDialog(this, title);
         dialog.getContentPane().add(panel);
+//        dialog.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         dialog.setLocationRelativeTo(null);
         dialog.setResizable(false);
         dialog.pack();

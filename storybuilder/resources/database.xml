@@ -81,7 +81,7 @@
         </page>
       </pages>
     </story>
-    <story id="3" createdby="tuanva" feedback_require="true">
+    <story id="3" createdby="tuanva" feedback_require="false">
       <title>another story (2 pages)</title>
       <bgcolor>WHITE</bgcolor>
       <fontsize>10</fontsize>
@@ -158,20 +158,20 @@
   </stories>
   <assigned>
     <item story="1" user="Helen">
-      <done>TRUE</done>
-      <feedback />
+      <done>true</done>
+      <feedback>HAPPY</feedback>
     </item>
     <item story="1" user="Anna">
-      <done>FALSE</done>
-      <feedback />
+      <done>true</done>
+      <feedback>SAD</feedback>
     </item>
     <item story="4" user="Helen">
-      <done>FALSE</done>
-      <feedback />
+      <done>true</done>
+      <feedback>HAPPY</feedback>
     </item>
     <item story="3" user="Helen">
-      <done>FALSE</done>
-      <feedback />
+      <done>true</done>
+      <feedback>MAD</feedback>
     </item>
   </assigned>
 </storybuilder>

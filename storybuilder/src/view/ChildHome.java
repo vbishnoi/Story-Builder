@@ -32,7 +32,8 @@ public class ChildHome extends javax.swing.JPanel {
     public ChildHome() {
         initComponents();
 
-
+        jLabel1.setText("Welcome, " + Global.loggedInUser);
+        
         StoryController sc = new StoryController();
 
         try {

@@ -6,7 +6,6 @@ package view;
 
 import com.uoy.sb.Common;
 import com.uoy.sb.Global;
-import com.uoy.sb.ImageComponent;
 import controller.StoryController;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -110,6 +109,15 @@ public class ReadStory extends javax.swing.JPanel {
 
     private void pageIndexChanged() {
         if (storyPages != null) {
+
+            if (_pageIndex == storyPages.size() - 1) {
+                if (!_finish) {
+                    btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/storybuilder/resources/ok3.png"))); // NOI18N
+                    btnNext.setText("Finish");
+                    _finish = true;
+                }
+            }
+
             Page p = storyPages.get(_pageIndex);
             pageText.setText(p.getText());
             lblPageCount.setText("Page " + (_pageIndex + 1) + "/" + storyPages.size());
@@ -133,18 +141,14 @@ public class ReadStory extends javax.swing.JPanel {
                     imagePanel.add(lblimage);
                 }
             } else {
-                System.out.println("no images");
+//                System.out.println("no images");
                 imagePanel.setBorder(null);
             }
 
 //            this.revalidate();
 //            this.repaint();
 
-            if (_pageIndex == storyPages.size() - 1) {
-                btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/storybuilder/resources/ok3.png"))); // NOI18N
-                btnNext.setText("Finish");
-                _finish = true;
-            }
+
         }
     }
 
@@ -330,18 +334,35 @@ public class ReadStory extends javax.swing.JPanel {
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
 
-        if(_finish && Global.group.equals(UserGroup.Child)) {
-            GiveFeedback fb = new GiveFeedback();
-            Global.container.showModalDialog(fb, "Feedback");
+        if (Global.group.equals(UserGroup.Adult)) {
+            if (JOptionPane.showConfirmDialog(null, "Do you want to finish?", "Finish?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                Global.container.setDisplay(new AdultHome());
+            }
+        } else {
+            if (_finish) {
+                if (JOptionPane.showConfirmDialog(null, "Do you want to finish?", "Finish?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    if (story.isFeedbackRequired()) {
+                        GiveFeedback fb = new GiveFeedback();
+                        fb.setStoryID(this.getStoryID());
+
+                        Global.container.showModalDialog(fb, "Feedback");
+                    } else {
+                        Global.container.setDisplay(new ChildHome());
+                    }
+                }
+            }
         }
-        
+
         _pageIndex = (_pageIndex < storyPages.size() - 1) ? _pageIndex + 1 : storyPages.size() - 1;
         pageIndexChanged();
-        
     }//GEN-LAST:event_btnNextActionPerformed
 
     private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
-        // TODO add your handling code here:
+        if (_pageIndex == storyPages.size() - 1) {
+            btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/storybuilder/resources/Next.png"))); // NOI18N
+            btnNext.setText("Next page");
+            _finish = false;
+        }
         _pageIndex = (_pageIndex == 0) ? 0 : _pageIndex - 1;
         pageIndexChanged();
     }//GEN-LAST:event_btnPrevActionPerformed

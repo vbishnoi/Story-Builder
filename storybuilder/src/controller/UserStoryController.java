@@ -83,7 +83,8 @@ public class UserStoryController {
         Element item = parser.getElement(query);
 
         if (item != null) {
-            item.getChild(query).getAttribute(Common.Variables.STORY_REQUIRE_FEEDBACK).setValue(feedback.toUpperCase());
+            item.getChild(Common.Variables.ASSIGNED_STORY_FEEDBACK).setText(feedback.toUpperCase());
+            item.getChild(Common.Variables.ASSIGNED_STORY_DONE).setText(Boolean.TRUE.toString());
         }
 
         saveXML(doc);

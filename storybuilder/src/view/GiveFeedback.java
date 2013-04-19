@@ -6,19 +6,24 @@ package view;
 
 import com.uoy.sb.Global;
 import controller.UserStoryController;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import model.Feedback;
 import model.UserGroup;
 
 /**
  *
  * @author Radical
  */
-public class GiveFeedback extends javax.swing.JPanel {
+public class GiveFeedback extends javax.swing.JPanel implements ActionListener {
 
     private int _storyID = 0;
-    
+    private String _feedback = "";
+
     /**
      * @return the _storyID
      */
@@ -32,19 +37,31 @@ public class GiveFeedback extends javax.swing.JPanel {
     public void setStoryID(int storyID) {
         this._storyID = storyID;
     }
-    
+
     /**
      * Creates new form GiveFeedback
      */
     public GiveFeedback() {
         initComponents();
-        
+
         btnGroup = new ButtonGroup();
-        
+
         btnGroup.add(rdMad);
         btnGroup.add(rdConfused);
         btnGroup.add(rdHappy);
         btnGroup.add(rdSad);
+
+        rdSad.setActionCommand("SAD");
+        rdSad.addActionListener(this);
+
+        rdMad.setActionCommand("MAD");
+        rdMad.addActionListener(this);
+
+        rdConfused.setActionCommand("CONFUSED");
+        rdConfused.addActionListener(this);
+
+        rdHappy.setActionCommand("HAPPY");
+        rdHappy.addActionListener(this);
     }
 
     /**
@@ -130,21 +147,30 @@ public class GiveFeedback extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFinishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinishActionPerformed
-        new UserStoryController().updateFeedback(this._storyID, Global.loggedInUser, "");
-        
-        this.close();
+
+        if (!_feedback.equals("")) {
+            new UserStoryController().updateFeedback(this._storyID, Global.loggedInUser, _feedback);
+
+            this.close();
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Please select one of the options.");
+        }
     }//GEN-LAST:event_btnFinishActionPerformed
 
     private void close() {
         JDialog dialog = (JDialog) SwingUtilities.getWindowAncestor(this);
         dialog.dispose();
         dialog.setVisible(false);
-        
-        if(Global.group.equals(UserGroup.Child)) {
+
+        if (Global.group.equals(UserGroup.Child)) {
             Global.container.setDisplay(new ChildHome());
         }
     }
-    
+
+    public void actionPerformed(ActionEvent e) {
+        _feedback = e.getActionCommand();
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFinish;
     private javax.swing.ButtonGroup btnGroup;
@@ -154,6 +180,4 @@ public class GiveFeedback extends javax.swing.JPanel {
     private javax.swing.JRadioButton rdMad;
     private javax.swing.JRadioButton rdSad;
     // End of variables declaration//GEN-END:variables
-
-    
 }
