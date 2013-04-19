@@ -66,10 +66,10 @@ public class ViewFeedback extends javax.swing.JPanel {
                     sadLabel.setText(sadLabel.getText() + " " + feedbacks.get(Feedback.SAD.toString()));
 
                     int total = 0;
-                    for(Integer f : feedbacks.values()) {
+                    for (Integer f : feedbacks.values()) {
                         total += f;
                     }
-                    
+
                     totalFeedbackLabel.setText(totalFeedbackLabel.getText() + total);
                 }
             } catch (Exception ex) {
