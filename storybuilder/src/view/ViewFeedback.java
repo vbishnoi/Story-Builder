@@ -29,9 +29,12 @@ public class ViewFeedback extends javax.swing.JPanel {
         usc = new UserStoryController();
         try {
             LinkedList<AssignedStory> assignedStories = usc.getAssignedChidrenToStory(this.getStory().getId(), false);
-            
-            
 
+            if (assignedStories != null && !assignedStories.isEmpty()) {
+                for (AssignedStory as : assignedStories) {
+                    
+                }
+            }
         } catch (Exception ex) {
             Logger.getLogger(ViewFeedback.class.getName()).log(Level.SEVERE, null, ex);
         }
