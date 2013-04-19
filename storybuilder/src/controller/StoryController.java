@@ -41,8 +41,8 @@ public class StoryController {
         return buildList(elements);
     }
     
-    /*
-     * get all the stories for the logged in user 
+    /**
+     * Get all the stories for the logged in user 
      * 
      * @param username 
      * 
@@ -70,8 +70,10 @@ public class StoryController {
         return stories;
     }
 
-    /*
+    /**
      * Create a new story and save to the database
+     * 
+     * @param s Story to be saved
      */
     public int createNewStory(Story s) {
         int sId = 0;
@@ -145,8 +147,10 @@ public class StoryController {
         return sId;
     }
 
-    /*
+    /**
      * Delete the story from database
+     * 
+     * @param story Story to be deleted
      */
     public void deleteStory(Story story) {
         Document doc = parser.getDocument();
@@ -159,9 +163,10 @@ public class StoryController {
         saveXML(doc);
     }
 
-    /*
-     * update the xml file with the updated content
+    /**
+     * Update the xml file with the updated content
      * 
+     * @param storyToUpdate the new story to be updated
      */
     public void updateStory(Story storyToUpdate) {
         Document objDoc = parser.getDocument();
@@ -222,9 +227,10 @@ public class StoryController {
         }
     }
 
-    /*
-     * get element contents from the xml file by the story ID 
+    /**
+     * Get element contents from the xml file by the story ID 
      * 
+     * @param StoryID the id of the story
      */
     private Element getStoryElement(int StoryID) {
         String query = XpathBuilder.getByAttribute(Common.Variables.STORY_SINGLE_NODE, Common.Variables.STORY_ID, String.valueOf(StoryID));
@@ -234,8 +240,10 @@ public class StoryController {
         return parser.getElement(query);
     }
 
-    /*
-     * Initialize new Story object form a xml story element
+    /**
+     * Create a new Story object from the given XML element
+     * 
+     * @param storyElm XML element
      */
     private Story getStory(Element storyElm) {
         Story story = null;
@@ -293,8 +301,9 @@ public class StoryController {
         return story;
     }
 
-    /*
+    /**
      * Get a Story from the database by the @param storyID
+     * 
      * @param storyID ID of the story to get
      * @return Story object
      */
@@ -304,6 +313,10 @@ public class StoryController {
         return getStory(e);
     }
 
+    /**
+     * Save the XML Document to the file
+     * @param doc XML Document
+     */
     private void saveXML(Document doc) {
         // create new output writer to update back to file
         XMLOutputter xmlOutput = new XMLOutputter();

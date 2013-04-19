@@ -32,6 +32,11 @@ public class UserController {
         parser = new XMLParser();
     }
 
+    /**
+     * Get all users from database
+     * 
+     * @return List of all users
+     */
     public LinkedList<User> getAllUsers() {
         LinkedList<User> users = new LinkedList<>();
 
@@ -59,6 +64,11 @@ public class UserController {
         return users;
     }
 
+    /**
+     * Get all adults from database
+     * 
+     * @return List of all adult users
+     */
     public LinkedList<User> getAllAdults() {
         LinkedList<User> adults = new LinkedList<>();
         LinkedList<User> users = getAllUsers();
@@ -74,6 +84,11 @@ public class UserController {
         return adults;
     }
 
+    /**
+     * Get all the children from database
+     * 
+     * @return List of all children
+     */
     public LinkedList<User> getAllChildren() {
         LinkedList<User> children = new LinkedList<>();
         LinkedList<User> users = getAllUsers();
@@ -89,6 +104,12 @@ public class UserController {
         return children;
     }
 
+    /**
+     * Get the User object using the given name
+     * 
+     * @param name Name of the user
+     * @return User object
+     */
     public User getUserByName(String name) {
         User u = null;
         String query = XpathBuilder.getByAttribute(Variables.USER_SINGLE_NODE, Variables.USER_NAME, name);
@@ -107,6 +128,11 @@ public class UserController {
         return u;
     }
 
+    /**
+     * Update user's information
+     * 
+     * @param user user to update
+     */
     public void updateUser(User user) {
         String query = XpathBuilder.getByAttribute(Variables.USER_SINGLE_NODE, Variables.USER_NAME, user.getName());
 
@@ -118,8 +144,9 @@ public class UserController {
         }
     }
 
-    /*
+    /**
      * Create a new instance of user and save into the database
+     * 
      * @param user User to save
      */
     public void createNewUser(User user) {

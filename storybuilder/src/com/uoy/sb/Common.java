@@ -39,14 +39,12 @@ public class Common {
 
         public static final String DATABASE_NAME = "resources/database.xml";
         public static final String ROOT = "storybuilder";
-        
 //        Node names
         public static final String USER_IMAGE = "image";
         public static final String USER_AGE = "age";
 //        adult
         public static final String ADULTS_NODE = "adults";
         public static final String ADULT_SINGLE_NODE = "adult";
-        
 //        page
         public static final String PAGES_NODE = "pages";
         public static final String PAGE_SINGLE_NODE = "page";
@@ -54,7 +52,6 @@ public class Common {
         public static final String PAGE_SOUND = "sound";
         public static final String PAGE_IMAGES = "images";
         public static final String PAGE_IMAGE = "image";
-        
 //        user
         public static final String USERS_NODE = "users";
         public static final String USER_SINGLE_NODE = "user";
@@ -73,7 +70,6 @@ public class Common {
         public static final String STORY_TITLE = "title";
         public static final String STORY_ID = "id";
         public static final String STORY_REQUIRE_FEEDBACK = "feedback_require";
-        
         public static final String ASSIGNED_STORY = "item";
         public static final String ASSIGNED_STORY_STORY = "story";
         public static final String ASSIGNED_STORY_USER = "user";
@@ -86,7 +82,7 @@ public class Common {
         /**
          * Generate hashed MD5 from plain string
          *
-         * @param 
+         * @param plainText Plain string to be encrypted
          * @return hashed string
          * http://m2tec.be/blog/2010/02/03/java-md5-hex-0093
          */
@@ -105,8 +101,10 @@ public class Common {
         }
     }
 
-    /*
+    /**
      * Get the extension of a file.
+     * 
+     * @param f File to get the extension
      */
     public static String getExtension(File f) {
         String ext = null;
@@ -118,17 +116,19 @@ public class Common {
         }
         return ext;
     }
-    
-    public static Image readImage(String url)
-	{
-		try
-		{
-			return ImageIO.read(new File(url));
-		}
-		catch (IOException ex)
-		{
-		
-                        return null;
-		}
-	}
+
+    /**
+     * Get an image by given url
+     * 
+     * @return Image object
+     * @param url Url of the image 
+     * 
+     */
+    public static Image readImage(String url) throws IOException {
+        try {
+            return ImageIO.read(new File(url));
+        } catch (IOException ex) {
+            throw ex;
+        }
+    }
 }

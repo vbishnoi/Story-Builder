@@ -231,7 +231,7 @@ public final class CreateStory extends javax.swing.JPanel {
         txtTitle = new javax.swing.JTextField();
         storyTitleLabel = new javax.swing.JLabel();
 
-        setPreferredSize(new java.awt.Dimension(650, 650));
+        setPreferredSize(new java.awt.Dimension(700, 650));
 
         deletePage.setText("Delete Page");
         deletePage.addActionListener(new java.awt.event.ActionListener() {
