@@ -23,7 +23,6 @@ public class ViewFeedback extends javax.swing.JPanel {
 
     private UserStoryController usc = null;
     private Hashtable<String, Integer> feedbacks;
-    private Story _story;
 
     /**
      * Creates new form ViewFeedback
@@ -47,8 +46,12 @@ public class ViewFeedback extends javax.swing.JPanel {
 
                         if (as.isDone()) {
                             if (as.getFeedback() != null && as.getFeedback() != "") {
-                                fbCount = feedbacks.get(as.getFeedback());
-                                fbCount++;
+                                if (feedbacks.containsKey(as.getFeedback())) {
+                                    fbCount = feedbacks.get(as.getFeedback());
+
+                                    fbCount++;
+                                }
+
                             }
 
                             feedbacks.put(as.getFeedback(), fbCount);

@@ -334,7 +334,7 @@ public class ReadStory extends javax.swing.JPanel {
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
 
-        if (Global.group.equals(UserGroup.Adult)) {
+        if (Global.group.equals(UserGroup.Adult) && _finish) {
             if (JOptionPane.showConfirmDialog(null, "Do you want to finish?", "Finish?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 Global.container.setDisplay(new AdultHome());
             }
