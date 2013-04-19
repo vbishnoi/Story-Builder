@@ -353,25 +353,7 @@ public class AdultHome extends javax.swing.JPanel {
     }//GEN-LAST:event_btnManageChildrenActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int selectedIndex = -1;
-        Story s = null;
-
-        if (jTabs.getSelectedIndex() == 0) {
-            selectedIndex = createdByMeList.getSelectedIndex();
-            if (selectedIndex != -1) {
-                s = createdByMe.get(selectedIndex);
-            } else {
-                JOptionPane.showMessageDialog(this, "Please select story to view");
-            }
-        } else {
-            selectedIndex = allStoryList.getSelectedIndex();
-            if (selectedIndex != -1) {
-                s = allStories.get(selectedIndex);
-            } else {
-                JOptionPane.showMessageDialog(this, "Please select story to view");
-            }
-        }
-
+        Story s = getSelectedStory();
         if (s != null) {
             Global.container.setDisplay(new ReadStory(s.getId()));
         }
@@ -417,7 +399,7 @@ public class AdultHome extends javax.swing.JPanel {
     }//GEN-LAST:event_buttonDeleteStoryActionPerformed
 
     private void buttonPrintStoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPrintStoryActionPerformed
-        Global.container.showModalDialog(new printPanel(), "Print story");
+        Global.container.showModalDialog(new printPanel(getSelectedStory()), "Print story");
     }//GEN-LAST:event_buttonPrintStoryActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
@@ -427,6 +409,29 @@ public class AdultHome extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnExitActionPerformed
 
+    private Story getSelectedStory() {
+        int selectedIndex = -1;
+        Story s = null;
+
+        if (jTabs.getSelectedIndex() == 0) {
+            selectedIndex = createdByMeList.getSelectedIndex();
+            if (selectedIndex != -1) {
+                s = createdByMe.get(selectedIndex);
+            } else {
+                JOptionPane.showMessageDialog(this, "Please select story!");
+            }
+        } else {
+            selectedIndex = allStoryList.getSelectedIndex();
+            if (selectedIndex != -1) {
+                s = allStories.get(selectedIndex);
+            } else {
+                JOptionPane.showMessageDialog(this, "Please select story!");
+            }
+        }
+        
+        return s;
+    }
+    
     private void buttonViewFeedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonViewFeedbackActionPerformed
         int selectedIndex = -1;
         Story s = null;

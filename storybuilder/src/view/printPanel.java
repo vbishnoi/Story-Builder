@@ -4,10 +4,17 @@
  */
 package view;
 
+import controller.StoryController;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.print.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.LinkedList;
+import javax.imageio.ImageIO;
+import model.Page;
+import model.Story;
 
 /**
  *
@@ -15,18 +22,45 @@ import java.awt.print.*;
  */
 public class printPanel extends javax.swing.JPanel {
 
+    private String _jobName = "";
+
     /**
      * Creates new form printPanel
      */
-    public printPanel() {
+    public printPanel(Story story) {
         initComponents();
+
+        if (story != null) {
+            Image img = null;
+            _jobName = story.getTitle();
+            LinkedList<Page> pages = story.getPages();
+
+            contentHolder.setLayout(new BoxLayout(contentHolder, BoxLayout.PAGE_AXIS));
+            if ((pages != null) && (!pages.isEmpty())) {
+                for (Page page : pages) {
+                    contentHolder.add(new JLabel(page.getText()));
+
+                    java.util.List<String> images = page.getImages();
+                    if (images != null && !images.isEmpty()) {
+                        for (String image : images) {
+                            try {
+                                img = ImageIO.read(new File(image));
+                            } catch (IOException ex) {
+                                JOptionPane.showMessageDialog(null, "Cannot read input image");
+                            }
+
+                            contentHolder.add(new JLabel(new ImageIcon(img.getScaledInstance(500, -1, Image.SCALE_DEFAULT))));
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public void printStory() {
-
         PrinterJob pj = PrinterJob.getPrinterJob();
         // add the title to the print
-        pj.setJobName(" Story Name ");
+        pj.setJobName(_jobName);
 
         pj.setPrintable(new Printable() {
             public int print(Graphics pg, PageFormat pf, int pageNum) {
@@ -36,7 +70,7 @@ public class printPanel extends javax.swing.JPanel {
 
                 Graphics2D g2 = (Graphics2D) pg;
                 g2.translate(pf.getImageableX(), pf.getImageableY());
-                printPanel.paint(g2);
+                contentHolder.paint(g2);
                 return Printable.PAGE_EXISTS;
             }
         });
@@ -61,29 +95,48 @@ public class printPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         printScrollPane = new javax.swing.JScrollPane();
-        printPanel = new javax.swing.JPanel();
+        contentHolder = new javax.swing.JPanel();
         buttonPanel = new javax.swing.JPanel();
-        printButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+        printButton = new javax.swing.JButton();
 
-        setPreferredSize(new java.awt.Dimension(650, 350));
+        setPreferredSize(new java.awt.Dimension(900, 600));
 
-        printScrollPane.setPreferredSize(new java.awt.Dimension(402, 302));
+        printScrollPane.setPreferredSize(null);
 
-        printPanel.setPreferredSize(new java.awt.Dimension(600, 300));
+        contentHolder.setBackground(new java.awt.Color(255, 255, 255));
+        contentHolder.setPreferredSize(null);
 
-        javax.swing.GroupLayout printPanelLayout = new javax.swing.GroupLayout(printPanel);
-        printPanel.setLayout(printPanelLayout);
-        printPanelLayout.setHorizontalGroup(
-            printPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 611, Short.MAX_VALUE)
+        javax.swing.GroupLayout contentHolderLayout = new javax.swing.GroupLayout(contentHolder);
+        contentHolder.setLayout(contentHolderLayout);
+        contentHolderLayout.setHorizontalGroup(
+            contentHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 940, Short.MAX_VALUE)
         );
-        printPanelLayout.setVerticalGroup(
-            printPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        contentHolderLayout.setVerticalGroup(
+            contentHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 469, Short.MAX_VALUE)
         );
 
-        printScrollPane.setViewportView(printPanel);
+        printScrollPane.setViewportView(contentHolder);
+
+        javax.swing.GroupLayout buttonPanelLayout = new javax.swing.GroupLayout(buttonPanel);
+        buttonPanel.setLayout(buttonPanelLayout);
+        buttonPanelLayout.setHorizontalGroup(
+            buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 187, Short.MAX_VALUE)
+        );
+        buttonPanelLayout.setVerticalGroup(
+            buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 41, Short.MAX_VALUE)
+        );
+
+        cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
         printButton.setText("Print");
         printButton.addActionListener(new java.awt.event.ActionListener() {
@@ -92,61 +145,53 @@ public class printPanel extends javax.swing.JPanel {
             }
         });
 
-        cancelButton.setText("Cancel");
-
-        javax.swing.GroupLayout buttonPanelLayout = new javax.swing.GroupLayout(buttonPanel);
-        buttonPanel.setLayout(buttonPanelLayout);
-        buttonPanelLayout.setHorizontalGroup(
-            buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(buttonPanelLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(printButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cancelButton)
-                .addContainerGap())
-        );
-        buttonPanelLayout.setVerticalGroup(
-            buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(buttonPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelButton)
-                    .addComponent(printButton))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(printScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(printScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(buttonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(73, 73, 73)
+                        .addComponent(printButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cancelButton)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buttonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(246, 246, 246))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(printScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(printScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(buttonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cancelButton)
+                        .addComponent(printButton)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonActionPerformed
         printStory();
     }//GEN-LAST:event_printButtonActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        JDialog dialog = (JDialog) SwingUtilities.getWindowAncestor(this);
+        dialog.dispose();
+        dialog.setVisible(false);
+    }//GEN-LAST:event_cancelButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel buttonPanel;
     private javax.swing.JButton cancelButton;
+    private javax.swing.JPanel contentHolder;
     private javax.swing.JButton printButton;
-    private javax.swing.JPanel printPanel;
     private javax.swing.JScrollPane printScrollPane;
     // End of variables declaration//GEN-END:variables
 }
