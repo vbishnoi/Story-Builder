@@ -53,6 +53,7 @@ public class ChildList extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         lstChildren = new javax.swing.JList();
         jButton1 = new javax.swing.JButton();
+        btnAddChild = new javax.swing.JButton();
 
         lstChildren.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -91,20 +92,33 @@ public class ChildList extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        btnAddChild.setText("Add new Child");
+        btnAddChild.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddChildActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(0, 0, Short.MAX_VALUE))
+                .add(30, 30, 30)
+                .add(btnAddChild)
+                .add(0, 24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(39, 39, 39))
+            .add(layout.createSequentialGroup()
+                .add(22, 22, 22)
+                .add(btnAddChild)
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -112,7 +126,12 @@ public class ChildList extends javax.swing.JPanel {
         Global.container.setDisplay(new AdultHome());
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnAddChildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddChildActionPerformed
+        Global.container.showModalDialog(new NewUser(), "Add new user");
+    }//GEN-LAST:event_btnAddChildActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddChild;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
