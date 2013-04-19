@@ -42,7 +42,7 @@ public class UserStoryController {
      * @param notDone If true return the un-finished stories otherwise return all.
      */
     public LinkedList<AssignedStory> getAssignedStoriesByUser(String username, boolean notDone) throws Exception {
-        String query = XpathBuilder.GetElementsByAttrNameAndValue(Common.Variables.ASSIGNED_STORY, Common.Variables.ASSIGNED_STORY_USER, username);
+        String query = XpathBuilder.getByAttribute(Common.Variables.ASSIGNED_STORY, Common.Variables.ASSIGNED_STORY_USER, username);
 
         return getAssignedList(query, notDone);
     }
@@ -53,14 +53,14 @@ public class UserStoryController {
      * @param notDone If true return the un-finished stories otherwise return all.
      */
     public LinkedList<AssignedStory> getAssignedChidrenToStory(int storyID, boolean notDone) throws Exception {
-        String query = XpathBuilder.GetElementsByAttrNameAndValue(Common.Variables.ASSIGNED_STORY, Common.Variables.ASSIGNED_STORY_STORY, String.valueOf(storyID));
+        String query = XpathBuilder.getByAttribute(Common.Variables.ASSIGNED_STORY, Common.Variables.ASSIGNED_STORY_STORY, String.valueOf(storyID));
 
         return getAssignedList(query, notDone);
     }
 
     public void deleteAssignedChildren(int storyID) {
         Document doc = parser.getDocument();
-        String query = XpathBuilder.GetElementsByAttrNameAndValue(Common.Variables.ASSIGNED_STORY, Common.Variables.ASSIGNED_STORY_STORY, String.valueOf(storyID));
+        String query = XpathBuilder.getByAttribute(Common.Variables.ASSIGNED_STORY, Common.Variables.ASSIGNED_STORY_STORY, String.valueOf(storyID));
 
         elements = (List<Element>) parser.getElements(query);
 

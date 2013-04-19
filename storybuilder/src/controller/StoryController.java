@@ -43,7 +43,7 @@ public class StoryController {
 // get all the stories for the logged in user 
 
     public LinkedList<Story> getStoriesByUser(String username) {
-        String query = XpathBuilder.GetElementsByAttrNameAndValue(Common.Variables.STORY_SINGLE_NODE, Common.Variables.STORY_CREATED_BY, username);
+        String query = XpathBuilder.getByAttribute(Common.Variables.STORY_SINGLE_NODE, Common.Variables.STORY_CREATED_BY, username);
 
         List<Element> elements = (List<Element>) parser.getElements(query);
 
@@ -221,7 +221,7 @@ public class StoryController {
      * 
      */
     private Element getStoryElement(int StoryID) {
-        String query = XpathBuilder.GetElementsByAttrNameAndValue(Common.Variables.STORY_SINGLE_NODE, Common.Variables.STORY_ID, String.valueOf(StoryID));
+        String query = XpathBuilder.getByAttribute(Common.Variables.STORY_SINGLE_NODE, Common.Variables.STORY_ID, String.valueOf(StoryID));
 
         System.out.println(query);
 

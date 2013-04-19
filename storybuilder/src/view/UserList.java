@@ -6,9 +6,12 @@ package view;
 
 import com.uoy.sb.Global;
 import controller.UserController;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.LinkedList;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import model.User;
 
 /**
@@ -17,6 +20,9 @@ import model.User;
  */
 public class UserList extends javax.swing.JPanel {
     private UserController uc = null;
+    private LinkedList<User> children = null;
+    private LinkedList<User> adults = null;
+    
     /**
      * Creates new form UserList
      */
@@ -30,14 +36,14 @@ public class UserList extends javax.swing.JPanel {
     }
     
     private void bindData() {
-        LinkedList<User> children = uc.getAllChildren();
+        children = uc.getAllChildren();
         
         final DefaultListModel model = new DefaultListModel();
         for(User child : children) {
             model.addElement(child.getName());
         }
         
-        LinkedList<User> adults = uc.getAllAdults();
+        adults = uc.getAllAdults();
         
         final DefaultListModel model1 = new DefaultListModel();
         for(User adult : adults) {
@@ -45,7 +51,9 @@ public class UserList extends javax.swing.JPanel {
         }
         
         lstChildren.setModel(model);
+        lstChildren.addMouseListener(new UserListMouseListener());
         lstAdults.setModel(model1);
+        lstAdults.addMouseListener(new UserListMouseListener());
     }
 
     /**
@@ -132,9 +140,55 @@ public class UserList extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUserActionPerformed
-        Global.container.showModalDialog(new NewUser(), "Add new user");
+        Global.container.showModalDialog(new CreateUser(), "Add new user");
     }//GEN-LAST:event_btnAddUserActionPerformed
 
+    private class UserListMouseListener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            JList list = (JList) e.getSource();
+
+            // double click
+            if (e.getClickCount() == 2) {
+                int selectedIndex = list.getSelectedIndex();
+
+                User u = null;
+
+                if (jTabbedPane1.getSelectedIndex() == 0) {
+                    u = children.get(selectedIndex);
+                } else {
+                    u = adults.get(selectedIndex);
+                }
+
+                CreateUser userForm = new CreateUser();
+                userForm.setUser(u);
+                
+                Global.container.showModalDialog(userForm, "Edit user");
+            }
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+//            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+//            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+//            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+//            throw new UnsupportedOperationException("Not supported yet.");
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddUser;
     private javax.swing.JButton jButton1;

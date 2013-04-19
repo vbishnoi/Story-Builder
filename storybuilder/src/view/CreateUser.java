@@ -16,16 +16,17 @@ import model.UserGroup;
  *
  * @author Y0239881
  */
-public class NewUser extends javax.swing.JPanel {
-    
+public class CreateUser extends javax.swing.JPanel {
+
     private UserController uc = null;
+    private User _user = null;
 
     /**
-     * Creates new form NewUser
+     * Creates new form CreateUser
      */
-    public NewUser() {
+    public CreateUser() {
         initComponents();
-        
+
         uc = new UserController();
     }
 
@@ -52,7 +53,7 @@ public class NewUser extends javax.swing.JPanel {
         jcbUserGroup = new javax.swing.JComboBox();
         btnCancel = new javax.swing.JButton();
 
-        btnRegister.setText("Register");
+        btnRegister.setText("Save");
         btnRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegisterActionPerformed(evt);
@@ -175,13 +176,13 @@ public class NewUser extends javax.swing.JPanel {
     private void btnUploadPictureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadPictureActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnUploadPictureActionPerformed
-    
+
     private void close() {
         JDialog dialog = (JDialog) SwingUtilities.getWindowAncestor(this);
         dialog.dispose();
         dialog.setVisible(false);
     }
-    
+
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         if (txtAge.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Please enter age");
@@ -191,33 +192,45 @@ public class NewUser extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please enter user name");
             return;
         }
-        if (txtPassword.getText().equals("")) {
+        if (txtPassword.getText().equals("") && this.getUser() == null) {
             JOptionPane.showMessageDialog(null, "Please enter user password");
             return;
         }
-        
+
         UserGroup group = UserGroup.valueOf(jcbUserGroup.getSelectedItem().toString());
-        
+
         try {
             Integer.parseInt(txtAge.getText());
-        }
-        catch(NumberFormatException ne) {
+        } catch (NumberFormatException ne) {
             JOptionPane.showMessageDialog(null, "Not valid age");
             return;
         }
-        
-        User u = new User(txtName.getText(), Common.Security.MD5(txtPassword.getText()), group);
-        u.setAge(Integer.valueOf(txtAge.getText()));
-        
-        uc.createNewUser(u);
-        
+
+        if (this.getUser() != null) {
+            this.getUser().setAge(Integer.valueOf(txtAge.getText()));
+            this.getUser().setGroup(group);
+            
+            // if password is not empty then update the old password with the new one
+            // otherwise : keep intact
+            if(!txtPassword.getText().equals("")) {
+                this.getUser().setPassword(Common.Security.MD5(txtPassword.getText()));
+            }
+            
+            uc.updateUser(this.getUser());
+        } else {
+            User u = new User(txtName.getText(), Common.Security.MD5(txtPassword.getText()), group);
+            u.setAge(Integer.valueOf(txtAge.getText()));
+
+            uc.createNewUser(u);
+        }
+
+
         this.close();
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         this.close();
     }//GEN-LAST:event_btnCancelActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnRegister;
@@ -233,4 +246,22 @@ public class NewUser extends javax.swing.JPanel {
     private javax.swing.JTextField txtName;
     private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the _user
+     */
+    public User getUser() {
+        return _user;
+    }
+
+    /**
+     * @param user the _user to set
+     */
+    public void setUser(User user) {
+        this._user = user;
+
+        txtName.setText(user.getName());
+        txtName.setEnabled(false);
+        txtAge.setText(String.valueOf(user.getAge()));
+    }
 }

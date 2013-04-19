@@ -46,8 +46,8 @@ public class UserController {
                     u.setName(e.getAttributeValue(Variables.USER_NAME));
                     u.setPassword(e.getChildText(Variables.USER_PASSWORD));
                     u.setGroup(UserGroup.fromInteger(Integer.parseInt(e.getAttributeValue(Variables.USER_GROUP))));
-                    u.setImage("");
-                    u.setAge(0);
+                    u.setImage(e.getChildText(Variables.USER_IMAGE));
+                    u.setAge(Integer.parseInt(e.getChildText(Variables.USER_AGE)));
 
                     users.add(u);
                 } else {
@@ -91,7 +91,7 @@ public class UserController {
 
     public User getUserByName(String name) {
         User u = null;
-        String query = XpathBuilder.GetElementsByAttrNameAndValue(Variables.USER_SINGLE_NODE, Variables.USER_NAME, name);
+        String query = XpathBuilder.getByAttribute(Variables.USER_SINGLE_NODE, Variables.USER_NAME, name);
 
         Element element = parser.getElement(query);
 
@@ -105,6 +105,17 @@ public class UserController {
         }
 
         return u;
+    }
+
+    public void updateUser(User user) {
+        String query = XpathBuilder.getByAttribute(Variables.USER_SINGLE_NODE, Variables.USER_NAME, user.getName());
+
+        Element element = parser.getElement(query);
+        if (element != null) {
+            element.detach();
+            
+            createNewUser(user);
+        }
     }
 
     /*

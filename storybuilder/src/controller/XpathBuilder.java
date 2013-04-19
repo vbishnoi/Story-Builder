@@ -34,7 +34,7 @@ public class XpathBuilder {
      * @param value
      * @return
      */
-    public static String GetElementsByAttrNameAndValue(String nodeName, String attrName, String value) {
+    public static String getByAttribute(String nodeName, String attrName, String value) {
         StringBuilder sb = new StringBuilder();
         sb.append("//");
         sb.append(nodeName);
