@@ -40,7 +40,13 @@ public class StoryController {
 
         return buildList(elements);
     }
-// get all the stories for the logged in user 
+    
+    /*
+     * get all the stories for the logged in user 
+     * 
+     * @param username 
+     * 
+     */
 
     public LinkedList<Story> getStoriesByUser(String username) {
         String query = XpathBuilder.getByAttribute(Common.Variables.STORY_SINGLE_NODE, Common.Variables.STORY_CREATED_BY, username);
@@ -247,7 +253,7 @@ public class StoryController {
             story.setCreatedBy(storyElm.getAttributeValue(Common.Variables.STORY_CREATED_BY));
             story.setId(Integer.parseInt(storyElm.getAttributeValue(Common.Variables.STORY_ID)));
             story.setFeedbackRequired(Boolean.parseBoolean(storyElm.getAttributeValue(Common.Variables.STORY_REQUIRE_FEEDBACK)));
-            
+
             Element pagesContainer = storyElm.getChild(Common.Variables.PAGES_NODE);
 
             /*
@@ -297,7 +303,7 @@ public class StoryController {
 
         return getStory(e);
     }
-    
+
     private void saveXML(Document doc) {
         // create new output writer to update back to file
         XMLOutputter xmlOutput = new XMLOutputter();

@@ -144,7 +144,7 @@ public class UserStoryController {
                             if (Boolean.compare(b, false) == 0) {
                                 item = new AssignedStory();
 
-                                item.setIsDone(b);
+                                item.setDone(b);
                                 item.setFeedback(el.getChildText(Common.Variables.ASSIGNED_STORY_FEEDBACK));
                                 item.setStory(el.getAttributeValue(Common.Variables.ASSIGNED_STORY_STORY));
                                 item.setUser(el.getAttributeValue(Common.Variables.ASSIGNED_STORY_USER));
@@ -154,7 +154,7 @@ public class UserStoryController {
                         } else {
                             item = new AssignedStory();
 
-                            item.setIsDone(b);
+                            item.setDone(b);
                             item.setFeedback(el.getChildText(Common.Variables.ASSIGNED_STORY_FEEDBACK));
                             item.setStory(el.getAttributeValue(Common.Variables.ASSIGNED_STORY_STORY));
                             item.setUser(el.getAttributeValue(Common.Variables.ASSIGNED_STORY_USER));

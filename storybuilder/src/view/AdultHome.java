@@ -234,6 +234,11 @@ public class AdultHome extends javax.swing.JPanel {
         });
 
         buttonViewFeedback.setText("Vied Feedback");
+        buttonViewFeedback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonViewFeedbackActionPerformed(evt);
+            }
+        });
 
         buttonPrintStory.setText("Print Story");
         buttonPrintStory.addActionListener(new java.awt.event.ActionListener() {
@@ -386,16 +391,16 @@ public class AdultHome extends javax.swing.JPanel {
                             if (assigned != null && !assigned.isEmpty()) {
                                 if (JOptionPane.showConfirmDialog(null, "This story is associated with some children. \n Do you want to delete it?", "Delete story?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                                     // delete 
-                                    new UserStoryController().deleteAssignedChildren(s.getId());
+//                                    new UserStoryController().deleteAssignedChildren(s.getId());
                                     new StoryController().deleteStory(s);
-                                    
+
                                     populateList();
                                 }
                             } else {
                                 // delete without confirmation
                                 new UserStoryController().deleteAssignedChildren(s.getId());
                                 new StoryController().deleteStory(s);
-                                
+
                                 populateList();
                             }
                         }
@@ -422,6 +427,27 @@ public class AdultHome extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnExitActionPerformed
 
+    private void buttonViewFeedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonViewFeedbackActionPerformed
+        int selectedIndex = 0;
+        Story s = null;
+        
+        if (jTabs.getSelectedIndex() == 0) {
+            selectedIndex = createdByMeList.getSelectedIndex();
+            s = createdByMe.get(selectedIndex);
+        } else {
+            selectedIndex = allStoryList.getSelectedIndex();
+            s = allStories.get(selectedIndex);
+        }
+        
+        if (selectedIndex != 0) {
+            ViewFeedback vfb = new ViewFeedback(s);
+            
+            Global.container.showModalDialog(vfb, "View story feedback");
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a story to view.");
+        }
+
+    }//GEN-LAST:event_buttonViewFeedbackActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList allStoryList;
     private javax.swing.JButton btnExit;

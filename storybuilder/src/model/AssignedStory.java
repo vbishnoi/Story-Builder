@@ -11,7 +11,7 @@ package model;
 public class AssignedStory {
     private String _user;
     private String _feedback;
-    private boolean _isDone;
+    private boolean _done;
     private String _story;
 
     /**
@@ -43,20 +43,6 @@ public class AssignedStory {
     }
 
     /**
-     * @return the _isDone
-     */
-    public boolean isIsDone() {
-        return _isDone;
-    }
-
-    /**
-     * @param isDone the _isDone to set
-     */
-    public void setIsDone(boolean isDone) {
-        this._isDone = isDone;
-    }
-
-    /**
      * @return the _story
      */
     public String getStory() {
@@ -68,5 +54,19 @@ public class AssignedStory {
      */
     public void setStory(String story) {
         this._story = story;
+    }
+
+    /**
+     * @return the _done
+     */
+    public boolean isDone() {
+        return _done;
+    }
+
+    /**
+     * @param done the _done to set
+     */
+    public void setDone(boolean done) {
+        this._done = done;
     }
 }

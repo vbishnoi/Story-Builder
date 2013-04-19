@@ -7,8 +7,10 @@ public class Story {
     private int _id;
     private String _title;
     private String _backgroundColor;
-    private String _font;
-    private int _fontSize;
+    // Default font naem
+    private String _font = "Arial";
+    // Default font size 14
+    private int _fontSize = 14;
     private String _textColor;
     private LinkedList<Page> _pages;
     private String _createdBy;
