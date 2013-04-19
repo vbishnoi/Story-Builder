@@ -46,6 +46,8 @@ public class NewUser extends javax.swing.JPanel {
         txtPassword = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         btnUploadPicture = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jcbUserGroup = new javax.swing.JComboBox();
 
         btnRegister.setText("Register");
         btnRegister.addActionListener(new java.awt.event.ActionListener() {
@@ -84,6 +86,10 @@ public class NewUser extends javax.swing.JPanel {
             }
         });
 
+        jLabel5.setText("Group");
+
+        jcbUserGroup.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Adult", "Child" }));
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,12 +107,14 @@ public class NewUser extends javax.swing.JPanel {
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(jLabel1)
                                     .add(jLabel2)
-                                    .add(jLabel3))
+                                    .add(jLabel3)
+                                    .add(jLabel5))
                                 .add(24, 24, 24)
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(txtPassword, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 95, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(txtAge, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 95, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(txtName, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 177, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                                    .add(txtPassword, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                                    .add(txtAge, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                                    .add(txtName)
+                                    .add(jcbUserGroup, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .add(48, 48, 48)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.CENTER)
                             .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -125,9 +133,7 @@ public class NewUser extends javax.swing.JPanel {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
                         .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(29, 29, 29)
-                        .add(btnUploadPicture)
-                        .add(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(jLabel1)
@@ -141,8 +147,16 @@ public class NewUser extends javax.swing.JPanel {
                             .add(jLabel3)
                             .add(txtAge))
                         .add(18, 18, 18)
-                        .add(btnRegister)
-                        .add(30, 30, 30))))
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(jLabel5)
+                            .add(jcbUserGroup, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(22, 22, 22)))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(layout.createSequentialGroup()
+                        .add(1, 1, 1)
+                        .add(btnUploadPicture))
+                    .add(btnRegister))
+                .add(24, 24, 24))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -170,7 +184,9 @@ public class NewUser extends javax.swing.JPanel {
             return;
         }
         
-        User u = new User(txtName.getText(), txtPassword.getText(), UserGroup.Child);
+        UserGroup group = UserGroup.valueOf(jcbUserGroup.getSelectedItem().toString());
+        
+        User u = new User(txtName.getText(), txtPassword.getText(), group);
         uc.createNewUser(u);
         
         this.close();
@@ -182,7 +198,9 @@ public class NewUser extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JComboBox jcbUserGroup;
     private javax.swing.JTextField txtAge;
     private javax.swing.JTextField txtName;
     private javax.swing.JPasswordField txtPassword;
