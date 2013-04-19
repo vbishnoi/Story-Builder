@@ -5,7 +5,6 @@
 package controller;
 
 import com.uoy.sb.Common;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Iterator;
@@ -14,9 +13,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.AssignedStory;
-import model.Feedback;
 import model.Story;
-import model.User;
 import org.jdom2.Attribute;
 import org.jdom2.Document;
 import org.jdom2.Element;

@@ -4,17 +4,37 @@
  */
 package view;
 
+import controller.UserStoryController;
+import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.AssignedStory;
+import model.Story;
+
 /**
  *
  * @author Radical
  */
 public class ViewFeedback extends javax.swing.JPanel {
 
+    private UserStoryController usc = null;
+    private Story _story;
+
     /**
      * Creates new form ViewFeedback
      */
     public ViewFeedback() {
         initComponents();
+
+        usc = new UserStoryController();
+        try {
+            LinkedList<AssignedStory> assignedStories = usc.getAssignedChidrenToStory(this.getStory().getId(), false);
+            
+            
+
+        } catch (Exception ex) {
+            Logger.getLogger(ViewFeedback.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -26,7 +46,7 @@ public class ViewFeedback extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        backButton = new javax.swing.JButton();
+        btnClose = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         totalFeedbackLabel = new javax.swing.JLabel();
@@ -37,7 +57,7 @@ public class ViewFeedback extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(650, 650));
 
-        backButton.setText("back");
+        btnClose.setText("Close");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Feedback for story : \" Story Name Here\"");
@@ -96,9 +116,9 @@ public class ViewFeedback extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(backButton)
+                            .addComponent(btnClose)
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 84, Short.MAX_VALUE))
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -110,12 +130,12 @@ public class ViewFeedback extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(backButton)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addComponent(btnClose)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton backButton;
+    private javax.swing.JButton btnClose;
     private javax.swing.JLabel confusedLabel;
     private javax.swing.JLabel happyLabel;
     private javax.swing.JLabel jLabel1;
@@ -124,4 +144,18 @@ public class ViewFeedback extends javax.swing.JPanel {
     private javax.swing.JLabel sadLabel;
     private javax.swing.JLabel totalFeedbackLabel;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the _story
+     */
+    public Story getStory() {
+        return _story;
+    }
+
+    /**
+     * @param story the _story to set
+     */
+    public void setStory(Story story) {
+        this._story = story;
+    }
 }
