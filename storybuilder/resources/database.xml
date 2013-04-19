@@ -21,6 +21,11 @@
       <image />
       <age>10</age>
     </user>
+    <user name="admin" group="1">
+      <password>202cb962ac59075b964b07152d234b70</password>
+      <age>50</age>
+      <image />
+    </user>
   </users>
   <stories>
     <story id="1" createdby="tuanva" feedback_require="true" url="http://www.magickeys.com/books/bee/index.html">

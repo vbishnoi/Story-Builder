@@ -4,6 +4,7 @@
  */
 package view;
 
+import com.uoy.sb.Common;
 import controller.UserController;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -16,8 +17,9 @@ import model.UserGroup;
  * @author Y0239881
  */
 public class NewUser extends javax.swing.JPanel {
-
+    
     private UserController uc = null;
+
     /**
      * Creates new form NewUser
      */
@@ -48,6 +50,7 @@ public class NewUser extends javax.swing.JPanel {
         btnUploadPicture = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jcbUserGroup = new javax.swing.JComboBox();
+        btnCancel = new javax.swing.JButton();
 
         btnRegister.setText("Register");
         btnRegister.addActionListener(new java.awt.event.ActionListener() {
@@ -88,7 +91,14 @@ public class NewUser extends javax.swing.JPanel {
 
         jLabel5.setText("Group");
 
-        jcbUserGroup.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Adult", "Child" }));
+        jcbUserGroup.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Child", "Adult" }));
+
+        btnCancel.setText("Cancel");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -101,25 +111,27 @@ public class NewUser extends javax.swing.JPanel {
                         .add(jLabel4))
                     .add(layout.createSequentialGroup()
                         .add(31, 31, 31)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                            .add(btnRegister)
-                            .add(layout.createSequentialGroup()
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(jLabel1)
-                                    .add(jLabel2)
-                                    .add(jLabel3)
-                                    .add(jLabel5))
-                                .add(24, 24, 24)
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                                    .add(txtPassword, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-                                    .add(txtAge, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-                                    .add(txtName)
-                                    .add(jcbUserGroup, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .add(48, 48, 48)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.CENTER)
-                            .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(btnUploadPicture))))
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jLabel1)
+                            .add(jLabel2)
+                            .add(jLabel3)
+                            .add(jLabel5))
+                        .add(24, 24, 24)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                            .add(txtPassword, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                            .add(txtAge, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                            .add(txtName)
+                            .add(jcbUserGroup, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .add(28, 28, 28)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                            .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .add(btnUploadPicture, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .add(288, 288, 288)
+                        .add(btnRegister)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(btnCancel)))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         layout.linkSize(new java.awt.Component[] {txtAge, txtName, txtPassword}, org.jdesktop.layout.GroupLayout.HORIZONTAL);
@@ -133,6 +145,8 @@ public class NewUser extends javax.swing.JPanel {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
                         .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(btnUploadPicture)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
@@ -151,19 +165,17 @@ public class NewUser extends javax.swing.JPanel {
                             .add(jLabel5)
                             .add(jcbUserGroup, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .add(22, 22, 22)))
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createSequentialGroup()
-                        .add(1, 1, 1)
-                        .add(btnUploadPicture))
-                    .add(btnRegister))
-                .add(24, 24, 24))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(btnRegister)
+                    .add(btnCancel))
+                .add(25, 25, 25))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUploadPictureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadPictureActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnUploadPictureActionPerformed
-
+    
     private void close() {
         JDialog dialog = (JDialog) SwingUtilities.getWindowAncestor(this);
         dialog.dispose();
@@ -186,12 +198,28 @@ public class NewUser extends javax.swing.JPanel {
         
         UserGroup group = UserGroup.valueOf(jcbUserGroup.getSelectedItem().toString());
         
-        User u = new User(txtName.getText(), txtPassword.getText(), group);
+        try {
+            Integer.parseInt(txtAge.getText());
+        }
+        catch(NumberFormatException ne) {
+            JOptionPane.showMessageDialog(null, "Not valid age");
+            return;
+        }
+        
+        User u = new User(txtName.getText(), Common.Security.MD5(txtPassword.getText()), group);
+        u.setAge(Integer.valueOf(txtAge.getText()));
+        
         uc.createNewUser(u);
         
         this.close();
     }//GEN-LAST:event_btnRegisterActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        this.close();
+    }//GEN-LAST:event_btnCancelActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnUploadPicture;
     private javax.swing.JLabel jLabel1;

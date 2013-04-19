@@ -120,9 +120,9 @@ public class UserController {
         elm.setAttribute("group", String.valueOf(UserGroup.toInt(user.getGroup())));
 
         // elements
-        elm.setContent(new Element(Common.Variables.USER_PASSWORD).setText(user.getPassword()));
-        elm.setContent(new Element(Common.Variables.USER_AGE).setText(String.valueOf(user.getAge())));
-        elm.setContent(new Element(Common.Variables.USER_IMAGE).setText(user.getImage()));
+        elm.addContent(new Element(Common.Variables.USER_PASSWORD).setText(user.getPassword()));
+        elm.addContent(new Element(Common.Variables.USER_AGE).setText(String.valueOf(user.getAge())));
+        elm.addContent(new Element(Common.Variables.USER_IMAGE).setText(user.getImage()));
 
         Element parent = parser.getElement("//users");
         if (parent != null) {
