@@ -232,6 +232,11 @@ public class ReadStory extends javax.swing.JPanel {
         });
 
         btnPrint.setText("Print");
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintActionPerformed(evt);
+            }
+        });
 
         imagePanel.setPreferredSize(new java.awt.Dimension(0, 0));
 
@@ -386,6 +391,13 @@ public class ReadStory extends javax.swing.JPanel {
     private void btnReplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReplayActionPerformed
         playSound();
     }//GEN-LAST:event_btnReplayActionPerformed
+
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+        if(story != null) {
+            Global.container.showModalDialog(new printPanel(story), "Print story");
+        }
+    }//GEN-LAST:event_btnPrintActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnNext;
