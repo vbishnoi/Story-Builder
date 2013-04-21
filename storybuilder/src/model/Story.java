@@ -1,9 +1,10 @@
 package model;
 
+import com.uoy.interfaces.StoryInterface;
 import java.util.LinkedList;
 
 
-public class Story {
+public class Story implements StoryInterface {
     private int _id;
     private String _title;
     private String _backgroundColor;
@@ -19,6 +20,7 @@ public class Story {
     /**
      * @return the _id
      */
+    @Override
     public int getId() {
         return _id;
     }
@@ -26,6 +28,7 @@ public class Story {
     /**
      * @param id the _id to set
      */
+    @Override
     public void setId(int id) {
         this._id = id;
     }
@@ -33,6 +36,7 @@ public class Story {
     /**
      * @return the _title
      */
+    @Override
     public String getTitle() {
         return _title;
     }
@@ -40,6 +44,7 @@ public class Story {
     /**
      * @param title the _title to set
      */
+    @Override
     public void setTitle(String title) {
         this._title = title;
     }
@@ -47,6 +52,7 @@ public class Story {
     /**
      * @return the _backgroundColor
      */
+    @Override
     public String getBackgroundColor() {
         return _backgroundColor;
     }
@@ -54,6 +60,7 @@ public class Story {
     /**
      * @param backgroundColor the _backgroundColor to set
      */
+    @Override
     public void setBackgroundColor(String backgroundColor) {
         this._backgroundColor = backgroundColor;
     }
@@ -61,6 +68,7 @@ public class Story {
     /**
      * @return the _font
      */
+    @Override
     public String getFont() {
         return _font;
     }
@@ -68,6 +76,7 @@ public class Story {
     /**
      * @param font the _font to set
      */
+    @Override
     public void setFont(String font) {
         this._font = font;
     }
@@ -75,6 +84,7 @@ public class Story {
     /**
      * @return the _fontSize
      */
+    @Override
     public int getFontSize() {
         return _fontSize;
     }
@@ -82,6 +92,7 @@ public class Story {
     /**
      * @param fontSize the _fontSize to set
      */
+    @Override
     public void setFontSize(int fontSize) {
         this._fontSize = fontSize;
     }
@@ -89,6 +100,7 @@ public class Story {
     /**
      * @return the _textColor
      */
+    @Override
     public String getTextColor() {
         return _textColor;
     }
@@ -96,6 +108,7 @@ public class Story {
     /**
      * @param textColor the _textColor to set
      */
+    @Override
     public void setTextColor(String textColor) {
         this._textColor = textColor;
     }
@@ -103,6 +116,7 @@ public class Story {
     /**
      * @return the _pages
      */
+    @Override
     public LinkedList<Page> getPages() {
         return _pages;
     }
@@ -110,6 +124,7 @@ public class Story {
     /**
      * @param pages the _pages to set
      */
+    @Override
     public void setPages(LinkedList<Page> pages) {
         this._pages = pages;
     }
@@ -117,6 +132,7 @@ public class Story {
     /**
      * @return the _createdBy
      */
+    @Override
     public String getCreatedBy() {
         return _createdBy;
     }
@@ -124,6 +140,7 @@ public class Story {
     /**
      * @param createdBy the _createdBy to set
      */
+    @Override
     public void setCreatedBy(String createdBy) {
         this._createdBy = createdBy;
     }
@@ -151,6 +168,7 @@ public class Story {
     /**
      * @return the _feedbackRequired
      */
+    @Override
     public boolean isFeedbackRequired() {
         return _feedbackRequired;
     }
@@ -158,6 +176,7 @@ public class Story {
     /**
      * @param feedbackRequired the _feedbackRequired to set
      */
+    @Override
     public void setFeedbackRequired(boolean feedbackRequired) {
         this._feedbackRequired = feedbackRequired;
     }
