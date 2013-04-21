@@ -4,6 +4,7 @@
  */
 package controller;
 
+import java.util.LinkedList;
 import model.User;
 import model.UserGroup;
 import org.junit.After;
@@ -52,6 +53,6 @@ public class RegisterNewChildTest {
         
         uc.createNewUser(child);
         
-        
+        LinkedList<User> children = uc.getAllChildren();
     }
 }
