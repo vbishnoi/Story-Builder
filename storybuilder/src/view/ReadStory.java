@@ -48,6 +48,7 @@ public class ReadStory extends javax.swing.JPanel {
     private JLabel lblImage;
     private Image image = null;
     private boolean _finish = false;
+    private Color color = null;
 
     /**
      * @return the _storyID
@@ -68,7 +69,6 @@ public class ReadStory extends javax.swing.JPanel {
      */
     public ReadStory(int storyID) {
         initComponents();
-        Color color = null;
 
         this.setStoryID(storyID);
         sc = new StoryController();
@@ -121,7 +121,7 @@ public class ReadStory extends javax.swing.JPanel {
 
                 for (int i = 0; i < images.size(); i++) {
                     try {
-                        image = ImageIO.read(new File(images.get(i)));
+                        image = Common.readImage(images.get(i));
                     } catch (IOException ex) {
                         JOptionPane.showMessageDialog(null, "Cannot read input image");
                     }

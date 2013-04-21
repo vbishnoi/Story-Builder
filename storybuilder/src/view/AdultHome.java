@@ -4,16 +4,22 @@
  */
 package view;
 
+import com.uoy.sb.Common;
 import com.uoy.sb.Global;
 import controller.StoryController;
 import controller.UserController;
 import controller.UserStoryController;
+import java.awt.FlowLayout;
+import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import model.AssignedStory;
@@ -36,21 +42,29 @@ public class AdultHome extends javax.swing.JPanel {
         initComponents();
 
         welcomeUser();
-        
+
         populateList();
     }
-    
+
     /**
      * Display welcome message and user's picture
      */
-    
     private void welcomeUser() {
         jLabel1.setText("Welcome, " + Global.loggedInUser);
-        
+
         User u = new UserController().getUserByName(Global.loggedInUser);
-        
-        if(u != null) {
-            
+
+        if (u != null && !u.getImage().equals("")) {
+            Image image = null;
+            try {
+                image = Common.readImage(u.getImage());
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, "Cannot read input image");
+            }
+
+            JLabel lblimage = new JLabel(new ImageIcon(image.getScaledInstance(100, -1, Image.SCALE_DEFAULT)));
+            panelUserImage.setLayout(new FlowLayout());
+            panelUserImage.add(lblimage);
         }
     }
 
@@ -157,17 +171,17 @@ public class AdultHome extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(650, 650));
 
-        panelUserImage.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        panelUserImage.setPreferredSize(new java.awt.Dimension(100, 100));
 
         org.jdesktop.layout.GroupLayout panelUserImageLayout = new org.jdesktop.layout.GroupLayout(panelUserImage);
         panelUserImage.setLayout(panelUserImageLayout);
         panelUserImageLayout.setHorizontalGroup(
             panelUserImageLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 98, Short.MAX_VALUE)
+            .add(0, 100, Short.MAX_VALUE)
         );
         panelUserImageLayout.setVerticalGroup(
             panelUserImageLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 97, Short.MAX_VALUE)
+            .add(0, 100, Short.MAX_VALUE)
         );
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 3, 14)); // NOI18N
@@ -353,7 +367,7 @@ public class AdultHome extends javax.swing.JPanel {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(tabsPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(buttonPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -442,14 +456,14 @@ public class AdultHome extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Please select story!");
             }
         }
-        
+
         return s;
     }
-    
+
     private void buttonViewFeedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonViewFeedbackActionPerformed
         int selectedIndex = -1;
         Story s = null;
-        
+
         if (jTabs.getSelectedIndex() == 0) {
             selectedIndex = createdByMeList.getSelectedIndex();
             s = createdByMe.get(selectedIndex);
@@ -457,10 +471,10 @@ public class AdultHome extends javax.swing.JPanel {
             selectedIndex = allStoryList.getSelectedIndex();
             s = allStories.get(selectedIndex);
         }
-        
+
         if (selectedIndex != -1) {
             ViewFeedback vfb = new ViewFeedback(s);
-            
+
             Global.container.showModalDialog(vfb, "View story feedback");
         } else {
             JOptionPane.showMessageDialog(null, "Please select a story to view.");

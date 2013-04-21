@@ -4,19 +4,27 @@
  */
 package view;
 
+import com.uoy.sb.Common;
 import com.uoy.sb.Global;
 import controller.StoryController;
+import controller.UserController;
 import controller.UserStoryController;
+import java.awt.FlowLayout;
+import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import model.AssignedStory;
 import model.Story;
+import model.User;
 
 /**
  *
@@ -32,7 +40,7 @@ public class ChildHome extends javax.swing.JPanel {
     public ChildHome() {
         initComponents();
 
-        jLabel1.setText("Welcome, " + Global.loggedInUser);
+        welcomeUser();
         
         StoryController sc = new StoryController();
 
@@ -53,6 +61,28 @@ public class ChildHome extends javax.swing.JPanel {
         }
 
         lstStory.addMouseListener(new StoryListMouseListener());
+    }
+    
+    /**
+     * Display welcome message and user's picture
+     */
+    private void welcomeUser() {
+        jLabel1.setText("Welcome, " + Global.loggedInUser);
+
+        User u = new UserController().getUserByName(Global.loggedInUser);
+
+        if (u != null && !u.getImage().equals("")) {
+            Image image = null;
+            try {
+                image = Common.readImage(u.getImage());
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, "Cannot read input image");
+            }
+
+            JLabel lblimage = new JLabel(new ImageIcon(image.getScaledInstance(100, -1, Image.SCALE_DEFAULT)));
+            panelUserImage.setLayout(new FlowLayout());
+            panelUserImage.add(lblimage);
+        }
     }
 
     /**

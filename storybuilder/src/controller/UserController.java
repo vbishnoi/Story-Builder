@@ -160,6 +160,10 @@ public class UserController {
         // elements
         elm.addContent(new Element(Common.Variables.USER_PASSWORD).setText(user.getPassword()));
         elm.addContent(new Element(Common.Variables.USER_AGE).setText(String.valueOf(user.getAge())));
+        String avatar = "resources/images/default.jpg";
+        if(!user.getImage().equals(""))
+            avatar = user.getImage();
+        
         elm.addContent(new Element(Common.Variables.USER_IMAGE).setText(user.getImage()));
 
         Element parent = parser.getElement("//users");
