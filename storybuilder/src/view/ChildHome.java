@@ -131,6 +131,11 @@ public class ChildHome extends javax.swing.JPanel {
         });
 
         btnPrint.setText("Print");
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Exit");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -283,6 +288,23 @@ public class ChildHome extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_btnReadActionPerformed
+
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+        int selectedIndex = -1;
+        Story s = null;
+        
+        selectedIndex = lstStory.getSelectedIndex();
+
+        if (selectedIndex != -1) {
+            s = new StoryController().getStory(Integer.parseInt(assigned.get(selectedIndex).getStory()));
+            if (s != null) {
+                Global.container.showModalDialog(new printPanel(s), "Print story");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a story to print.");
+        }
+
+    }//GEN-LAST:event_btnPrintActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnRead;
