@@ -530,7 +530,7 @@ public final class CreateStory extends javax.swing.JPanel {
         
         if (!txtTitle.getText().equals("")) {
             // new story
-            if (getStoryID() == 0) {
+            if (getStoryID() == 0 || !(story.getCreatedBy().equals(Global.loggedIn))) {
                 story = new Story();
                 story.setTitle(txtTitle.getText());
                 story.setPages(this.getPages());

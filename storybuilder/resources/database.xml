@@ -160,6 +160,20 @@
         </page>
       </pages>
     </story>
+    <story id="7" createdby="tuanva" feedback_require="true">
+      <title>Buzzy Bee bee</title>
+      <bgcolor>WHITE</bgcolor>
+      <fontsize>10</fontsize>
+      <font>Arial</font>
+      <textcolor>BLACK</textcolor>
+      <pages>
+        <page>
+          <content>Buzzy's not like other bees. Other bees make lots of trips to gather their nectar.</content>
+          <sound />
+          <images />
+        </page>
+      </pages>
+    </story>
   </stories>
   <assigned>
     <item story="1" user="Helen">
