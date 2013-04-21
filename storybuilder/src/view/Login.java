@@ -128,6 +128,9 @@ public class Login extends javax.swing.JFrame {
             
             new MainContainer().setVisible(true);
         }
+        else {
+            JOptionPane.showMessageDialog(null, "Provided name or password is incorrect! \nPlease try again.");
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
