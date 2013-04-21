@@ -68,40 +68,31 @@ public class ReadStory extends javax.swing.JPanel {
      */
     public ReadStory(int storyID) {
         initComponents();
+        Color color = null;
 
         this.setStoryID(storyID);
         sc = new StoryController();
-
         story = sc.getStory(getStoryID());
-
         storyPages = story.getPages();
 
         //set the story name
         storyName.setText(story.getTitle());
 
-        Color color = null;
-        try {
-            Field field = Class.forName("java.awt.Color").getField(story.getBackgroundColor());
-            color = (Color) field.get(null);
-        } catch (Exception ex) {
-            Logger.getLogger(ReadStory.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        color = Common.getColor(story.getBackgroundColor());
 
-        //set textback ground color
-        pageText.setBackground(color);
+        if (color != null) {
+            //set textback ground color
+            pageText.setBackground(color);
+        }
 
         //set story font size and font color
         pageText.setFont(new Font(story.getFont(), Font.PLAIN, story.getFontSize()));
 
-        try {
-            Field field = Class.forName("java.awt.Color").getField(story.getTextColor());
-            color = (Color) field.get(null);
-        } catch (Exception ex) {
-            Logger.getLogger(ReadStory.class.getName()).log(Level.SEVERE, null, ex);
+        if (color != null) {
+            //set text color
+            pageText.setForeground(Common.getColor(story.getTextColor()));
         }
-        //set text color
-        pageText.setForeground(color);
-
+        
         if (storyPages != null && storyPages.size() > 0) {
             pageIndexChanged();
         }

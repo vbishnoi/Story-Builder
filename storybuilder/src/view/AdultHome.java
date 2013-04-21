@@ -6,6 +6,7 @@ package view;
 
 import com.uoy.sb.Global;
 import controller.StoryController;
+import controller.UserController;
 import controller.UserStoryController;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -17,6 +18,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import model.AssignedStory;
 import model.Story;
+import model.User;
 
 /**
  *
@@ -33,9 +35,23 @@ public class AdultHome extends javax.swing.JPanel {
     public AdultHome() {
         initComponents();
 
-        
+        welcomeUser();
         
         populateList();
+    }
+    
+    /**
+     * Display welcome message and user's picture
+     */
+    
+    private void welcomeUser() {
+        jLabel1.setText("Welcome, " + Global.loggedInUser);
+        
+        User u = new UserController().getUserByName(Global.loggedInUser);
+        
+        if(u != null) {
+            
+        }
     }
 
     private void populateList() {

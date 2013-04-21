@@ -4,12 +4,17 @@
  */
 package com.uoy.sb;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.security.DigestException;
 import java.security.MessageDigest;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import view.ReadStory;
 
 /**
  *
@@ -130,5 +135,24 @@ public class Common {
         } catch (IOException ex) {
             throw ex;
         }
+    }
+    
+    /**
+     * Get the Color from name
+     * @param colorName name of the color
+     * @return 
+     */
+    
+    public static Color getColor(String colorName) {
+        Color color = null;
+        
+        try {
+            Field field = Class.forName("java.awt.Color").getField(colorName);
+            color = (Color) field.get(null);
+        } catch (Exception ex) {
+            Logger.getLogger(ReadStory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return color;
     }
 }
