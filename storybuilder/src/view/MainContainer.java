@@ -9,6 +9,8 @@ import controller.UserController;
 import java.awt.Dialog;
 import java.awt.Dimension;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 import model.User;
@@ -41,6 +43,17 @@ public class MainContainer extends javax.swing.JFrame {
                     break;
             }
         }
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                if (JOptionPane.showConfirmDialog(null, "Are you sure to close this window?", "Really Closing?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    MainContainer.this.setVisible(false);
+                    System.exit(0);
+                }
+            }
+        });
 
         setSize(new Dimension(750, 600));
         setLocationRelativeTo(null);
@@ -59,7 +72,7 @@ public class MainContainer extends javax.swing.JFrame {
         this.revalidate();
         this.repaint();
     }
-    
+
     public void showModalDialog(JPanel panel, String title) {
         JDialog dialog = new JDialog(this, title);
         dialog.getContentPane().add(panel);
