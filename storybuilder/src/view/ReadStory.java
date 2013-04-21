@@ -92,7 +92,7 @@ public class ReadStory extends javax.swing.JPanel {
             //set text color
             pageText.setForeground(Common.getColor(story.getTextColor()));
         }
-        
+
         if (storyPages != null && storyPages.size() > 0) {
             pageIndexChanged();
         }
@@ -136,9 +136,7 @@ public class ReadStory extends javax.swing.JPanel {
                 imagePanel.setBorder(null);
             }
 
-//            this.revalidate();
-//            this.repaint();
-
+            playSound();
 
         }
     }
@@ -358,7 +356,10 @@ public class ReadStory extends javax.swing.JPanel {
         pageIndexChanged();
     }//GEN-LAST:event_btnPrevActionPerformed
 
-    private void btnReplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReplayActionPerformed
+    /**
+     * Play page sound if available
+     */
+    private void playSound() {
         if (storyPages != null) {
             Page p = storyPages.get(_pageIndex);
             if (p != null && !p.getSound().equals("")) {
@@ -377,9 +378,13 @@ public class ReadStory extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(null, "Sound couldn't be played");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "No sound on this page");
+//                JOptionPane.showMessageDialog(null, "No sound on this page");
             }
         }
+    }
+
+    private void btnReplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReplayActionPerformed
+        playSound();
     }//GEN-LAST:event_btnReplayActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHome;
