@@ -41,7 +41,7 @@ public class ChildHome extends javax.swing.JPanel {
         initComponents();
 
         welcomeUser();
-        
+
         StoryController sc = new StoryController();
 
         try {
@@ -62,7 +62,7 @@ public class ChildHome extends javax.swing.JPanel {
 
         lstStory.addMouseListener(new StoryListMouseListener());
     }
-    
+
     /**
      * Display welcome message and user's picture
      */
@@ -124,6 +124,11 @@ public class ChildHome extends javax.swing.JPanel {
 
         btnRead.setIcon(new javax.swing.ImageIcon(getClass().getResource("/storybuilder/resources/main1.png"))); // NOI18N
         btnRead.setText("Read");
+        btnRead.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReadActionPerformed(evt);
+            }
+        });
 
         btnPrint.setText("Print");
 
@@ -263,6 +268,21 @@ public class ChildHome extends javax.swing.JPanel {
             System.exit(0);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadActionPerformed
+
+        int selectedIndex = lstStory.getSelectedIndex();
+
+        if (selectedIndex >= 0) {
+            AssignedStory as = assigned.get(selectedIndex);
+            if (as != null) {
+                Global.container.setDisplay(new ReadStory(Integer.parseInt(as.getStory())));
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a story to read!");
+        }
+
+    }//GEN-LAST:event_btnReadActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnRead;
