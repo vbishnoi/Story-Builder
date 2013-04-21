@@ -100,7 +100,7 @@
         </page>
         <page>
           <content>page 1111</content>
-          <sound>/Users/tuanva/Downloads/goat.wav</sound>
+          <sound>resources/sounds/goat.wav</sound>
           <images />
         </page>
       </pages>
