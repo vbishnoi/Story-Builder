@@ -232,6 +232,7 @@ public class ReadStory extends javax.swing.JPanel {
         });
 
         btnPrint.setText("Print");
+        btnPrint.setPreferredSize(new java.awt.Dimension(117, 23));
         btnPrint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrintActionPerformed(evt);
@@ -248,7 +249,7 @@ public class ReadStory extends javax.swing.JPanel {
         );
         imagePanelLayout.setVerticalGroup(
             imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 154, Short.MAX_VALUE)
+            .addGap(0, 140, Short.MAX_VALUE)
         );
 
         lblPageCount.setText("jLabel1");
@@ -264,11 +265,11 @@ public class ReadStory extends javax.swing.JPanel {
                     .addGroup(storyPanelLayout.createSequentialGroup()
                         .addComponent(storyName)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnPrint))
+                        .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(storyPanelLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(lblPageCount)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
                         .addComponent(imagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnReplay)))
@@ -278,15 +279,15 @@ public class ReadStory extends javax.swing.JPanel {
             storyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, storyPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(storyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(storyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(storyName)
-                    .addComponent(btnPrint))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(storyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(storyPanelLayout.createSequentialGroup()
-                        .addGap(0, 110, Short.MAX_VALUE)
+                        .addGap(0, 99, Short.MAX_VALUE)
                         .addComponent(btnReplay))
-                    .addComponent(imagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                    .addComponent(imagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                     .addGroup(storyPanelLayout.createSequentialGroup()
                         .addComponent(lblPageCount)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -294,6 +295,8 @@ public class ReadStory extends javax.swing.JPanel {
                 .addComponent(pageTextScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+
+        storyPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnPrint, btnReplay});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
