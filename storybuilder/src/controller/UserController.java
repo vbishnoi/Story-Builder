@@ -148,8 +148,11 @@ public class UserController {
      * Create a new instance of user and save into the database
      * 
      * @param user User to save
+     * @return true if user created successfully
      */
-    public void createNewUser(User user) {
+    public boolean createNewUser(User user) {
+        Boolean isCreated = false;
+        
         Document doc = parser.getDocument();
         Element elm = new Element("user");
 
@@ -177,10 +180,14 @@ public class UserController {
                 //xmlOutputter.output(doc, System.out);
 
                 xmlOutputter.output(doc, new FileOutputStream(Common.Variables.DATABASE_NAME));
+                
+                isCreated = true;
             } catch (IOException ex) {
                 Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        
+        return isCreated;
     }
 
     /**
