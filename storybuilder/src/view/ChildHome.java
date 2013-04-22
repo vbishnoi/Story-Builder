@@ -122,7 +122,6 @@ public class ChildHome extends javax.swing.JPanel {
             .add(0, 100, Short.MAX_VALUE)
         );
 
-        btnRead.setIcon(new javax.swing.ImageIcon(getClass().getResource("/storybuilder/resources/main1.png"))); // NOI18N
         btnRead.setText("Read");
         btnRead.setPreferredSize(new java.awt.Dimension(117, 23));
         btnRead.addActionListener(new java.awt.event.ActionListener() {
