@@ -118,6 +118,9 @@ public class UserList extends javax.swing.JPanel {
                     .add(jButton1))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
+
+        layout.linkSize(new java.awt.Component[] {btnAddUser, jButton1}, org.jdesktop.layout.GroupLayout.HORIZONTAL);
+
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()

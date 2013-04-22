@@ -22,7 +22,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="panelUserImage" min="-2" max="-2" attributes="0"/>
@@ -35,7 +35,7 @@
                       <Component id="buttonPanel" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="12" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -52,7 +52,7 @@
                   <Component id="tabsPanel" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonPanel" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="83" max="32767" attributes="0"/>
+              <EmptySpace pref="78" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -120,17 +120,17 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="457" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="473" max="32767" attributes="0"/>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" alignment="0" pref="457" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" alignment="0" pref="473" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="397" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="415" max="32767" attributes="0"/>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" alignment="0" pref="397" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" alignment="0" pref="415" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -172,12 +172,12 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane3" alignment="0" pref="457" max="32767" attributes="0"/>
+                      <Component id="jScrollPane3" alignment="0" pref="473" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane3" alignment="0" pref="397" max="32767" attributes="0"/>
+                      <Component id="jScrollPane3" alignment="0" pref="415" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -214,41 +214,39 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="buttonDeleteStory" linkSize="1" max="32767" attributes="0"/>
-                          <Component id="buttonViewFeedback" linkSize="1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="buttonPrintStory" linkSize="1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnManageChildren" linkSize="1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnReadStory" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnExit" max="32767" attributes="0"/>
-                          <Component id="btnEdit" max="32767" attributes="0"/>
-                      </Group>
-                      <Component id="btnNewStory" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="2" attributes="0">
+                      <Component id="btnNewStory" linkSize="1" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnEdit" linkSize="1" alignment="2" min="-2" pref="117" max="-2" attributes="0"/>
+                      <Component id="btnReadStory" linkSize="1" alignment="2" min="-2" pref="117" max="-2" attributes="0"/>
+                      <Component id="btnManageChildren" linkSize="1" alignment="2" max="32767" attributes="0"/>
+                      <Component id="buttonDeleteStory" linkSize="1" alignment="2" max="32767" attributes="0"/>
+                      <Component id="buttonViewFeedback" linkSize="1" alignment="2" max="32767" attributes="0"/>
+                      <Component id="buttonPrintStory" linkSize="1" alignment="2" max="32767" attributes="0"/>
+                      <Component id="btnExit" linkSize="1" alignment="2" min="-2" pref="117" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="20" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="19" max="32767" attributes="0"/>
-                  <Component id="btnNewStory" min="-2" max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="btnNewStory" linkSize="2" min="-2" pref="34" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnEdit" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnReadStory" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="btnManageChildren" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="buttonDeleteStory" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="buttonViewFeedback" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="buttonPrintStory" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnExit" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnEdit" linkSize="2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="btnReadStory" linkSize="2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Component id="btnManageChildren" linkSize="2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonDeleteStory" linkSize="2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonViewFeedback" linkSize="2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonPrintStory" linkSize="2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Component id="btnExit" linkSize="2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -281,7 +279,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="buttonViewFeedback">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Vied Feedback"/>
+            <Property name="text" type="java.lang.String" value="View Feedback"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonViewFeedbackActionPerformed"/>
@@ -297,7 +295,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnReadStory">
           <Properties>
-            <Property name="text" type="java.lang.String" value="View Story"/>
+            <Property name="text" type="java.lang.String" value="Read Story"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReadStoryActionPerformed"/>
@@ -313,7 +311,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnEdit">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Edit story"/>
+            <Property name="text" type="java.lang.String" value="Edit Story"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditActionPerformed"/>
