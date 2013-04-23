@@ -46,56 +46,6 @@
       <age>10</age>
       <image>testimage.jpg</image>
     </user>
-    <user name="testChild" group="1">
-      <password>testPassword</password>
-      <age>10</age>
-      <image>testimage.jpg</image>
-    </user>
-    <user name="testChild" group="1">
-      <password>testPassword</password>
-      <age>10</age>
-      <image>testimage.jpg</image>
-    </user>
-    <user name="testChild" group="1">
-      <password>testPassword</password>
-      <age>10</age>
-      <image>testimage.jpg</image>
-    </user>
-    <user name="testChild" group="1">
-      <password>testPassword</password>
-      <age>10</age>
-      <image>testimage.jpg</image>
-    </user>
-    <user name="testChild" group="1">
-      <password>testPassword</password>
-      <age>10</age>
-      <image>testimage.jpg</image>
-    </user>
-    <user name="testChild" group="1">
-      <password>testPassword</password>
-      <age>10</age>
-      <image>testimage.jpg</image>
-    </user>
-    <user name="testChild" group="1">
-      <password>testPassword</password>
-      <age>10</age>
-      <image>testimage.jpg</image>
-    </user>
-    <user name="testChild" group="1">
-      <password>testPassword</password>
-      <age>10</age>
-      <image>testimage.jpg</image>
-    </user>
-    <user name="testChild" group="1">
-      <password>testPassword</password>
-      <age>10</age>
-      <image>testimage.jpg</image>
-    </user>
-    <user name="testChild" group="1">
-      <password>testPassword</password>
-      <age>10</age>
-      <image>testimage.jpg</image>
-    </user>
   </users>
   <stories>
     <story id="1" createdby="tuanva" feedback_require="true" url="http://www.magickeys.com/books/bee/index.html">
@@ -241,6 +191,78 @@
           <content>Buzzy's not like other bees. Other bees make lots of trips to gather their nectar.</content>
           <sound />
           <images />
+        </page>
+      </pages>
+    </story>
+    <story id="8" createdby="admin" feedback_require="true">
+      <title>This is a new story</title>
+      <bgcolor>BLACK</bgcolor>
+      <fontsize>14</fontsize>
+      <font>Arial</font>
+      <textcolor>WHITE</textcolor>
+      <pages>
+        <page>
+          <content>This is the first test page with the singing goat and two images</content>
+          <sound>resources/sounds/goat.wav</sound>
+          <images>
+            <image>resources/images/default.jpg</image>
+            <image>resources/images/default.jpg</image>
+          </images>
+        </page>
+        <page>
+          <content>This is the second page with one image and no sound</content>
+          <sound />
+          <images>
+            <image>resources/images/default.jpg</image>
+          </images>
+        </page>
+      </pages>
+    </story>
+    <story id="9" createdby="admin" feedback_require="true">
+      <title>This is a new story</title>
+      <bgcolor>BLACK</bgcolor>
+      <fontsize>14</fontsize>
+      <font>Arial</font>
+      <textcolor>WHITE</textcolor>
+      <pages>
+        <page>
+          <content>This is the first test page with the singing goat and two images</content>
+          <sound>resources/sounds/goat.wav</sound>
+          <images>
+            <image>resources/images/default.jpg</image>
+            <image>resources/images/default.jpg</image>
+          </images>
+        </page>
+        <page>
+          <content>This is the second page with one image and no sound</content>
+          <sound />
+          <images>
+            <image>resources/images/default.jpg</image>
+          </images>
+        </page>
+      </pages>
+    </story>
+    <story id="10" createdby="admin" feedback_require="true">
+      <title>This is a new story</title>
+      <bgcolor>BLACK</bgcolor>
+      <fontsize>14</fontsize>
+      <font>Arial</font>
+      <textcolor>WHITE</textcolor>
+      <pages>
+        <page>
+          <content>This is the first test page with the singing goat and two images</content>
+          <sound>resources/sounds/goat.wav</sound>
+          <images>
+            <image>resources/images/default.jpg</image>
+            <image>resources/images/default.jpg</image>
+          </images>
+        </page>
+        <page>
+          <content>This is the second page with one image and no sound</content>
+          <sound />
+          <images>
+            <image>resources/images/default.jpg</image>
+          </images>
         </page>
       </pages>
     </story>

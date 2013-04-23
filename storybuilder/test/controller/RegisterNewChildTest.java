@@ -66,8 +66,8 @@ public class RegisterNewChildTest {
         // whether that child is in the list 
 //        assertTrue(children.contains(child));
         
-        // get the new child by name
-        User addedChild = new UserController().getUserByName(child.getName());
+        // get the new created child (last one in the list)
+        User addedChild = children.getLast();
         
         // check that the added child is equal to the one that going to be added
         assertEquals(addedChild.getAge(), child.getAge());

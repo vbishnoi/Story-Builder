@@ -146,7 +146,7 @@ public class Story implements StoryInterface {
     }
     
     public Story() {
-        
+        _pages = new LinkedList<>();
     }
     
     /**
