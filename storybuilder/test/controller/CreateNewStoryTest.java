@@ -78,6 +78,7 @@ public class CreateNewStoryTest {
         // get the new created story
         Story newStory = stories.getLast();
 
+        // compare each property
         assertEquals(story.getBackgroundColor(), newStory.getBackgroundColor());
         assertEquals(story.getCreatedBy(), newStory.getCreatedBy());
         assertEquals(story.getFont(), newStory.getFont());

@@ -65,7 +65,7 @@ public class ReadStory extends javax.swing.JPanel {
     }
 
     /**
-     * Creates new form ReadStory1
+     * Creates new form ReadStory
      */
     public ReadStory(int storyID) {
         initComponents();
