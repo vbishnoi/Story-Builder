@@ -6,9 +6,8 @@ import com.uoy.interfaces.UserInterface;
  *
  * @author Y0239881
  */
-
 public class User implements UserInterface {
-    
+
     private String _name;
     private String _password;
     private UserGroup _group;
@@ -46,15 +45,14 @@ public class User implements UserInterface {
     public void setPassword(String password) {
         this._password = password;
     }
-    
+
     public User(String name, String password, UserGroup group) {
         this._name = name;
         this._password = password;
         this._group = group;
     }
-    
+
     public User() {
-        
     }
 
     /**
@@ -104,5 +102,22 @@ public class User implements UserInterface {
     public void setAge(int age) {
         this._age = age;
     }
+    
+    /**
+     * Whether to object are equal
+     * @param other
+     * @return 
+     */
+
+    @Override
+    public boolean equals(Object user) {
+        return (user != null && user instanceof User && ((User) user).getAge() == this.getAge() 
+                &&((User) user).getGroup() == this.getGroup()
+                && ((User) user).getImage() == this.getImage()
+                && ((User) user).getName() == this.getName()
+                && ((User) user).getPassword() == this.getPassword()) ;
+//                && super.equals(user));
+    }
+    
     
 }

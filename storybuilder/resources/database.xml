@@ -26,6 +26,76 @@
       <age>25</age>
       <image>resources/images/default.jpg</image>
     </user>
+    <user name="testChild" group="1">
+      <password>testPassword</password>
+      <age>10</age>
+      <image>testimage.jpg</image>
+    </user>
+    <user name="testChild" group="1">
+      <password>testPassword</password>
+      <age>10</age>
+      <image>testimage.jpg</image>
+    </user>
+    <user name="testChild" group="1">
+      <password>testPassword</password>
+      <age>10</age>
+      <image>testimage.jpg</image>
+    </user>
+    <user name="testChild" group="1">
+      <password>testPassword</password>
+      <age>10</age>
+      <image>testimage.jpg</image>
+    </user>
+    <user name="testChild" group="1">
+      <password>testPassword</password>
+      <age>10</age>
+      <image>testimage.jpg</image>
+    </user>
+    <user name="testChild" group="1">
+      <password>testPassword</password>
+      <age>10</age>
+      <image>testimage.jpg</image>
+    </user>
+    <user name="testChild" group="1">
+      <password>testPassword</password>
+      <age>10</age>
+      <image>testimage.jpg</image>
+    </user>
+    <user name="testChild" group="1">
+      <password>testPassword</password>
+      <age>10</age>
+      <image>testimage.jpg</image>
+    </user>
+    <user name="testChild" group="1">
+      <password>testPassword</password>
+      <age>10</age>
+      <image>testimage.jpg</image>
+    </user>
+    <user name="testChild" group="1">
+      <password>testPassword</password>
+      <age>10</age>
+      <image>testimage.jpg</image>
+    </user>
+    <user name="testChild" group="1">
+      <password>testPassword</password>
+      <age>10</age>
+      <image>testimage.jpg</image>
+    </user>
+    <user name="testChild" group="1">
+      <password>testPassword</password>
+      <age>10</age>
+      <image>testimage.jpg</image>
+    </user>
+    <user name="testChild" group="1">
+      <password>testPassword</password>
+      <age>10</age>
+      <image>testimage.jpg</image>
+    </user>
+    <user name="testChild" group="1">
+      <password>testPassword</password>
+      <age>10</age>
+      <image>testimage.jpg</image>
+    </user>
   </users>
   <stories>
     <story id="1" createdby="tuanva" feedback_require="true" url="http://www.magickeys.com/books/bee/index.html">

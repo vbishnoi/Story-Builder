@@ -51,8 +51,31 @@ public class RegisterNewChildTest {
         child.setName("testChild");
         child.setPassword("testPassword");
         
+        LinkedList<User> children = uc.getAllChildren();
+        
+        int oldSize = children.size();
+        System.out.println(oldSize);
+        
         uc.createNewUser(child);
         
-        LinkedList<User> children = uc.getAllChildren();
+        children = new UserController().getAllChildren();
+        
+        // whether a new object added to the database
+        assertTrue(oldSize == children.size() - 1);
+        
+        // whether that child is in the list 
+//        assertTrue(children.contains(child));
+        
+        // get the new child by name
+        User addedChild = new UserController().getUserByName(child.getName());
+        
+        // check that the added child is equal to the one that going to be added
+        assertEquals(addedChild.getAge(), child.getAge());
+        assertEquals(addedChild.getGroup(), child.getGroup());
+        assertEquals(addedChild.getImage(), child.getImage());
+        assertEquals(addedChild.getName(), child.getName());
+        assertEquals(addedChild.getPassword(), child.getPassword());
     }
+    
+    
 }
