@@ -4,6 +4,7 @@
  */
 package controller;
 
+import model.Story;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -38,6 +39,16 @@ public class ReadStoryTest {
 
     @Test
     public void testReadStory() {
+        Story s = new StoryController().getStory(1);
+        
+        // check story not null
+        assertNotNull(s);
+        
+        // check all the pages
+        assertNotNull(s.getPages());
+        
         
     }
+    
+    
 }
